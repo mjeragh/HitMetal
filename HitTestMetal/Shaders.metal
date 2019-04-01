@@ -9,6 +9,7 @@
 // File for Metal kernel and shader functions
 
 #include <metal_stdlib>
+using namespace metal;
 #include <simd/simd.h>
 
 // Including header shared between this Metal shader code and Swift/C code executing Metal API commands

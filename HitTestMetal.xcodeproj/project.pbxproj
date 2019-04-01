@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		B2A6D08E22525260000FBB54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D08D22525260000FBB54 /* AppDelegate.swift */; };
 		B2A6D09122525260000FBB54 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D09022525260000FBB54 /* Renderer.swift */; };
-		B2A6D09322525260000FBB54 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D09222525260000FBB54 /* GameViewController.swift */; };
+		B2A6D09322525260000FBB54 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D09222525260000FBB54 /* ViewController.swift */; };
 		B2A6D09522525260000FBB54 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D09422525260000FBB54 /* Shaders.metal */; };
 		B2A6D09822525260000FBB54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2A6D09622525260000FBB54 /* Main.storyboard */; };
 		B2A6D09A22525260000FBB54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2A6D09922525260000FBB54 /* Assets.xcassets */; };
@@ -20,7 +20,6 @@
 		B2A6D0AC2252531C000FBB54 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0A82252531C000FBB54 /* MathLibrary.swift */; };
 		B2A6D0B322525353000FBB54 /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0AD22525352000FBB54 /* Primitive.swift */; };
 		B2A6D0B422525353000FBB54 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0AE22525353000FBB54 /* Camera.swift */; };
-		B2A6D0B522525353000FBB54 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0AF22525353000FBB54 /* Shaders.metal */; };
 		B2A6D0B622525353000FBB54 /* Submesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0B022525353000FBB54 /* Submesh.swift */; };
 		B2A6D0B722525353000FBB54 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0B122525353000FBB54 /* Model.swift */; };
 		B2A6D0B822525353000FBB54 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0B222525353000FBB54 /* Node.swift */; };
@@ -36,7 +35,7 @@
 		B2A6D08D22525260000FBB54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2A6D08F22525260000FBB54 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
 		B2A6D09022525260000FBB54 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
-		B2A6D09222525260000FBB54 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		B2A6D09222525260000FBB54 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B2A6D09422525260000FBB54 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		B2A6D09722525260000FBB54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B2A6D09922525260000FBB54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -48,7 +47,6 @@
 		B2A6D0A82252531C000FBB54 /* MathLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathLibrary.swift; sourceTree = "<group>"; };
 		B2A6D0AD22525352000FBB54 /* Primitive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primitive.swift; sourceTree = "<group>"; };
 		B2A6D0AE22525353000FBB54 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
-		B2A6D0AF22525353000FBB54 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; name = Shaders.metal; path = "../../../../../../RayWenderlich/Metal_by_Tutorials_v1/05-lighting-fundamentals/final/Lighting/Lighting/Shaders.metal"; sourceTree = "<group>"; };
 		B2A6D0B022525353000FBB54 /* Submesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Submesh.swift; sourceTree = "<group>"; };
 		B2A6D0B122525353000FBB54 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B2A6D0B222525353000FBB54 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -92,14 +90,13 @@
 				B2A6D08D22525260000FBB54 /* AppDelegate.swift */,
 				B2A6D08F22525260000FBB54 /* ShaderTypes.h */,
 				B2A6D09022525260000FBB54 /* Renderer.swift */,
-				B2A6D09222525260000FBB54 /* GameViewController.swift */,
+				B2A6D09222525260000FBB54 /* ViewController.swift */,
 				B2A6D0C222525486000FBB54 /* ViewControllerExtension.swift */,
 				B2A6D09422525260000FBB54 /* Shaders.metal */,
 				B2A6D0AE22525353000FBB54 /* Camera.swift */,
 				B2A6D0B122525353000FBB54 /* Model.swift */,
 				B2A6D0B222525353000FBB54 /* Node.swift */,
 				B2A6D0AD22525352000FBB54 /* Primitive.swift */,
-				B2A6D0AF22525353000FBB54 /* Shaders.metal */,
 				B2A6D0B022525353000FBB54 /* Submesh.swift */,
 				B2A6D09622525260000FBB54 /* Main.storyboard */,
 				B2A6D09922525260000FBB54 /* Assets.xcassets */,
@@ -210,7 +207,7 @@
 			files = (
 				B2A6D09522525260000FBB54 /* Shaders.metal in Sources */,
 				B2A6D09122525260000FBB54 /* Renderer.swift in Sources */,
-				B2A6D09322525260000FBB54 /* GameViewController.swift in Sources */,
+				B2A6D09322525260000FBB54 /* ViewController.swift in Sources */,
 				B2A6D0AC2252531C000FBB54 /* MathLibrary.swift in Sources */,
 				B2A6D0B322525353000FBB54 /* Primitive.swift in Sources */,
 				B2A6D0A92252531C000FBB54 /* RendererExtension.swift in Sources */,
@@ -219,7 +216,6 @@
 				B2A6D0C322525486000FBB54 /* ViewControllerExtension.swift in Sources */,
 				B2A6D0B622525353000FBB54 /* Submesh.swift in Sources */,
 				B2A6D0AA2252531C000FBB54 /* DebugLights.swift in Sources */,
-				B2A6D0B522525353000FBB54 /* Shaders.metal in Sources */,
 				B2A6D08E22525260000FBB54 /* AppDelegate.swift in Sources */,
 				B2A6D0AB2252531C000FBB54 /* DebugLights.metal in Sources */,
 				B2A6D0B822525353000FBB54 /* Node.swift in Sources */,
