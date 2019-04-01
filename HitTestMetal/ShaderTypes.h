@@ -12,38 +12,39 @@
 #ifndef ShaderTypes_h
 #define ShaderTypes_h
 
-#ifdef __METAL_VERSION__
-#define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
-#define NSInteger metal::int32_t
-#else
-#import <Foundation/Foundation.h>
-#endif
+#import <simd/simd.h>
 
-#include <simd/simd.h>
-
-typedef NS_ENUM(NSInteger, BufferIndex)
-{
-    BufferIndexMeshPositions = 0,
-    BufferIndexMeshGenerics  = 1,
-    BufferIndexUniforms      = 2
-};
-
-typedef NS_ENUM(NSInteger, VertexAttribute)
-{
-    VertexAttributePosition  = 0,
-    VertexAttributeTexcoord  = 1,
-};
-
-typedef NS_ENUM(NSInteger, TextureIndex)
-{
-    TextureIndexColor    = 0,
-};
-
-typedef struct
-{
+typedef struct {
+    matrix_float4x4 modelMatrix;
+    matrix_float4x4 viewMatrix;
     matrix_float4x4 projectionMatrix;
-    matrix_float4x4 modelViewMatrix;
+    matrix_float3x3 normalMatrix;
 } Uniforms;
+
+typedef enum {
+    unused = 0,
+    Sunlight = 1,
+    Spotlight = 2,
+    Pointlight = 3,
+    Ambientlight = 4
+} LightType;
+
+typedef struct {
+    vector_float3 position;
+    vector_float3 color;
+    vector_float3 specularColor;
+    float intensity;
+    vector_float3 attenuation;
+    LightType type;
+    float coneAngle;
+    vector_float3 coneDirection;
+    float coneAttenuation;
+} Light;
+
+typedef struct {
+    uint lightCount;
+    vector_float3 cameraPosition;
+} FragmentUniforms;
 
 #endif /* ShaderTypes_h */
 
