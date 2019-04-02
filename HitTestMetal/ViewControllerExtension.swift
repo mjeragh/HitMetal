@@ -66,17 +66,17 @@ extension ViewController {
     }
     
     func handleInteraction(at point: CGPoint) {
-        guard let cameraNode = pointOfView, let camera = cameraNode.camera else { return }
+        guard let camera = renderer?.camera else { return }
         
-        let viewport = mtkView.bounds // Assume viewport matches window; if not, apply additional inverse viewport xform
-        let width = Float(viewport.size.width)
-        let height = Float(viewport.size.height)
-        let aspectRatio = width / height
+        let viewport = view.bounds// Assume viewport matches window; if not, apply additional inverse viewport xform
+        let width = Float(viewport.width)
+        let height = Float(viewport.height)
+        // let aspectRatio = camera?.aspect//width / height
         
-        let projectionMatrix = camera.projectionMatrix(aspectRatio: aspectRatio)
+        let projectionMatrix = camera.projectionMatrix
         let inverseProjectionMatrix = projectionMatrix.inverse
         
-        let viewMatrix = cameraNode.worldTransform.inverse
+        let viewMatrix = camera.worldTransform.inverse
         let inverseViewMatrix = viewMatrix.inverse
         
         let clipX = (2 * Float(point.x)) / width - 1
@@ -95,8 +95,7 @@ extension ViewController {
         
         let ray = Ray(origin: worldRayOrigin, direction: worldRayDir)
         print("ray.direction \(ray.direction)")
-        if let hit = scene.hitTest(ray) {
-            hit.node.material.highlighted = !hit.node.material.highlighted // In Swift 4.2, this could be written with toggle()
+        if let hit = renderer?.scene.hitTest(ray) {
             print("Hit \(hit.node) at \(hit.intersectionPoint)")
         }
     }

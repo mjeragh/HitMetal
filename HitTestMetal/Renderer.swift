@@ -50,6 +50,7 @@ class Renderer: NSObject {
     
     var uniforms = Uniforms()
     var fragmentUniforms = FragmentUniforms()
+    var scene = Scene()
     
     // Camera holds view and projection matrices
     lazy var camera: Camera = {
@@ -136,6 +137,12 @@ class Renderer: NSObject {
         lights.append(redLight)
         lights.append(spotlight)
         fragmentUniforms.lightCount = UInt32(lights.count)
+        
+        //adding to sceene root node
+        for model in models {
+            scene.rootNode.addChildNode(model)
+        }
+        
     }
     
     func buildDefaultLight() -> Light {

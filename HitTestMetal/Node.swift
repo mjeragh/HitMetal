@@ -36,7 +36,7 @@ class Node {
   var position: float3 = [0, 0, 0]
   var rotation: float3 = [0, 0, 0]
   var scale: float3 = [1, 1, 1]
-    
+    var test: float4 = [1,1,1,1]
     weak var parent: Node?
   
   var modelMatrix: float4x4 {
