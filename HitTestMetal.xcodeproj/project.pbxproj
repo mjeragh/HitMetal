@@ -31,6 +31,7 @@
 		B2A6D0C82252581C000FBB54 /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0C72252581C000FBB54 /* Ray.swift */; };
 		B2A6D0CA22525827000FBB54 /* HitResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0C922525827000FBB54 /* HitResult.swift */; };
 		B2A6D0CC225321E0000FBB54 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0CB225321E0000FBB54 /* Scene.swift */; };
+		B2A6D0CE225375B2000FBB54 /* BoundingSphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0CD225375B2000FBB54 /* BoundingSphere.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		B2A6D0C72252581C000FBB54 /* Ray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
 		B2A6D0C922525827000FBB54 /* HitResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitResult.swift; sourceTree = "<group>"; };
 		B2A6D0CB225321E0000FBB54 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		B2A6D0CD225375B2000FBB54 /* BoundingSphere.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingSphere.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		B2A6D08C22525260000FBB54 /* HitTestMetal */ = {
 			isa = PBXGroup;
 			children = (
+				B2A6D0CD225375B2000FBB54 /* BoundingSphere.swift */,
 				B2A6D0C72252581C000FBB54 /* Ray.swift */,
 				B2A6D0C922525827000FBB54 /* HitResult.swift */,
 				B2A6D08D22525260000FBB54 /* AppDelegate.swift */,
@@ -230,6 +233,7 @@
 				B2A6D0AB2252531C000FBB54 /* DebugLights.metal in Sources */,
 				B2A6D0B822525353000FBB54 /* Node.swift in Sources */,
 				B2A6D0CA22525827000FBB54 /* HitResult.swift in Sources */,
+				B2A6D0CE225375B2000FBB54 /* BoundingSphere.swift in Sources */,
 				B2A6D0C82252581C000FBB54 /* Ray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

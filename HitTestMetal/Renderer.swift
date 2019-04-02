@@ -55,7 +55,7 @@ class Renderer: NSObject {
     // Camera holds view and projection matrices
     lazy var camera: Camera = {
         let camera = Camera()
-        camera.position = [0, 0.5, -3]
+        camera.position = [0, 0, -15]
         return camera
     }()
     
@@ -145,8 +145,8 @@ class Renderer: NSObject {
         }
         
         //creat a sphere
-        let sphere = Primitive(shape: .sphere, size: 0.5)
-        sphere.position = [1,2,0]
+        let sphere = Primitive(shape: .sphere, size: 1.0)
+        sphere.position = [-8,4,15]
         //sphere.pivotPosition = [1,2,0]
         sphere.material.baseColor = [1.0, 0, 0]
         sphere.material.metallic = 0.0
@@ -157,6 +157,10 @@ class Renderer: NSObject {
         sphere.material.ambientOcclusion = [0,0,0]
         sphere.name = "sun"
         primitives.append(sphere)
+        
+        for primitive in primitives {
+            scene.rootNode.addChildNode(primitive)
+        }
     }
     
     func buildDefaultLight() -> Light {

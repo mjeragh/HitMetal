@@ -39,6 +39,11 @@ class Node {
     var test: float4 = [1,1,1,1]
     weak var parent: Node?
     var material = Material()
+    
+    var boundingBox = MDLAxisAlignedBoundingBox()
+    var size: float3 {
+        return boundingBox.maxBounds - boundingBox.minBounds
+    }
   
   var modelMatrix: float4x4 {
     let translateMatrix = float4x4(translation: position)
@@ -55,10 +60,7 @@ class Node {
         }
     }
     
-    var boundingBox = MDLAxisAlignedBoundingBox()
-    var size: float3 {
-        return boundingBox.maxBounds - boundingBox.minBounds
-    }
+   
     
     var children: [Node] = []
     
@@ -139,7 +141,7 @@ extension MDLAxisAlignedBoundingBox {
         var sign : [Int] = [(inverseDirection.x < 0) ? 1 : 0,(inverseDirection.y < 0) ? 1 : 0,(inverseDirection.z < 0) ? 1 : 0]
         
         
-        var bounds : [float3] = [minBounds,maxBounds]
+        var bounds : [float3] = [tmin,tmax]
         
         
         var t0 = Float(tmax.z)
