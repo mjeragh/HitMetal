@@ -30,13 +30,74 @@
 
 import MetalKit
 
-class Primitive {
-  class func cube(device: MTLDevice, size: Float) -> MDLMesh {
-    let allocator = MTKMeshBufferAllocator(device: device)
-    let mesh = MDLMesh(boxWithExtent: [size, size, size],
-                       segments: [1, 1, 1],
-                       inwardNormals: false, geometryType: .triangles,
-                       allocator: allocator)
-    return mesh
-  }
+enum Shapes {
+    case cube
+    case sphere
+    case plane
 }
+
+class Primitive : Node {
+    let vertexBuffer: MTLBuffer
+    let mesh: MTKMesh
+    let pipelineState: MTLRenderPipelineState
+    
+    init(shape: Shapes, size: Float) {
+        let allocator = MTKMeshBufferAllocator(device: Renderer.device)
+        
+        
+        let mdlMesh : MDLMesh!
+        switch shape {
+        case .cube:
+            mdlMesh = MDLMesh(boxWithExtent: [size, size, size],
+                              segments: [1, 1, 1],
+                              inwardNormals: false, geometryType: .triangles,
+                              allocator: allocator)
+        case .sphere:
+            mdlMesh = MDLMesh(sphereWithExtent: [size, size, size], segments: [100,100], inwardNormals: false, geometryType: .triangles, allocator: allocator)
+        case .plane:
+            mdlMesh = MDLMesh(planeWithExtent: [size, size, size], segments: [100,100], geometryType: .triangles, allocator: allocator)
+        }
+        
+//        // add tangent and bitangent here
+//        mdlMesh.addTangentBasis(forTextureCoordinateAttributeNamed:
+//            MDLVertexAttributeTextureCoordinate,
+//                                tangentAttributeNamed: MDLVertexAttributeTangent,
+//                                bitangentAttributeNamed:
+//            MDLVertexAttributeBitangent)
+        
+        self.mesh = try! MTKMesh(mesh: mdlMesh, device: Renderer.device)
+        
+        
+        self.vertexBuffer = self.mesh.vertexBuffers[0].buffer
+        
+        
+        pipelineState = Primitive.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor)
+        //debugBoundingBox = DebugBoundingBox(boundingBox: mdlMesh.boundingBox)
+        super.init()
+        self.name = name
+        self.boundingBox = mdlMesh.boundingBox
+    }
+    
+    private static func buildPipelineState(vertexDescriptor: MDLVertexDescriptor) -> MTLRenderPipelineState {
+        let library = Renderer.library
+        let vertexFunction = library?.makeFunction(name: "vertex_main")
+        let fragmentFunction = library?.makeFunction(name: "fragment_main")
+        
+        var pipelineState: MTLRenderPipelineState
+        let pipelineDescriptor = MTLRenderPipelineDescriptor()
+        pipelineDescriptor.vertexFunction = vertexFunction
+        pipelineDescriptor.fragmentFunction = fragmentFunction
+        pipelineDescriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(vertexDescriptor)
+        pipelineDescriptor.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
+        pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
+        do {
+            pipelineState = try Renderer.device.makeRenderPipelineState(descriptor: pipelineDescriptor)
+        } catch let error {
+            fatalError(error.localizedDescription)
+        }
+        return pipelineState
+    }
+}
+
+    
+

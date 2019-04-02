@@ -38,6 +38,7 @@ class Node {
   var scale: float3 = [1, 1, 1]
     var test: float4 = [1,1,1,1]
     weak var parent: Node?
+    var material = Material()
   
   var modelMatrix: float4x4 {
     let translateMatrix = float4x4(translation: position)

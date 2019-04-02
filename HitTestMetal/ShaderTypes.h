@@ -46,5 +46,17 @@ typedef struct {
     vector_float3 cameraPosition;
 } FragmentUniforms;
 
+typedef struct {
+    vector_float3 baseColor;
+    vector_float3 secondColor;
+    vector_float3 specularColor;
+    float roughness;
+    float metallic;
+    vector_float3 ambientOcclusion;
+    float shininess;
+    vector_float4 irradiatedColor;
+} Material;
+
+
 #endif /* ShaderTypes_h */
 

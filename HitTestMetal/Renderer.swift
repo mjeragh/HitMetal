@@ -61,6 +61,7 @@ class Renderer: NSObject {
     
     // Array of Models allows for rendering multiple models
     var models: [Model] = []
+    var primitives: [Primitive] = []
     
     lazy var sunlight: Light = {
         var light = buildDefaultLight()
@@ -143,6 +144,19 @@ class Renderer: NSObject {
             scene.rootNode.addChildNode(model)
         }
         
+        //creat a sphere
+        let sphere = Primitive(shape: .sphere, size: 0.5)
+        sphere.position = [1,2,0]
+        //sphere.pivotPosition = [1,2,0]
+        sphere.material.baseColor = [1.0, 0, 0]
+        sphere.material.metallic = 0.0
+        sphere.material.roughness = 0
+        sphere.material.shininess = 0.4
+        sphere.material.specularColor = [0,0,0]
+        sphere.material.secondColor = [1.0,1.0,0.0]
+        sphere.material.ambientOcclusion = [0,0,0]
+        sphere.name = "sun"
+        primitives.append(sphere)
     }
     
     func buildDefaultLight() -> Light {
@@ -213,6 +227,25 @@ extension Renderer: MTKViewDelegate {
                                                     indexBufferOffset: submesh.indexBuffer.offset)
             }
         }
+        
+        
+        for primitive in primitives {
+            
+            
+            
+           uniforms.modelMatrix = primitive.modelMatrix
+            uniforms.normalMatrix = float3x3(normalFrom4x4: primitive.modelMatrix)
+            
+            renderEncoder.setVertexBuffer(primitive.vertexBuffer, offset: 0, index: 0)
+            renderEncoder.setVertexBytes(&uniforms,
+                                         length: MemoryLayout<Uniforms>.stride, index: 1)
+            
+            renderEncoder.setRenderPipelineState(primitive.pipelineState)
+            for submesh in primitive.mesh.submeshes{
+                renderEncoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
+            }
+        }
+        
         
        // debugLights(renderEncoder: renderEncoder, lightType: Spotlight)
         renderEncoder.endEncoding()
