@@ -207,7 +207,7 @@ extension Renderer: MTKViewDelegate {
             }
         }
         
-        debugLights(renderEncoder: renderEncoder, lightType: Spotlight)
+       // debugLights(renderEncoder: renderEncoder, lightType: Spotlight)
         renderEncoder.endEncoding()
         guard let drawable = view.currentDrawable else {
             return

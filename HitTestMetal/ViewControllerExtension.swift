@@ -33,31 +33,73 @@ import UIKit
 extension ViewController {
   static var previousScale: CGFloat = 1
 
-  func addGestureRecognizer(to view: UIView) {
-    let pan = UIPanGestureRecognizer(target: self,
-                                     action: #selector(handlePan(gesture:)))
-    view.addGestureRecognizer(pan)
-    
-    let pinch = UIPinchGestureRecognizer(target: self,
-                                         action: #selector(handlePinch(gesture:)))
-    view.addGestureRecognizer(pinch)
-  }
-  
-  @objc func handlePan(gesture: UIPanGestureRecognizer) {
-    let translation = float2(Float(gesture.translation(in: gesture.view).x),
-                             Float(gesture.translation(in: gesture.view).y))
-    renderer?.rotateUsing(translation: translation)
-    gesture.setTranslation(.zero, in: gesture.view)
-  }
-  
-  @objc func handlePinch(gesture: UIPinchGestureRecognizer) {
-    let sensitivity: Float = 0.8
-    renderer?.zoomUsing(delta: gesture.scale-ViewController.previousScale,
-                        sensitivity: sensitivity)
-    ViewController.previousScale = gesture.scale
-    if gesture.state == .ended {
-      ViewController.previousScale = 1
+//  func addGestureRecognizer(to view: UIView) {
+//    let pan = UIPanGestureRecognizer(target: self,
+//                                     action: #selector(handlePan(gesture:)))
+//    view.addGestureRecognizer(pan)
+//
+//    let pinch = UIPinchGestureRecognizer(target: self,
+//                                         action: #selector(handlePinch(gesture:)))
+//    view.addGestureRecognizer(pinch)
+//  }
+//
+//  @objc func handlePan(gesture: UIPanGestureRecognizer) {
+//    let translation = float2(Float(gesture.translation(in: gesture.view).x),
+//                             Float(gesture.translation(in: gesture.view).y))
+//    renderer?.rotateUsing(translation: translation)
+//    gesture.setTranslation(.zero, in: gesture.view)
+//  }
+//
+//  @objc func handlePinch(gesture: UIPinchGestureRecognizer) {
+//    let sensitivity: Float = 0.8
+//    renderer?.zoomUsing(delta: gesture.scale-ViewController.previousScale,
+//                        sensitivity: sensitivity)
+//    ViewController.previousScale = gesture.scale
+//    if gesture.state == .ended {
+//      ViewController.previousScale = 1
+//    }
+//  }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let location = touches.first?.location(in: view) {
+            handleInteraction(at: location)
+        }
     }
-  }
+    
+    func handleInteraction(at point: CGPoint) {
+        guard let cameraNode = pointOfView, let camera = cameraNode.camera else { return }
+        
+        let viewport = mtkView.bounds // Assume viewport matches window; if not, apply additional inverse viewport xform
+        let width = Float(viewport.size.width)
+        let height = Float(viewport.size.height)
+        let aspectRatio = width / height
+        
+        let projectionMatrix = camera.projectionMatrix(aspectRatio: aspectRatio)
+        let inverseProjectionMatrix = projectionMatrix.inverse
+        
+        let viewMatrix = cameraNode.worldTransform.inverse
+        let inverseViewMatrix = viewMatrix.inverse
+        
+        let clipX = (2 * Float(point.x)) / width - 1
+        let clipY = 1 - (2 * Float(point.y)) / height
+        let clipCoords = float4(clipX, clipY, 0, 1) // Assume clip space is hemicube, -Z is into the screen
+        
+        var eyeRayDir = inverseProjectionMatrix * clipCoords
+        eyeRayDir.z = -1
+        eyeRayDir.w = 0
+        
+        var worldRayDir = (inverseViewMatrix * eyeRayDir).xyz
+        worldRayDir = normalize(worldRayDir)
+        
+        let eyeRayOrigin = float4(x: 0, y: 0, z: 0, w: 1)
+        let worldRayOrigin = (inverseViewMatrix * eyeRayOrigin).xyz
+        
+        let ray = Ray(origin: worldRayOrigin, direction: worldRayDir)
+        print("ray.direction \(ray.direction)")
+        if let hit = scene.hitTest(ray) {
+            hit.node.material.highlighted = !hit.node.material.highlighted // In Swift 4.2, this could be written with toggle()
+            print("Hit \(hit.node) at \(hit.intersectionPoint)")
+        }
+    }
+    
 }
 
