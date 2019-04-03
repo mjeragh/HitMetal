@@ -40,10 +40,11 @@ class Node {
     weak var parent: Node?
     var material = Material()
     
-    var boundingBox = MDLAxisAlignedBoundingBox()
-    var size: float3 {
-        return boundingBox.maxBounds - boundingBox.minBounds
-    }
+//    var boundingBox = MDLAxisAlignedBoundingBox()
+//    var size: float3 {
+//        return boundingBox.maxBounds - boundingBox.minBounds
+//    }
+    var boundingSphere = BoundingSphere(center: float3(x: 0, y: 0, z: 0), radius: 0)
   
   var modelMatrix: float4x4 {
     let translateMatrix = float4x4(translation: position)
@@ -90,7 +91,7 @@ extension Node: Equatable, CustomDebugStringConvertible {
         let localRay = modelToWorld.inverse * ray
         
         var nearest: HitResult?
-        if let modelPoint = boundingBox.intersect(localRay, position: position) {
+        if let modelPoint = boundingSphere.intersect(localRay) {
             let worldPoint = modelToWorld * modelPoint
             let worldParameter = ray.interpolate(worldPoint)
             nearest = HitResult(node: self, ray: ray, parameter: worldParameter)

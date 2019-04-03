@@ -75,7 +75,7 @@ class Primitive : Node {
         //debugBoundingBox = DebugBoundingBox(boundingBox: mdlMesh.boundingBox)
         super.init()
         self.name = name
-        self.boundingBox = mdlMesh.boundingBox
+        //self.boundingSphere = mdlMesh.boundingBox
     }
     
     private static func buildPipelineState(vertexDescriptor: MDLVertexDescriptor) -> MTLRenderPipelineState {

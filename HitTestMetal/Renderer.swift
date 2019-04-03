@@ -124,11 +124,13 @@ class Renderer: NSObject {
         
         // add model to the scene
         let train = Model(name: "train")
+        train.name = "train"
         train.position = [0, 0, 0]
         train.rotation = [0, radians(fromDegrees: 45), 0]
         models.append(train)
         let fir = Model(name: "treefir")
-        fir.position = [1.4, 0, 0]
+        fir.name = "tree"
+        fir.position = [1.4, 0, 1]
         models.append(fir)
         
         buildDepthStencilState()
@@ -141,6 +143,7 @@ class Renderer: NSObject {
         
         //adding to sceene root node
         for model in models {
+            model.boundingSphere.radius=2.0
             scene.rootNode.addChildNode(model)
         }
         
@@ -156,6 +159,7 @@ class Renderer: NSObject {
         sphere.material.secondColor = [1.0,1.0,0.0]
         sphere.material.ambientOcclusion = [0,0,0]
         sphere.name = "sun"
+        sphere.boundingSphere.radius = 1.0
         primitives.append(sphere)
         
         for primitive in primitives {

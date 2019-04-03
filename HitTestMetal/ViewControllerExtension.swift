@@ -84,7 +84,7 @@ extension ViewController {
         let clipCoords = float4(clipX, clipY, 0, 1) // Assume clip space is hemicube, -Z is into the screen
         
         var eyeRayDir = inverseProjectionMatrix * clipCoords
-        eyeRayDir.z = -1
+        eyeRayDir.z = 1
         eyeRayDir.w = 0
         
         var worldRayDir = (inverseViewMatrix * eyeRayDir).xyz

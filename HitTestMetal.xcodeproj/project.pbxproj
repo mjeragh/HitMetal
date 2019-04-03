@@ -32,6 +32,7 @@
 		B2A6D0CA22525827000FBB54 /* HitResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0C922525827000FBB54 /* HitResult.swift */; };
 		B2A6D0CC225321E0000FBB54 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0CB225321E0000FBB54 /* Scene.swift */; };
 		B2A6D0CE225375B2000FBB54 /* BoundingSphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0CD225375B2000FBB54 /* BoundingSphere.swift */; };
+		B2A6D0D02253C606000FBB54 /* ModelIOExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0CF2253C606000FBB54 /* ModelIOExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		B2A6D0C922525827000FBB54 /* HitResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitResult.swift; sourceTree = "<group>"; };
 		B2A6D0CB225321E0000FBB54 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		B2A6D0CD225375B2000FBB54 /* BoundingSphere.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingSphere.swift; sourceTree = "<group>"; };
+		B2A6D0CF2253C606000FBB54 /* ModelIOExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelIOExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				B2A6D0C222525486000FBB54 /* ViewControllerExtension.swift */,
 				B2A6D09422525260000FBB54 /* Shaders.metal */,
 				B2A6D0CB225321E0000FBB54 /* Scene.swift */,
+				B2A6D0CF2253C606000FBB54 /* ModelIOExtensions.swift */,
 				B2A6D0AE22525353000FBB54 /* Camera.swift */,
 				B2A6D0B122525353000FBB54 /* Model.swift */,
 				B2A6D0B222525353000FBB54 /* Node.swift */,
@@ -230,6 +233,7 @@
 				B2A6D0CC225321E0000FBB54 /* Scene.swift in Sources */,
 				B2A6D0AA2252531C000FBB54 /* DebugLights.swift in Sources */,
 				B2A6D08E22525260000FBB54 /* AppDelegate.swift in Sources */,
+				B2A6D0D02253C606000FBB54 /* ModelIOExtensions.swift in Sources */,
 				B2A6D0AB2252531C000FBB54 /* DebugLights.metal in Sources */,
 				B2A6D0B822525353000FBB54 /* Node.swift in Sources */,
 				B2A6D0CA22525827000FBB54 /* HitResult.swift in Sources */,
