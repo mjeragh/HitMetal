@@ -44,7 +44,9 @@ class Node {
 //    var size: float3 {
 //        return boundingBox.maxBounds - boundingBox.minBounds
 //    }
-    var boundingSphere = BoundingSphere(center: float3(x: 0, y: 0, z: 0), radius: 0)
+    
+    var boundingSphere : BoundingSphere?
+    
   
   var modelMatrix: float4x4 {
     let translateMatrix = float4x4(translation: position)

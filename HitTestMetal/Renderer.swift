@@ -117,8 +117,8 @@ class Renderer: NSObject {
         Renderer.library = device.makeDefaultLibrary()
         
         super.init()
-        metalView.clearColor = MTLClearColor(red: 1.0, green: 1.0,
-                                             blue: 0.8, alpha: 1)
+        metalView.clearColor = MTLClearColor(red: 0, green: 0,
+                                             blue: 0.2, alpha: 1)
         metalView.delegate = self
         mtkView(metalView, drawableSizeWillChange: metalView.bounds.size)
         
@@ -149,7 +149,7 @@ class Renderer: NSObject {
         
         //creat a sphere
         let sphere = Primitive(shape: .sphere, size: 1.0)
-        sphere.position = [-8,4,15]
+        sphere.position = [-8,4,1]
         //sphere.pivotPosition = [1,2,0]
         sphere.material.baseColor = [1.0, 0, 0]
         sphere.material.metallic = 0.0
@@ -160,6 +160,7 @@ class Renderer: NSObject {
         sphere.material.ambientOcclusion = [0,0,0]
         sphere.name = "sun"
         sphere.boundingSphere.radius = 1.0
+        //sphere.debugBoundingSphere.boundingSphere.radius = 1.0
         primitives.append(sphere)
         
         for primitive in primitives {
@@ -251,6 +252,9 @@ extension Renderer: MTKViewDelegate {
             renderEncoder.setRenderPipelineState(primitive.pipelineState)
             for submesh in primitive.mesh.submeshes{
                 renderEncoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
+            }
+            if debugRenderBoundingSphere {
+                primitive.debugBoundingSphere.render(renderEncoder: renderEncoder, uniforms: uniforms)
             }
         }
         

@@ -40,6 +40,8 @@ class Primitive : Node {
     let vertexBuffer: MTLBuffer
     let mesh: MTKMesh
     let pipelineState: MTLRenderPipelineState
+    //let debugBoundingBox: DebugBoundingBox
+    
     
     init(shape: Shapes, size: Float) {
         let allocator = MTKMeshBufferAllocator(device: Renderer.device)
@@ -73,7 +75,9 @@ class Primitive : Node {
         
         pipelineState = Primitive.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor)
         //debugBoundingBox = DebugBoundingBox(boundingBox: mdlMesh.boundingBox)
+       
         super.init()
+         debugBoundingSphere = DebugBoundingSphere(boundingSphere: boundingSphere)
         self.name = name
         //self.boundingSphere = mdlMesh.boundingBox
     }
