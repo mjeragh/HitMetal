@@ -70,7 +70,7 @@ class Model: Node {
 
     pipelineState = Model.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor)
     super.init()
-    boundingSphere = BoundingSphere(center: float3(0,0,0), radius: 2.0, debugBoundingSphere: DebugBoundingSphere())
+    self.boundingBox = mdlMesh.boundingBox
   }
   
   private static func buildPipelineState(vertexDescriptor: MDLVertexDescriptor) -> MTLRenderPipelineState {

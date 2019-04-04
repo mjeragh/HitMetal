@@ -143,7 +143,6 @@ class Renderer: NSObject {
         
         //adding to sceene root node
         for model in models {
-            model.boundingSphere.radius=2.0
             scene.rootNode.addChildNode(model)
         }
         
@@ -159,8 +158,6 @@ class Renderer: NSObject {
         sphere.material.secondColor = [1.0,1.0,0.0]
         sphere.material.ambientOcclusion = [0,0,0]
         sphere.name = "sun"
-        sphere.boundingSphere.radius = 1.0
-        //sphere.debugBoundingSphere.boundingSphere.radius = 1.0
         primitives.append(sphere)
         
         for primitive in primitives {
@@ -235,9 +232,9 @@ extension Renderer: MTKViewDelegate {
                                                     indexBuffer: submesh.indexBuffer.buffer,
                                                     indexBufferOffset: submesh.indexBuffer.offset)
             }
-            if debugRenderBoundingSphere {
-                model.boundingSphere.debugBoundingSphere!.render(renderEncoder: renderEncoder, uniforms: uniforms)
-            }
+//            if debugRenderBoundingSphere {
+//                model.boundingSphere.debugBoundingSphere!.render(renderEncoder: renderEncoder, uniforms: uniforms)
+//            }
         }
         
         
@@ -256,9 +253,9 @@ extension Renderer: MTKViewDelegate {
             for submesh in primitive.mesh.submeshes{
                 renderEncoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
             }
-            if debugRenderBoundingSphere {
-                primitive.boundingSphere.debugBoundingSphere!.render(renderEncoder: renderEncoder, uniforms: uniforms)
-            }
+//            if debugRenderBoundingSphere {
+//                primitive.boundingSphere.debugBoundingSphere!.render(renderEncoder: renderEncoder, uniforms: uniforms)
+//            }
         }
         
         

@@ -40,12 +40,12 @@ class Node {
     weak var parent: Node?
     var material = Material()
     
-//    var boundingBox = MDLAxisAlignedBoundingBox()
-//    var size: float3 {
-//        return boundingBox.maxBounds - boundingBox.minBounds
-//    }
+    var boundingBox = MDLAxisAlignedBoundingBox()
+    var size: float3 {
+        return boundingBox.maxBounds - boundingBox.minBounds
+    }
     
-    var boundingSphere = BoundingSphere(center: float3(0,0,0), radius: 0, debugBoundingSphere: nil)
+   // var boundingSphere = BoundingSphere(center: float3(0,0,0), radius: 0, debugBoundingSphere: nil)
     
   
   var modelMatrix: float4x4 {
@@ -93,7 +93,7 @@ extension Node: Equatable, CustomDebugStringConvertible {
         let localRay = modelToWorld.inverse * ray
         
         var nearest: HitResult?
-        if let modelPoint = boundingSphere.intersect(localRay) {
+        if let modelPoint = boundingBox.intersect(localRay) {
             let worldPoint = modelToWorld * modelPoint
             let worldParameter = ray.interpolate(worldPoint)
             nearest = HitResult(node: self, ray: ray, parameter: worldParameter)
@@ -134,10 +134,10 @@ extension Node: Equatable, CustomDebugStringConvertible {
 
 extension MDLAxisAlignedBoundingBox {
     
-    func intersect(_ ray: Ray, position: float3) -> float4? {
+    func intersect(_ ray: Ray) -> float4? {
         
-        var tmin = minBounds + position
-        var tmax = maxBounds + position
+        var tmin = minBounds
+        var tmax = maxBounds 
         
         let inverseDirection = 1 / ray.direction
         
@@ -146,6 +146,11 @@ extension MDLAxisAlignedBoundingBox {
         
         var bounds : [float3] = [tmin,tmax]
         
+        tmin.x = (bounds[sign[0]].x - ray.origin.x) * inverseDirection.x
+        tmax.x = (bounds[1 - sign[0]].x - ray.origin.x) * inverseDirection.x
+        
+        tmin.y = (bounds[sign[1]].y - ray.origin.y) * inverseDirection.y
+        tmax.y = (bounds[1 - sign[1]].y - ray.origin.y) * inverseDirection.y
         
         var t0 = Float(tmax.z)
         
