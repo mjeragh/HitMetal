@@ -45,7 +45,7 @@ class Node {
 //        return boundingBox.maxBounds - boundingBox.minBounds
 //    }
     
-    var boundingSphere : BoundingSphere?
+    var boundingSphere = BoundingSphere(center: float3(0,0,0), radius: 0, debugBoundingSphere: nil)
     
   
   var modelMatrix: float4x4 {

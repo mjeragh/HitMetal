@@ -34,14 +34,16 @@ let debugRenderBoundingSphere = true
 
 class DebugBoundingSphere {
   let pipelineState: MTLRenderPipelineState
-  let boundingSphere: BoundingSphere
+    static var radius : Float = 0.0
+    
   let boundingSphereMeshBuffer: MTLBuffer
   let boundingSphereIndexBuffer: MTLBuffer
   let boundingSphereIndexCount: Int
   let vertices: [Float]
 
-  init(boundingSphere: BoundingSphere) {
-    self.boundingSphere = boundingSphere
+    
+    
+  init?() {
     let library = Renderer.device.makeDefaultLibrary()
     let vertexFunction = library?.makeFunction(name: "debug_vertex")
     let fragmentFunction = library?.makeFunction(name: "debug_fragment")
@@ -57,7 +59,7 @@ class DebugBoundingSphere {
     } catch let error {
       fatalError(error.localizedDescription)
     }
-    vertices = DebugBoundingSphere.createMeshFromBoundingSphere(boundingSphere: boundingSphere)
+    vertices = DebugBoundingSphere.createMeshFromBoundingSphere()
     
     self.boundingSphereMeshBuffer = Renderer.device.makeBuffer(bytes: vertices,
                           length: vertices.count * MemoryLayout<Float>.size, options: [])!
@@ -78,15 +80,15 @@ class DebugBoundingSphere {
                                         indexBufferOffset: 0)
   }
   
-  private static func createMeshFromBoundingSphere(boundingSphere: BoundingSphere) -> [Float] {
+  private static func createMeshFromBoundingSphere() -> [Float] {
     
     
     var vertices = [Float]()
     let size = Float(10.0)
     stride(from: 0.0, to: 2 * Float.pi, by: 2 * Float.pi / size).forEach { i in
         // Do something
-        vertices.append(cosf(i) * boundingSphere.radius * 1.15);    //X coordinate
-        vertices.append(sinf(i) * boundingSphere.radius * 1.15);    //Y coordinate
+        vertices.append(cosf(i) * radius * 1.15);    //X coordinate
+        vertices.append(sinf(i) * radius * 1.15);    //Y coordinate
         vertices.append(0);
     }
     vertices.append(vertices[0])

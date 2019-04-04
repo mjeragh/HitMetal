@@ -235,6 +235,9 @@ extension Renderer: MTKViewDelegate {
                                                     indexBuffer: submesh.indexBuffer.buffer,
                                                     indexBufferOffset: submesh.indexBuffer.offset)
             }
+            if debugRenderBoundingSphere {
+                model.boundingSphere.debugBoundingSphere!.render(renderEncoder: renderEncoder, uniforms: uniforms)
+            }
         }
         
         
@@ -254,7 +257,7 @@ extension Renderer: MTKViewDelegate {
                 renderEncoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
             }
             if debugRenderBoundingSphere {
-                primitive.debugBoundingSphere.render(renderEncoder: renderEncoder, uniforms: uniforms)
+                primitive.boundingSphere.debugBoundingSphere!.render(renderEncoder: renderEncoder, uniforms: uniforms)
             }
         }
         

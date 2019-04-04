@@ -77,7 +77,8 @@ class Primitive : Node {
         //debugBoundingBox = DebugBoundingBox(boundingBox: mdlMesh.boundingBox)
        
         super.init()
-         debugBoundingSphere = DebugBoundingSphere(boundingSphere: boundingSphere)
+        boundingSphere = BoundingSphere(center: float3(0,0,0), radius: 1.0, debugBoundingSphere: DebugBoundingSphere())
+//         debugBoundingSphere = DebugBoundingSphere(boundingSphere: boundingSphere)
         self.name = name
         //self.boundingSphere = mdlMesh.boundingBox
     }
