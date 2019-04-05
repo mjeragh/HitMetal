@@ -77,7 +77,7 @@ extension ViewController {
         let inverseProjectionMatrix = projectionMatrix.inverse
         
         let viewMatrix = camera.worldTransform.inverse
-        let inverseViewMatrix = viewMatrix.inverse
+        let inverseViewMatrix = camera.inverseViewMatrix//viewMatrix.inverse
         
         let clipX = (2 * Float(point.x)) / width - 1
         let clipY = 1 - (2 * Float(point.y)) / height

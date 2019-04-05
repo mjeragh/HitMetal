@@ -185,7 +185,7 @@ extension MDLAxisAlignedBoundingBox {
         
         if (tmax.z < tmax.x){
             tmax.x = tmax.z
-            t0 = tmax.z
+            t0 = tmax.x
         }
         
         print("t0 \(t0)")

@@ -54,5 +54,12 @@ class Camera: Node {
     let scaleMatrix = float4x4(scaling: scale)
     return (translateMatrix * scaleMatrix * rotateMatrix).inverse
   }
+    var inverseViewMatrix: float4x4 {
+        let translateMatrix = float4x4(translation: position)
+        let rotateMatrix = float4x4(rotation: rotation)
+        let scaleMatrix = float4x4(scaling: scale)
+        return (translateMatrix * scaleMatrix * rotateMatrix)
+    }
+    
 }
 
