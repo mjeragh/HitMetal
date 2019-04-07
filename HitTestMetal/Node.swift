@@ -86,7 +86,42 @@ class Node {
 
 extension Node: Equatable, CustomDebugStringConvertible {
     
-    
+    func unproject(_ ray: Ray) -> HitResult?{
+        let modelToWorld = worldTransform
+        let localRay = modelToWorld.inverse * ray
+        
+        var nearest: HitResult?
+        if let modelPoint = boundingBox.intersect(localRay) {
+            let worldPoint = modelToWorld * modelPoint
+            let worldParameter = ray.interpolate(worldPoint)
+            nearest = HitResult(node: self, ray: ray, parameter: worldParameter)
+        }
+        
+        var nearestChildHit: HitResult?
+        for child in children {
+            if let childHit = child.hitTest(ray) {
+                if let nearestActualChildHit = nearestChildHit {
+                    if childHit < nearestActualChildHit {
+                        nearestChildHit = childHit
+                    }
+                } else {
+                    nearestChildHit = childHit
+                }
+            }
+        }
+        
+        if let nearestActualChildHit = nearestChildHit {
+            if let nearestActual = nearest {
+                if nearestActualChildHit < nearestActual {
+                    return nearestActualChildHit
+                }
+            } else {
+                return nearestActualChildHit
+            }
+        }
+        
+        return nearest
+    }
     
     func hitTest(_ ray: Ray) -> HitResult? {
         let modelToWorld = worldTransform

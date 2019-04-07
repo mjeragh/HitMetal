@@ -160,6 +160,32 @@ class Renderer: NSObject {
         sphere.name = "sun"
         primitives.append(sphere)
         
+        let box = Primitive(shape: .cube, size: 1.0)
+        box.position = [-1.5,0.5,0]
+        box.rotation = [0, radians(fromDegrees: 45), 0]
+        box.material.baseColor = [0, 0.5, 0]
+        box.material.secondColor = [1.0,1.0,0.0]
+        box.material.metallic = 1.0
+        box.material.roughness = 0.0
+        box.material.shininess = 0.1
+        box.material.specularColor = [0,1.0,0.0]
+        box.material.ambientOcclusion = [1.0,1.0,1.0]
+        box.name = "cube"
+        
+        let plane = Primitive(shape: .plane, size: 100.0)
+        plane.rotation = [0, 0, radians(fromDegrees: 90)]
+        plane.position = [0,-1.0,2]
+        plane.material.baseColor = [0, 0.5, 1.0]
+        plane.material.metallic = 0.0
+        plane.material.roughness = 0.1
+        plane.material.shininess = 1.0
+        plane.material.specularColor = [0,0.0,0.0]
+        plane.material.ambientOcclusion = [1.0,1.0,1.0]
+        plane.name = "plane"
+        
+        primitives.append(box)
+        primitives.append(plane)
+        
         for primitive in primitives {
             scene.rootNode.addChildNode(primitive)
         }

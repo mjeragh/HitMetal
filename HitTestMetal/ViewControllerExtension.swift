@@ -29,10 +29,12 @@
  */
 
 import UIKit
+import os.log
+import os.signpost
 
 extension ViewController {
   static var previousScale: CGFloat = 1
-
+    
 //  func addGestureRecognizer(to view: UIView) {
 //    let pan = UIPanGestureRecognizer(target: self,
 //                                     action: #selector(handlePan(gesture:)))
@@ -63,7 +65,84 @@ extension ViewController {
         if let location = touches.first?.location(in: view) {
             handleInteraction(at: location)
         }
+        if let node = selectedNode {
+            os_log("selectedNode %s",node.name)
+            if (selectedNode?.name == "plane"){
+                selectedNode = nil
+                
+            }
+        }
+        else {
+            os_log("No Seleted Node")
+        }
     }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard (selectedNode != nil)  else {
+            return
+        }
+        if let location = touches.first?.location(in: view), let prevLocation = touches.first?.preciseLocation(in: view) {
+            let newPosition = unproject(at: location)
+            selectedNode!.position = newPosition!//SCNVector3Make((previousTranslation.x + translateX), previousTranslation.y, (previousTranslation.z + translateY))
+//            os_log("selected node moving %s", selectedNode!.name)
+            
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        os_log("end Touches")
+        guard (selectedNode != nil)  else {
+            return
+        }
+        
+        os_log("selectedNOde %s at location %f,%f,%f",selectedNode!.name,selectedNode!.position.x,selectedNode!.position.y,selectedNode!.position.z)
+        selectedNode = nil
+    }
+    
+    
+    func unproject(at point: CGPoint) -> float3? {
+        guard let camera = renderer?.camera else { return nil}
+        
+        let viewport = view.bounds// Assume viewport matches window; if not, apply additional inverse viewport xform
+        let width = Float(viewport.width)
+        let height = Float(viewport.height)
+        // let aspectRatio = camera?.aspect//width / height
+        
+        let projectionMatrix = camera.projectionMatrix
+        let inverseProjectionMatrix = projectionMatrix.inverse
+        
+        // let viewMatrix = camera.worldTransform.inverse
+        let inverseViewMatrix = camera.inverseViewMatrix//viewMatrix.inverse
+        
+        let clipX = (2 * Float(point.x)) / width - 1
+        let clipY = 1 - (2 * Float(point.y)) / height
+        let clipCoords = float4(clipX, clipY, 0, 1) // Assume clip space is hemicube, -Z is into the screen
+        
+        var eyeRayDir = inverseProjectionMatrix * clipCoords
+        eyeRayDir.z = 1
+        eyeRayDir.w = 0
+        
+        var worldRayDir = (inverseViewMatrix * eyeRayDir).xyz
+        worldRayDir = normalize(worldRayDir)
+        
+        
+
+        
+        let eyeRayOrigin = float4(x: 0, y: 0, z: 0, w: 1)
+        let worldRayOrigin = (inverseViewMatrix * eyeRayOrigin).xyz
+        
+        let ray = Ray(origin: worldRayOrigin, direction: worldRayDir)
+       os_log("ray.direction %f, %f, %f",ray.direction.x, ray.direction.y, ray.direction.z)
+        var position : float4 = float4(0,0,0,0)
+        if let hit = renderer?.scene.unproject(ray) {
+            print("Hit \(hit.node) at \(hit.intersectionPoint)")
+            selectedNode = hit.node
+            position = hit.intersectionPoint
+        }
+        return position.xyz
+    }
+    
+    
     
     func handleInteraction(at point: CGPoint) {
         guard let camera = renderer?.camera else { return }
@@ -76,7 +155,7 @@ extension ViewController {
         let projectionMatrix = camera.projectionMatrix
         let inverseProjectionMatrix = projectionMatrix.inverse
         
-        let viewMatrix = camera.worldTransform.inverse
+       // let viewMatrix = camera.worldTransform.inverse
         let inverseViewMatrix = camera.inverseViewMatrix//viewMatrix.inverse
         
         let clipX = (2 * Float(point.x)) / width - 1
@@ -94,9 +173,10 @@ extension ViewController {
         let worldRayOrigin = (inverseViewMatrix * eyeRayOrigin).xyz
         
         let ray = Ray(origin: worldRayOrigin, direction: worldRayDir)
-        print("ray.direction \(ray.direction)")
+        os_log("ray.direction %f, %f, %f",ray.direction.x, ray.direction.y, ray.direction.z)
         if let hit = renderer?.scene.hitTest(ray) {
             print("Hit \(hit.node) at \(hit.intersectionPoint)")
+            selectedNode = hit.node
         }
     }
     

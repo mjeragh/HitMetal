@@ -10,13 +10,14 @@ import MetalKit
 class ViewController: UIViewController {
     
     var renderer: Renderer?
+    var selectedNode: Node?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let metalView = view as? MTKView else {
             fatalError("metal view not set up in storyboard")
         }
-        
+        selectedNode = nil
         renderer = Renderer(metalView: metalView)
         //addGestureRecognizer(to: metalView)
     }
