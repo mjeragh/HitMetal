@@ -88,7 +88,7 @@ extension Node: Equatable, CustomDebugStringConvertible {
     
     func unproject(_ ray: Ray) -> HitResult?{
         let modelToWorld = worldTransform
-        let localRay = modelToWorld.inverse * ray
+        let localRay = ray//modelToWorld.inverse * ray
         
         var nearest: HitResult?
         if let modelPoint = boundingBox.intersect(localRay) {

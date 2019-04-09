@@ -51,11 +51,12 @@ class Renderer: NSObject {
     var uniforms = Uniforms()
     var fragmentUniforms = FragmentUniforms()
     var scene = Scene()
-    
+    var debugPlane = false
     // Camera holds view and projection matrices
     lazy var camera: Camera = {
         let camera = Camera()
         camera.position = [0, 0, -15]
+        camera.rotation = [0, 0, 0]
         return camera
     }()
     
@@ -130,7 +131,7 @@ class Renderer: NSObject {
         models.append(train)
         let fir = Model(name: "treefir")
         fir.name = "tree"
-        fir.position = [1.4, 0, 1]
+        fir.position = [1.4, 0, 0]
         models.append(fir)
         
         buildDepthStencilState()
@@ -148,7 +149,7 @@ class Renderer: NSObject {
         
         //creat a sphere
         let sphere = Primitive(shape: .sphere, size: 1.0)
-        sphere.position = [-8,0,-1]
+        sphere.position = [-8,0,0]
         //sphere.pivotPosition = [1,2,0]
         sphere.material.baseColor = [1.0, 0, 0]
         sphere.material.metallic = 0.0
@@ -173,8 +174,8 @@ class Renderer: NSObject {
         box.name = "cube"
         
         let plane = Primitive(shape: .plane, size: 100)
-        plane.rotation = [0, 0, radians(fromDegrees: 90)]
-        plane.position = [0,-1.0,2]
+        plane.rotation = [radians(fromDegrees: 0), radians(fromDegrees: 0), radians(fromDegrees: -90)]
+        plane.position = [0,0,0]
         plane.material.baseColor = [0, 0.0, 0]
         plane.material.metallic = 0.0
         plane.material.roughness = 0.1
@@ -184,11 +185,12 @@ class Renderer: NSObject {
         plane.name = "plane"
         
         primitives.append(box)
-        primitives.append(plane)
+        debugPlane ? primitives.append(plane) :   scene.rootNode.addChildNode(plane)
         
         for primitive in primitives {
             scene.rootNode.addChildNode(primitive)
         }
+      
     }
     
     func buildDefaultLight() -> Light {
@@ -266,7 +268,7 @@ extension Renderer: MTKViewDelegate {
         
         for primitive in primitives {
             
-            if primitive.name == "plane" {continue}
+           // if primitive.name == "plane" {continue}
             
             
            uniforms.modelMatrix = primitive.modelMatrix

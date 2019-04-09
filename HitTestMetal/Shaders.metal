@@ -111,3 +111,9 @@ fragment float4 fragment_main(VertexOut in [[stage_in]],
     float3 color = diffuseColor + ambientColor + specularColor;
     return float4(color, 1);
 }
+
+fragment float4 fragment_normals(VertexOut in [[stage_in]]) {
+    return float4(in.worldNormal, 1);
+    
+}
+

@@ -134,9 +134,9 @@ extension ViewController {
        os_log("ray.direction %f, %f, %f",ray.direction.x, ray.direction.y, ray.direction.z)
         var position : float4 = float4(0,0,0,0)
         if let hit = renderer?.scene.unproject(ray) {
-            os_log("intersectionPoint %f, %f, %f", hit.intersectionPoint.x, hit.intersectionPoint.y, hit.intersectionPoint.z)
+            os_log("(unproject) intersectionPoint %f, %f, %f", hit.intersectionPoint.x, hit.intersectionPoint.y, hit.intersectionPoint.z)
             position = hit.intersectionPoint
-            position.y += 1.5
+            position.y += 0
         }
         return position.xyz
     }
@@ -172,7 +172,7 @@ extension ViewController {
         let worldRayOrigin = (inverseViewMatrix * eyeRayOrigin).xyz
         
         let ray = Ray(origin: worldRayOrigin, direction: worldRayDir)
-        os_log("ray.direction %f, %f, %f",ray.direction.x, ray.direction.y, ray.direction.z)
+        os_log("(handleInteraction) ray.direction %f, %f, %f",ray.direction.x, ray.direction.y, ray.direction.z)
         if let hit = renderer?.scene.hitTest(ray) {
             print("Hit \(hit.node) at \(hit.intersectionPoint)")
             selectedNode = hit.node
