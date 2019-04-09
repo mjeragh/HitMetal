@@ -29,6 +29,8 @@
  */
 
 import MetalKit
+import os.log
+
 
 class Node {
     let identifier = UUID()
@@ -87,8 +89,8 @@ class Node {
 extension Node: Equatable, CustomDebugStringConvertible {
     
     func unproject(_ ray: Ray) -> HitResult?{
-        let modelToWorld = worldTransform
-        let localRay = ray//modelToWorld.inverse * ray
+        let modelToWorld = float4x4.identity()//worldTransform
+        let localRay = modelToWorld.inverse * ray
         
         var nearest: HitResult?
         if let modelPoint = boundingBox.intersect(localRay) {
@@ -97,11 +99,7 @@ extension Node: Equatable, CustomDebugStringConvertible {
             nearest = HitResult(node: self, ray: ray, parameter: worldParameter)
         }
 
-        let selectedModelToWorld = selectedNode?.worldTransform
-        let selectedLocalRay = selectedModelToWorld!.inverse * ray
-        var nearestSelected: HitResult?
-        
-        
+       
         return nearest
     }
     
@@ -173,6 +171,7 @@ extension MDLAxisAlignedBoundingBox {
         var t0 = Float(tmax.z)
         
         if ((tmin.x > tmax.y) || (tmin.y > tmax.x)){
+            os_log("first nil")
             return nil
         }
         
@@ -193,6 +192,7 @@ extension MDLAxisAlignedBoundingBox {
         
         
         if ((tmin.x > tmax.z) || (tmin.z > tmax.x)){
+            os_log("second nil")
             return nil
         }
         

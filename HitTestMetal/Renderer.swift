@@ -51,7 +51,7 @@ class Renderer: NSObject {
     var uniforms = Uniforms()
     var fragmentUniforms = FragmentUniforms()
     var scene = Scene()
-    var debugPlane = false
+    var debugPlane = true
     // Camera holds view and projection matrices
     lazy var camera: Camera = {
         let camera = Camera()
@@ -175,7 +175,7 @@ class Renderer: NSObject {
         
         let plane = Primitive(shape: .plane, size: 100)
         plane.rotation = [radians(fromDegrees: 0), radians(fromDegrees: 0), radians(fromDegrees: -90)]
-        plane.position = [0,0,0]
+        plane.position = [0,-1,0]
         plane.material.baseColor = [0, 0.0, 0]
         plane.material.metallic = 0.0
         plane.material.roughness = 0.1
