@@ -6,14 +6,12 @@ class Scene {
     let rootNode = Node()
 
     var plane : Node? {
-      //  get {
-            for n in rootNode.children {
+     for n in rootNode.children {
                 if (n.name == "plane") {
                     return n
                 }
         }
             return nil
-  //  }
 }
     
     func hitTest(_ ray: Ray) -> HitResult? {

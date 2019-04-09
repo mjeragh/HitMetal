@@ -67,10 +67,9 @@ extension ViewController {
         }
         if let node = selectedNode {
             os_log("selectedNode %s",node.name)
-            if (selectedNode?.name == "plane"){
-                selectedNode = nil
-                
-            }
+//            if (selectedNode?.name == "plane"){
+//                selectedNode = nil
+//            }
         }
         else {
             os_log("No Seleted Node")
@@ -81,7 +80,7 @@ extension ViewController {
         guard (selectedNode != nil)  else {
             return
         }
-        if let location = touches.first?.location(in: view), let prevLocation = touches.first?.preciseLocation(in: view) {
+        if let location = touches.first?.location(in: view)  {
             let newPosition = unproject(at: location)
             selectedNode!.position = newPosition!//SCNVector3Make((previousTranslation.x + translateX), previousTranslation.y, (previousTranslation.z + translateY))
 //            os_log("selected node moving %s", selectedNode!.name)
@@ -135,9 +134,9 @@ extension ViewController {
        os_log("ray.direction %f, %f, %f",ray.direction.x, ray.direction.y, ray.direction.z)
         var position : float4 = float4(0,0,0,0)
         if let hit = renderer?.scene.unproject(ray) {
-            print("Hit \(hit.node) at \(hit.intersectionPoint)")
-            selectedNode = hit.node
+            os_log("intersectionPoint %f, %f, %f", hit.intersectionPoint.x, hit.intersectionPoint.y, hit.intersectionPoint.z)
             position = hit.intersectionPoint
+            position.y += 1.5
         }
         return position.xyz
     }

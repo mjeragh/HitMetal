@@ -7,10 +7,13 @@
 //
 
 import MetalKit
+
+var selectedNode: Node?
+
 class ViewController: UIViewController {
     
     var renderer: Renderer?
-    var selectedNode: Node?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

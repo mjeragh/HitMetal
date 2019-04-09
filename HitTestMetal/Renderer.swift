@@ -77,26 +77,26 @@ class Renderer: NSObject {
         return light
     }()
     
-    lazy var redLight: Light = {
-        var light = buildDefaultLight()
-        light.position = [-0, 0.5, -0.5]
-        light.color = [1, 0, 0]
-        light.attenuation = float3(1, 3, 4)
-        light.type = Pointlight
-        return light
-    }()
-    
-    lazy var spotlight: Light = {
-        var light = buildDefaultLight()
-        light.position = [0.4, 0.8, 1]
-        light.color = [1, 0, 1]
-        light.attenuation = float3(1, 0.5, 0)
-        light.type = Spotlight
-        light.coneAngle = radians(fromDegrees: 40)
-        light.coneDirection = [-2, 0, -1.5]
-        light.coneAttenuation = 12
-        return light
-    }()
+//    lazy var redLight: Light = {
+//        var light = buildDefaultLight()
+//        light.position = [-0, 0.5, -0.5]
+//        light.color = [1, 0, 0]
+//        light.attenuation = float3(1, 3, 4)
+//        light.type = Pointlight
+//        return light
+//    }()
+//
+//    lazy var spotlight: Light = {
+//        var light = buildDefaultLight()
+//        light.position = [0.4, 0.8, 1]
+//        light.color = [1, 0, 1]
+//        light.attenuation = float3(1, 0.5, 0)
+//        light.type = Spotlight
+//        light.coneAngle = radians(fromDegrees: 40)
+//        light.coneDirection = [-2, 0, -1.5]
+//        light.coneAttenuation = 12
+//        return light
+//    }()
     
     var lights: [Light] = []
     
@@ -137,8 +137,8 @@ class Renderer: NSObject {
         
         lights.append(sunlight)
         lights.append(ambientLight)
-        lights.append(redLight)
-        lights.append(spotlight)
+//        lights.append(redLight)
+//        lights.append(spotlight)
         fragmentUniforms.lightCount = UInt32(lights.count)
         
         //adding to sceene root node
@@ -148,7 +148,7 @@ class Renderer: NSObject {
         
         //creat a sphere
         let sphere = Primitive(shape: .sphere, size: 1.0)
-        sphere.position = [-8,4,1]
+        sphere.position = [-8,0,-1]
         //sphere.pivotPosition = [1,2,0]
         sphere.material.baseColor = [1.0, 0, 0]
         sphere.material.metallic = 0.0
@@ -172,10 +172,10 @@ class Renderer: NSObject {
         box.material.ambientOcclusion = [1.0,1.0,1.0]
         box.name = "cube"
         
-        let plane = Primitive(shape: .plane, size: 100.0)
+        let plane = Primitive(shape: .plane, size: 100)
         plane.rotation = [0, 0, radians(fromDegrees: 90)]
         plane.position = [0,-1.0,2]
-        plane.material.baseColor = [0, 0.5, 1.0]
+        plane.material.baseColor = [0, 0.0, 0]
         plane.material.metallic = 0.0
         plane.material.roughness = 0.1
         plane.material.shininess = 1.0
@@ -266,6 +266,7 @@ extension Renderer: MTKViewDelegate {
         
         for primitive in primitives {
             
+            if primitive.name == "plane" {continue}
             
             
            uniforms.modelMatrix = primitive.modelMatrix

@@ -96,29 +96,11 @@ extension Node: Equatable, CustomDebugStringConvertible {
             let worldParameter = ray.interpolate(worldPoint)
             nearest = HitResult(node: self, ray: ray, parameter: worldParameter)
         }
+
+        let selectedModelToWorld = selectedNode?.worldTransform
+        let selectedLocalRay = selectedModelToWorld!.inverse * ray
+        var nearestSelected: HitResult?
         
-        var nearestChildHit: HitResult?
-        for child in children {
-            if let childHit = child.hitTest(ray) {
-                if let nearestActualChildHit = nearestChildHit {
-                    if childHit < nearestActualChildHit {
-                        nearestChildHit = childHit
-                    }
-                } else {
-                    nearestChildHit = childHit
-                }
-            }
-        }
-        
-        if let nearestActualChildHit = nearestChildHit {
-            if let nearestActual = nearest {
-                if nearestActualChildHit < nearestActual {
-                    return nearestActualChildHit
-                }
-            } else {
-                return nearestActualChildHit
-            }
-        }
         
         return nearest
     }
@@ -136,6 +118,7 @@ extension Node: Equatable, CustomDebugStringConvertible {
         
         var nearestChildHit: HitResult?
         for child in children {
+            if (child.name == "plane") {continue}
             if let childHit = child.hitTest(ray) {
                 if let nearestActualChildHit = nearestChildHit {
                     if childHit < nearestActualChildHit {
