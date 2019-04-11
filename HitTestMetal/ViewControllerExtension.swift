@@ -132,16 +132,39 @@ extension ViewController {
         
         let ray = Ray(origin: worldRayOrigin, direction: worldRayDir)
        os_log("ray.direction %f, %f, %f",ray.direction.x, ray.direction.y, ray.direction.z)
-        var position : float4 = float4(0,0,0,0)
-        if let hit = renderer?.scene.unproject(ray) {
-            os_log("(unproject) intersectionPoint %f, %f, %f", hit.intersectionPoint.x, hit.intersectionPoint.y, hit.intersectionPoint.z)
-            position = hit.intersectionPoint
+     //   os_log("ray.origin %f, %f, %f",ray.origin.x, ray.origin.y, ray.origin.z)
+        var position  = selectedNode!.position
+        
+        let parameter = intersectionPlane(ray)
+        os_log("parameter: %f", parameter)
+        if (parameter  > Float(0.0)) {
+            
+            position = ray.origin + ray.direction * parameter
+            os_log("(unproject) intersectionPoint %f, %f, %f", ray.direction.x * parameter, ray.direction.y * parameter, ray.direction.z * parameter)
             position.y += 0
         }
-        return position.xyz
+        return position
     }
     
-    
+    func intersectionPlane(_ ray: Ray) -> Float {
+        guard let camera = renderer?.camera else { return 0.0}
+        let n = normalize(float3(0,1,0) )//(camera.worldTransform * float4(0,1,0,1)).xyz
+        let pZero = float3(0,0,0)//(camera.worldTransform * float4(0,4,-15,1)).xyz
+        
+//        let modelToWorld = worldTransform
+//        let localRay = modelToWorld.inverse * ray
+        
+        let denom = (n.x * ray.direction.x + n.y * ray.direction.y + n.z * ray.direction.z) * -1//simd_dot(n, ray.direction)
+        os_log("p0: %f, %f, %f, denom: %f", pZero.x,pZero.y,pZero.z,denom)
+        if (denom > Float(1e-6)){
+            let p0l0 = pZero - ray.origin
+            let t = simd_dot(p0l0, n) / -denom
+            return t
+        }
+        
+        
+        return Float(0.0)
+    }
     
     func handleInteraction(at point: CGPoint) {
         guard let camera = renderer?.camera else { return }
