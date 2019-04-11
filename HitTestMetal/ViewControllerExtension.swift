@@ -154,11 +154,11 @@ extension ViewController {
 //        let modelToWorld = worldTransform
 //        let localRay = modelToWorld.inverse * ray
         
-        let denom = (n.x * ray.direction.x + n.y * ray.direction.y + n.z * ray.direction.z) * -1//simd_dot(n, ray.direction)
+        let denom = simd_dot(n, ray.direction) * -1//
         os_log("p0: %f, %f, %f, denom: %f", pZero.x,pZero.y,pZero.z,denom)
         if (denom > Float(1e-6)){
             let p0l0 = pZero - ray.origin
-            let t = simd_dot(p0l0, n) / -denom
+            let t = simd_dot(p0l0, n) / denom * -1
             return t
         }
         
