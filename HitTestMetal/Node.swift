@@ -89,7 +89,7 @@ class Node {
 extension Node: Equatable, CustomDebugStringConvertible {
     
     func unproject(_ ray: Ray) -> HitResult?{
-        let modelToWorld = float4x4.identity()//worldTransform
+        let modelToWorld = worldTransform//float4x4.identity()
         let localRay = modelToWorld.inverse * ray
         
         var nearest: HitResult?
