@@ -147,18 +147,13 @@ extension ViewController {
     }
     
     func intersectionPlane(_ ray: Ray) -> Float {
-        guard let camera = renderer?.camera else { return 0.0}
-        let n = normalize(float3(0,1,0) )//(camera.worldTransform * float4(0,1,0,1)).xyz
-        let pZero = float3(0,0,0)//(camera.worldTransform * float4(0,4,-15,1)).xyz
-        
-//        let modelToWorld = worldTransform
-//        let localRay = modelToWorld.inverse * ray
-        
-        let denom = simd_dot(n, ray.direction) * -1//
+        let n = normalize(float3(0,1,0) )
+        let pZero = float3(0,0,0)
+        let denom = -simd_dot(n, ray.direction)
         os_log("p0: %f, %f, %f, denom: %f", pZero.x,pZero.y,pZero.z,denom)
         if (denom > Float(1e-6)){
             let p0l0 = pZero - ray.origin
-            let t = simd_dot(p0l0, n) / denom * -1
+            let t = -simd_dot(p0l0, n) / denom
             return t
         }
         

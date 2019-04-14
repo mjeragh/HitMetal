@@ -51,12 +51,12 @@ class Renderer: NSObject {
     var uniforms = Uniforms()
     var fragmentUniforms = FragmentUniforms()
     var scene = Scene()
-    var debugPlane = false
+    var debugPlane = true
     // Camera holds view and projection matrices
     lazy var camera: Camera = {
         let camera = Camera()
-        camera.position = [0, 4, -15]
-        camera.rotation = [radians(fromDegrees: 30), 0, 0]
+        camera.position = [0, 2, -15]
+        camera.rotation = [0, 0, 0]
         return camera
     }()
     
@@ -128,11 +128,11 @@ class Renderer: NSObject {
         train.name = "train"
         train.position = [0, 0, 0]
         train.rotation = [0, radians(fromDegrees: 45), 0]
-       // models.append(train)
+        models.append(train)
         let fir = Model(name: "treefir")
         fir.name = "tree"
         fir.position = [1.4, 0, 0]
-        //models.append(fir)
+        models.append(fir)
         
         buildDepthStencilState()
         
@@ -143,9 +143,9 @@ class Renderer: NSObject {
         fragmentUniforms.lightCount = UInt32(lights.count)
         
         //adding to sceene root node
-//        for model in models {
-//            scene.rootNode.addChildNode(model)
-//        }
+        for model in models {
+            scene.rootNode.addChildNode(model)
+        }
         
         //creat a sphere
         let sphere = Primitive(shape: .sphere, size: 1.0)
