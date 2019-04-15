@@ -51,7 +51,7 @@ class Renderer: NSObject {
     var uniforms = Uniforms()
     var fragmentUniforms = FragmentUniforms()
     var scene = Scene()
-    var debugPlane = true
+    
     // Camera holds view and projection matrices
     lazy var camera: Camera = {
         let camera = Camera()
@@ -173,19 +173,14 @@ class Renderer: NSObject {
         box.material.ambientOcclusion = [1.0,1.0,1.0]
         box.name = "cube"
         
-        let plane = Primitive(shape: .plane, size: 50)
-        plane.rotation = [radians(fromDegrees: 0), radians(fromDegrees: 0), radians(fromDegrees: -90)]
-        plane.position = [1,-1,0]
-        plane.material.baseColor = [0, 0.0, 0]
-        plane.material.metallic = 0.0
-        plane.material.roughness = 0.1
-        plane.material.shininess = 1.0
-        plane.material.specularColor = [0,0.0,0.0]
-        plane.material.ambientOcclusion = [1.0,1.0,1.0]
-        plane.name = "plane"
+        
         
         primitives.append(box)
-        debugPlane ? primitives.append(plane) :   scene.rootNode.addChildNode(plane)
+        if let tp = touchPlane.debugPlane {
+            
+            primitives.append(tp)
+            
+        }
         
         for primitive in primitives {
             scene.rootNode.addChildNode(primitive)
@@ -267,9 +262,6 @@ extension Renderer: MTKViewDelegate {
         
         
         for primitive in primitives {
-            
-           // if primitive.name == "plane" {continue}
-            
             
            uniforms.modelMatrix = primitive.modelMatrix
             uniforms.normalMatrix = float3x3(normalFrom4x4: primitive.modelMatrix)

@@ -27,14 +27,15 @@ struct Plane {
     }
     //the (a, b, c, d) in a*x + b*y + c*z + d = 0.
     
-    var debugPlane: Node?
+    var debugPlane: Primitive?
     
     init(a: Float, b: Float, c: Float, d: Float, debug: Bool = false )
     {
         self.n = float4(a, b, c, d)
         if debug {
-            self.debugPlane = Primitive(shape: .plane, size: 50)
-            debugPlane?.rotation = [radians(fromDegrees: 0), radians(fromDegrees: 0), b * radians(fromDegrees: -90)]
+            self.debugPlane = Primitive(shape: .plane, size: 10)
+            debugPlane?.rotation = [c * radians(fromDegrees: -90), a * radians(fromDegrees: -90), b * radians(fromDegrees: -90)]
+            debugPlane?.position = [a, b ,c] * d
             debugPlane?.material.baseColor = [0, 0.0, 0]
             debugPlane?.material.metallic = 0.0
             debugPlane?.material.roughness = 0.1

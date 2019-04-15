@@ -9,7 +9,7 @@
 import MetalKit
 
 
-let touchPlane = Plane(a: 0,b: 1,c: 0,d: 0)
+let touchPlane = Plane(a: -0.8,b: 0.5,c: 0,d: 3, debug: true)
 
 class ViewController: UIViewController {
     
