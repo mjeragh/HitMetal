@@ -173,9 +173,9 @@ class Renderer: NSObject {
         box.material.ambientOcclusion = [1.0,1.0,1.0]
         box.name = "cube"
         
-        let plane = Primitive(shape: .plane, size: 100)
+        let plane = Primitive(shape: .plane, size: 50)
         plane.rotation = [radians(fromDegrees: 0), radians(fromDegrees: 0), radians(fromDegrees: -90)]
-        plane.position = [0,-1,0]
+        plane.position = [1,-1,0]
         plane.material.baseColor = [0, 0.0, 0]
         plane.material.metallic = 0.0
         plane.material.roughness = 0.1

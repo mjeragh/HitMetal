@@ -67,9 +67,6 @@ extension ViewController {
         }
         if let node = selectedNode {
             os_log("selectedNode %s",node.name)
-//            if (selectedNode?.name == "plane"){
-//                selectedNode = nil
-//            }
         }
         else {
             os_log("No Seleted Node")
@@ -82,8 +79,7 @@ extension ViewController {
         }
         if let location = touches.first?.location(in: view)  {
             let newPosition = unproject(at: location)
-            selectedNode!.position = newPosition!//SCNVector3Make((previousTranslation.x + translateX), previousTranslation.y, (previousTranslation.z + translateY))
-//            os_log("selected node moving %s", selectedNode!.name)
+            selectedNode!.position = newPosition!
             
         }
     }
@@ -102,10 +98,9 @@ extension ViewController {
     func unproject(at point: CGPoint) -> float3? {
         guard let camera = renderer?.camera else { return nil}
         
-        let viewport = view.bounds// Assume viewport matches window; if not, apply additional inverse viewport xform
+        let viewport = view.bounds
         let width = Float(viewport.width)
         let height = Float(viewport.height)
-        // let aspectRatio = camera?.aspect//width / height
         
         let projectionMatrix = camera.projectionMatrix
         let inverseProjectionMatrix = projectionMatrix.inverse
@@ -135,7 +130,7 @@ extension ViewController {
      //   os_log("ray.origin %f, %f, %f",ray.origin.x, ray.origin.y, ray.origin.z)
         var position  = selectedNode!.position
         
-        let parameter = intersectionPlane(ray)
+        let parameter = touchPlane.intersectionPlane(ray)
         os_log("parameter: %f", parameter)
         if (parameter  > Float(0.0)) {
             
@@ -152,8 +147,8 @@ extension ViewController {
         let denom = -simd_dot(n, ray.direction)
         os_log("p0: %f, %f, %f, denom: %f", pZero.x,pZero.y,pZero.z,denom)
         if (denom > Float(1e-6)){
-            let p0l0 = pZero - ray.origin
-            let t = -simd_dot(p0l0, n) / denom
+            let p0l0 = ray.origin - pZero 
+            let t = simd_dot(p0l0, n) / denom
             return t
         }
         

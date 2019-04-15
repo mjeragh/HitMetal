@@ -9,11 +9,13 @@
 import MetalKit
 
 
+let touchPlane = Plane(a: 0,b: 1,c: 0,d: 0)
 
 class ViewController: UIViewController {
     
     var renderer: Renderer?
     var selectedNode: Node?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
