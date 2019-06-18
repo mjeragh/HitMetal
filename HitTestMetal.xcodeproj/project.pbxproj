@@ -36,6 +36,8 @@
 		B2A6D0D02253C606000FBB54 /* ModelIOExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0CF2253C606000FBB54 /* ModelIOExtensions.swift */; };
 		B2A6D0D32254BC8A000FBB54 /* DebugBoundingSphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0D12254BC8A000FBB54 /* DebugBoundingSphere.swift */; };
 		B2A6D0D42254BC8A000FBB54 /* DebugBoundingBox.metal in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0D22254BC8A000FBB54 /* DebugBoundingBox.metal */; };
+		B2B696CD22B6C5E4002A78CE /* flower_tulip.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B2B696CC22B6C5E4002A78CE /* flower_tulip.usdz */; };
+		B2B696CF22B6C702002A78CE /* race_track.usda in Resources */ = {isa = PBXBuildFile; fileRef = B2B696CE22B6C702002A78CE /* race_track.usda */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		B2A6D0CF2253C606000FBB54 /* ModelIOExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelIOExtensions.swift; sourceTree = "<group>"; };
 		B2A6D0D12254BC8A000FBB54 /* DebugBoundingSphere.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugBoundingSphere.swift; sourceTree = "<group>"; };
 		B2A6D0D22254BC8A000FBB54 /* DebugBoundingBox.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = DebugBoundingBox.metal; sourceTree = "<group>"; };
+		B2B696CC22B6C5E4002A78CE /* flower_tulip.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = flower_tulip.usdz; sourceTree = "<group>"; };
+		B2B696CE22B6C702002A78CE /* race_track.usda */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = race_track.usda; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,8 @@
 		B2A6D0B9225253AA000FBB54 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B2B696CE22B6C702002A78CE /* race_track.usda */,
+				B2B696CC22B6C5E4002A78CE /* flower_tulip.usdz */,
 				B2A6D0BA225253AA000FBB54 /* treefir.mtl */,
 				B2A6D0BB225253AA000FBB54 /* train.obj */,
 				B2A6D0BC225253AA000FBB54 /* treefir.obj */,
@@ -213,10 +219,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2A6D09D22525260000FBB54 /* LaunchScreen.storyboard in Resources */,
+				B2B696CD22B6C5E4002A78CE /* flower_tulip.usdz in Resources */,
 				B2A6D0C1225253AA000FBB54 /* train.mtl in Resources */,
 				B2A6D0BF225253AA000FBB54 /* train.obj in Resources */,
 				B2A6D09A22525260000FBB54 /* Assets.xcassets in Resources */,
 				B2A6D0C0225253AA000FBB54 /* treefir.obj in Resources */,
+				B2B696CF22B6C702002A78CE /* race_track.usda in Resources */,
 				B2A6D09822525260000FBB54 /* Main.storyboard in Resources */,
 				B2A6D0BE225253AA000FBB54 /* treefir.mtl in Resources */,
 			);
