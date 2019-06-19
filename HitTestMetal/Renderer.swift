@@ -189,9 +189,11 @@ class Renderer: NSObject {
         
         
         // add model to the scene
-       
-        let tulip = Character(name: "race_track")
-        tulip.name = "toy_drummer"
+       //race_track
+        //toy_drummer
+        let file = "hw"
+        let tulip = Character(name: file)
+        tulip.name = file
         tulip.position = [0, 1, 0]
         tulip.rotation = [0, radians(fromDegrees: 45), 0]
         characters.append(tulip)

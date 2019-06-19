@@ -52,6 +52,7 @@
 		B2B696EC22B94586002A78CE /* race_track.usda in Resources */ = {isa = PBXBuildFile; fileRef = B2B696DE22B94586002A78CE /* race_track.usda */; };
 		B2B696ED22B94586002A78CE /* car3_car_MAT_BaseColor.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696DF22B94586002A78CE /* car3_car_MAT_BaseColor.png */; };
 		B2B696EE22B94586002A78CE /* PitRoofShape.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696E022B94586002A78CE /* PitRoofShape.png */; };
+		B2B696F222BA94A0002A78CE /* hw.usda in Resources */ = {isa = PBXBuildFile; fileRef = B2B696F122BA94A0002A78CE /* hw.usda */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +104,7 @@
 		B2B696DE22B94586002A78CE /* race_track.usda */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = race_track.usda; sourceTree = "<group>"; };
 		B2B696DF22B94586002A78CE /* car3_car_MAT_BaseColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car3_car_MAT_BaseColor.png; sourceTree = "<group>"; };
 		B2B696E022B94586002A78CE /* PitRoofShape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PitRoofShape.png; sourceTree = "<group>"; };
+		B2B696F122BA94A0002A78CE /* hw.usda */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = hw.usda; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			children = (
 				B2B696D222B94586002A78CE /* race_track */,
 				B2B696CC22B6C5E4002A78CE /* flower_tulip.usdz */,
+				B2B696F122BA94A0002A78CE /* hw.usda */,
 				B2A6D0BA225253AA000FBB54 /* treefir.mtl */,
 				B2A6D0BB225253AA000FBB54 /* train.obj */,
 				B2A6D0BC225253AA000FBB54 /* treefir.obj */,
@@ -268,6 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2B696F222BA94A0002A78CE /* hw.usda in Resources */,
 				B2B696E222B94586002A78CE /* toy_drummer.usdz in Resources */,
 				B2B696E422B94586002A78CE /* car3_car_MAT_Normal.png in Resources */,
 				B2A6D09D22525260000FBB54 /* LaunchScreen.storyboard in Resources */,

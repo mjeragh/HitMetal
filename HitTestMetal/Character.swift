@@ -34,7 +34,7 @@ class Character: Node {
         let asset = MDLAsset(url: assetURL, vertexDescriptor: Model.defaultVertexDescriptor,
                              bufferAllocator: allocator,preserveTopology: false,
                             error: nil)
-        let mdlMesh = asset.object(at: 0) as! MDLMesh
+        let mdlMesh = asset.object(at: 0).children[0] as! MDLMesh
         
         let mesh = try! MTKMesh(mesh: mdlMesh, device: Renderer.device)
         self.mesh = mesh
