@@ -37,7 +37,21 @@
 		B2A6D0D32254BC8A000FBB54 /* DebugBoundingSphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0D12254BC8A000FBB54 /* DebugBoundingSphere.swift */; };
 		B2A6D0D42254BC8A000FBB54 /* DebugBoundingBox.metal in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0D22254BC8A000FBB54 /* DebugBoundingBox.metal */; };
 		B2B696CD22B6C5E4002A78CE /* flower_tulip.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B2B696CC22B6C5E4002A78CE /* flower_tulip.usdz */; };
-		B2B696CF22B6C702002A78CE /* race_track.usda in Resources */ = {isa = PBXBuildFile; fileRef = B2B696CE22B6C702002A78CE /* race_track.usda */; };
+		B2B696D122B92717002A78CE /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B696D022B92717002A78CE /* Character.swift */; };
+		B2B696E122B94586002A78CE /* car3_car_MAT_Roughness.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696D322B94586002A78CE /* car3_car_MAT_Roughness.png */; };
+		B2B696E222B94586002A78CE /* toy_drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B2B696D422B94586002A78CE /* toy_drummer.usdz */; };
+		B2B696E322B94586002A78CE /* road.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696D522B94586002A78CE /* road.png */; };
+		B2B696E422B94586002A78CE /* car3_car_MAT_Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696D622B94586002A78CE /* car3_car_MAT_Normal.png */; };
+		B2B696E522B94586002A78CE /* car3_car_MAT_Metallic.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696D722B94586002A78CE /* car3_car_MAT_Metallic.png */; };
+		B2B696E622B94586002A78CE /* tireWall_redShape.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696D822B94586002A78CE /* tireWall_redShape.png */; };
+		B2B696E722B94586002A78CE /* Pit_bottomShape.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696D922B94586002A78CE /* Pit_bottomShape.png */; };
+		B2B696E822B94586002A78CE /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696DA22B94586002A78CE /* grass.png */; };
+		B2B696E922B94586002A78CE /* sky.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696DB22B94586002A78CE /* sky.png */; };
+		B2B696EA22B94586002A78CE /* Pit_top_frontShape.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696DC22B94586002A78CE /* Pit_top_frontShape.png */; };
+		B2B696EB22B94586002A78CE /* scene.dat in Resources */ = {isa = PBXBuildFile; fileRef = B2B696DD22B94586002A78CE /* scene.dat */; };
+		B2B696EC22B94586002A78CE /* race_track.usda in Resources */ = {isa = PBXBuildFile; fileRef = B2B696DE22B94586002A78CE /* race_track.usda */; };
+		B2B696ED22B94586002A78CE /* car3_car_MAT_BaseColor.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696DF22B94586002A78CE /* car3_car_MAT_BaseColor.png */; };
+		B2B696EE22B94586002A78CE /* PitRoofShape.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696E022B94586002A78CE /* PitRoofShape.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +88,21 @@
 		B2A6D0D12254BC8A000FBB54 /* DebugBoundingSphere.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugBoundingSphere.swift; sourceTree = "<group>"; };
 		B2A6D0D22254BC8A000FBB54 /* DebugBoundingBox.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = DebugBoundingBox.metal; sourceTree = "<group>"; };
 		B2B696CC22B6C5E4002A78CE /* flower_tulip.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = flower_tulip.usdz; sourceTree = "<group>"; };
-		B2B696CE22B6C702002A78CE /* race_track.usda */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = race_track.usda; sourceTree = "<group>"; };
+		B2B696D022B92717002A78CE /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		B2B696D322B94586002A78CE /* car3_car_MAT_Roughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car3_car_MAT_Roughness.png; sourceTree = "<group>"; };
+		B2B696D422B94586002A78CE /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = toy_drummer.usdz; sourceTree = "<group>"; };
+		B2B696D522B94586002A78CE /* road.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road.png; sourceTree = "<group>"; };
+		B2B696D622B94586002A78CE /* car3_car_MAT_Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car3_car_MAT_Normal.png; sourceTree = "<group>"; };
+		B2B696D722B94586002A78CE /* car3_car_MAT_Metallic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car3_car_MAT_Metallic.png; sourceTree = "<group>"; };
+		B2B696D822B94586002A78CE /* tireWall_redShape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tireWall_redShape.png; sourceTree = "<group>"; };
+		B2B696D922B94586002A78CE /* Pit_bottomShape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pit_bottomShape.png; sourceTree = "<group>"; };
+		B2B696DA22B94586002A78CE /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
+		B2B696DB22B94586002A78CE /* sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sky.png; sourceTree = "<group>"; };
+		B2B696DC22B94586002A78CE /* Pit_top_frontShape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pit_top_frontShape.png; sourceTree = "<group>"; };
+		B2B696DD22B94586002A78CE /* scene.dat */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = scene.dat; sourceTree = "<group>"; };
+		B2B696DE22B94586002A78CE /* race_track.usda */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = race_track.usda; sourceTree = "<group>"; };
+		B2B696DF22B94586002A78CE /* car3_car_MAT_BaseColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car3_car_MAT_BaseColor.png; sourceTree = "<group>"; };
+		B2B696E022B94586002A78CE /* PitRoofShape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PitRoofShape.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +148,7 @@
 				B2A6D0CF2253C606000FBB54 /* ModelIOExtensions.swift */,
 				B2A6D0AE22525353000FBB54 /* Camera.swift */,
 				B2A6D0B122525353000FBB54 /* Model.swift */,
+				B2B696D022B92717002A78CE /* Character.swift */,
 				B2A6D0B222525353000FBB54 /* Node.swift */,
 				B2A6D0AD22525352000FBB54 /* Primitive.swift */,
 				B2A6D0B022525353000FBB54 /* Submesh.swift */,
@@ -150,7 +179,7 @@
 		B2A6D0B9225253AA000FBB54 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B2B696CE22B6C702002A78CE /* race_track.usda */,
+				B2B696D222B94586002A78CE /* race_track */,
 				B2B696CC22B6C5E4002A78CE /* flower_tulip.usdz */,
 				B2A6D0BA225253AA000FBB54 /* treefir.mtl */,
 				B2A6D0BB225253AA000FBB54 /* train.obj */,
@@ -158,6 +187,27 @@
 				B2A6D0BD225253AA000FBB54 /* train.mtl */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B2B696D222B94586002A78CE /* race_track */ = {
+			isa = PBXGroup;
+			children = (
+				B2B696D322B94586002A78CE /* car3_car_MAT_Roughness.png */,
+				B2B696D422B94586002A78CE /* toy_drummer.usdz */,
+				B2B696D522B94586002A78CE /* road.png */,
+				B2B696D622B94586002A78CE /* car3_car_MAT_Normal.png */,
+				B2B696D722B94586002A78CE /* car3_car_MAT_Metallic.png */,
+				B2B696D822B94586002A78CE /* tireWall_redShape.png */,
+				B2B696D922B94586002A78CE /* Pit_bottomShape.png */,
+				B2B696DA22B94586002A78CE /* grass.png */,
+				B2B696DB22B94586002A78CE /* sky.png */,
+				B2B696DC22B94586002A78CE /* Pit_top_frontShape.png */,
+				B2B696DD22B94586002A78CE /* scene.dat */,
+				B2B696DE22B94586002A78CE /* race_track.usda */,
+				B2B696DF22B94586002A78CE /* car3_car_MAT_BaseColor.png */,
+				B2B696E022B94586002A78CE /* PitRoofShape.png */,
+			);
+			path = race_track;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,15 +268,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2B696E222B94586002A78CE /* toy_drummer.usdz in Resources */,
+				B2B696E422B94586002A78CE /* car3_car_MAT_Normal.png in Resources */,
 				B2A6D09D22525260000FBB54 /* LaunchScreen.storyboard in Resources */,
 				B2B696CD22B6C5E4002A78CE /* flower_tulip.usdz in Resources */,
+				B2B696E622B94586002A78CE /* tireWall_redShape.png in Resources */,
 				B2A6D0C1225253AA000FBB54 /* train.mtl in Resources */,
+				B2B696E122B94586002A78CE /* car3_car_MAT_Roughness.png in Resources */,
+				B2B696E322B94586002A78CE /* road.png in Resources */,
+				B2B696E722B94586002A78CE /* Pit_bottomShape.png in Resources */,
+				B2B696EC22B94586002A78CE /* race_track.usda in Resources */,
+				B2B696E522B94586002A78CE /* car3_car_MAT_Metallic.png in Resources */,
 				B2A6D0BF225253AA000FBB54 /* train.obj in Resources */,
+				B2B696EA22B94586002A78CE /* Pit_top_frontShape.png in Resources */,
 				B2A6D09A22525260000FBB54 /* Assets.xcassets in Resources */,
+				B2B696EE22B94586002A78CE /* PitRoofShape.png in Resources */,
+				B2B696E822B94586002A78CE /* grass.png in Resources */,
+				B2B696EB22B94586002A78CE /* scene.dat in Resources */,
 				B2A6D0C0225253AA000FBB54 /* treefir.obj in Resources */,
-				B2B696CF22B6C702002A78CE /* race_track.usda in Resources */,
+				B2B696E922B94586002A78CE /* sky.png in Resources */,
 				B2A6D09822525260000FBB54 /* Main.storyboard in Resources */,
 				B2A6D0BE225253AA000FBB54 /* treefir.mtl in Resources */,
+				B2B696ED22B94586002A78CE /* car3_car_MAT_BaseColor.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +311,7 @@
 				B2A6D0D42254BC8A000FBB54 /* DebugBoundingBox.metal in Sources */,
 				B274E86A225E3D3400F88A7E /* Plane.swift in Sources */,
 				B2A6D0B422525353000FBB54 /* Camera.swift in Sources */,
+				B2B696D122B92717002A78CE /* Character.swift in Sources */,
 				B2A6D0C322525486000FBB54 /* ViewControllerExtension.swift in Sources */,
 				B2A6D0B622525353000FBB54 /* Submesh.swift in Sources */,
 				B2A6D0CC225321E0000FBB54 /* Scene.swift in Sources */,

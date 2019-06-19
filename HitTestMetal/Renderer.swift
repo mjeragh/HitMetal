@@ -63,6 +63,7 @@ class Renderer: NSObject {
     // Array of Models allows for rendering multiple models
     var models: [Model] = []
     var primitives: [Primitive] = []
+    var characters: [Character] = []
     
     lazy var sunlight: Light = {
         var light = buildDefaultLight()
@@ -185,8 +186,34 @@ class Renderer: NSObject {
         for primitive in primitives {
             scene.rootNode.addChildNode(primitive)
         }
+        
+        
+        // add model to the scene
+       
+        let tulip = Character(name: "race_track")
+        tulip.name = "toy_drummer"
+        tulip.position = [0, 1, 0]
+        tulip.rotation = [0, radians(fromDegrees: 45), 0]
+        characters.append(tulip)
+        
+        
+//        let tulip = Character(name: "flower_tulip")
+//        tulip.name = "tulip"
+//        tulip.position = [0, 1, 0]
+//        tulip.rotation = [0, radians(fromDegrees: 45), 0]
+//        characters.append(tulip)
+        
+        //adding to sceene root node
+        for character in characters {
+            scene.rootNode.addChildNode(character)
+        }
+        
       
     }
+    
+   
+    
+    
     
     func buildDefaultLight() -> Light {
         var light = Light()
@@ -260,6 +287,29 @@ extension Renderer: MTKViewDelegate {
 //            }
         }
         
+        
+        // render all the models in the array
+        for character in characters {
+            // model matrix now comes from the Model's superclass: Node
+            uniforms.modelMatrix = character.modelMatrix
+            uniforms.normalMatrix = float3x3(normalFrom4x4: character.modelMatrix)
+            
+            renderEncoder.setVertexBytes(&uniforms,
+                                         length: MemoryLayout<Uniforms>.stride, index: 1)
+            
+            renderEncoder.setRenderPipelineState(character.pipelineState)
+            renderEncoder.setVertexBuffer(character.vertexBuffer, offset: 0, index: 0)
+            for submesh in character.mesh.submeshes {
+                renderEncoder.drawIndexedPrimitives(type: .triangle,
+                                                    indexCount: submesh.indexCount,
+                                                    indexType: submesh.indexType,
+                                                    indexBuffer: submesh.indexBuffer.buffer,
+                                                    indexBufferOffset: submesh.indexBuffer.offset)
+            }
+            //            if debugRenderBoundingSphere {
+            //                model.boundingSphere.debugBoundingSphere!.render(renderEncoder: renderEncoder, uniforms: uniforms)
+            //            }
+        }
         
         for primitive in primitives {
             
