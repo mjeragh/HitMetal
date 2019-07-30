@@ -26,26 +26,33 @@ class Character: Node {
     let vertexBuffer: MTLBuffer
     let pipelineState: MTLRenderPipelineState
     let mesh: MTKMesh
-    let submeshes: [Submesh]
+    //let submeshes: [Submesh]
     
     init(name: String) {
-        let assetURL = Bundle.main.url(forResource: name, withExtension: "usda")!
+        let assetURL : URL
+        if let URL = Bundle.main.url(forResource: name, withExtension: "usdz") {
+            assetURL = URL
+        }
+        else {
+            assetURL =  Bundle.main.url(forResource: name, withExtension: "usda")!
+            
+        }
         let allocator = MTKMeshBufferAllocator(device: Renderer.device)
         let asset = MDLAsset(url: assetURL, vertexDescriptor: Model.defaultVertexDescriptor,
                              bufferAllocator: allocator,preserveTopology: false,
                             error: nil)
-        let mdlMesh = asset.object(at: 0).children[0] as! MDLMesh
+        let mdlMesh = asset.object(at: 0).children[0].children[0] as! MDLMesh
         
         let mesh = try! MTKMesh(mesh: mdlMesh, device: Renderer.device)
         self.mesh = mesh
         vertexBuffer = mesh.vertexBuffers[0].buffer
         
-        submeshes = mdlMesh.submeshes?.enumerated().compactMap {index, submesh in
-            (submesh as? MDLSubmesh).map {
-                Submesh(submesh: mesh.submeshes[index],
-                        mdlSubmesh: $0)
-            }
-            } ?? []
+//        submeshes = mdlMesh.submeshes?.enumerated().compactMap {index, submesh in
+//            (submesh as? MDLSubmesh).map {
+//                Submesh(submesh: mesh.submeshes[index],
+//                        mdlSubmesh: $0)
+//            }
+//            } ?? []
         
         pipelineState = Character.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor)
         super.init()
@@ -55,7 +62,7 @@ class Character: Node {
     private static func buildPipelineState(vertexDescriptor: MDLVertexDescriptor) -> MTLRenderPipelineState {
         let library = Renderer.library
         let vertexFunction = library?.makeFunction(name: "vertex_main")
-        let fragmentFunction = library?.makeFunction(name: "fragment_main")
+        let fragmentFunction = library?.makeFunction(name: "fragment_normals")
         
         var pipelineState: MTLRenderPipelineState
         let pipelineDescriptor = MTLRenderPipelineDescriptor()

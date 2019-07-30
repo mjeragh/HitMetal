@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B274E86A225E3D3400F88A7E /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = B274E869225E3D3400F88A7E /* Plane.swift */; };
+		B2A10D8A22DBA82300136D5B /* hw.usda in Resources */ = {isa = PBXBuildFile; fileRef = B2A10D8922DBA82300136D5B /* hw.usda */; };
+		B2A10D8C22DBAAB200136D5B /* simpleMaterial.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B2A10D8B22DBAAB200136D5B /* simpleMaterial.usdz */; };
 		B2A6D08E22525260000FBB54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D08D22525260000FBB54 /* AppDelegate.swift */; };
 		B2A6D09122525260000FBB54 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D09022525260000FBB54 /* Renderer.swift */; };
 		B2A6D09322525260000FBB54 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D09222525260000FBB54 /* ViewController.swift */; };
@@ -52,11 +54,12 @@
 		B2B696EC22B94586002A78CE /* race_track.usda in Resources */ = {isa = PBXBuildFile; fileRef = B2B696DE22B94586002A78CE /* race_track.usda */; };
 		B2B696ED22B94586002A78CE /* car3_car_MAT_BaseColor.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696DF22B94586002A78CE /* car3_car_MAT_BaseColor.png */; };
 		B2B696EE22B94586002A78CE /* PitRoofShape.png in Resources */ = {isa = PBXBuildFile; fileRef = B2B696E022B94586002A78CE /* PitRoofShape.png */; };
-		B2B696F222BA94A0002A78CE /* hw.usda in Resources */ = {isa = PBXBuildFile; fileRef = B2B696F122BA94A0002A78CE /* hw.usda */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B274E869225E3D3400F88A7E /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		B2A10D8922DBA82300136D5B /* hw.usda */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = hw.usda; sourceTree = "<group>"; };
+		B2A10D8B22DBAAB200136D5B /* simpleMaterial.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = simpleMaterial.usdz; sourceTree = "<group>"; };
 		B2A6D08A22525260000FBB54 /* HitTestMetal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitTestMetal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2A6D08D22525260000FBB54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2A6D08F22525260000FBB54 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
@@ -104,7 +107,6 @@
 		B2B696DE22B94586002A78CE /* race_track.usda */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = race_track.usda; sourceTree = "<group>"; };
 		B2B696DF22B94586002A78CE /* car3_car_MAT_BaseColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car3_car_MAT_BaseColor.png; sourceTree = "<group>"; };
 		B2B696E022B94586002A78CE /* PitRoofShape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PitRoofShape.png; sourceTree = "<group>"; };
-		B2B696F122BA94A0002A78CE /* hw.usda */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = hw.usda; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,7 +185,8 @@
 			children = (
 				B2B696D222B94586002A78CE /* race_track */,
 				B2B696CC22B6C5E4002A78CE /* flower_tulip.usdz */,
-				B2B696F122BA94A0002A78CE /* hw.usda */,
+				B2A10D8922DBA82300136D5B /* hw.usda */,
+				B2A10D8B22DBAAB200136D5B /* simpleMaterial.usdz */,
 				B2A6D0BA225253AA000FBB54 /* treefir.mtl */,
 				B2A6D0BB225253AA000FBB54 /* train.obj */,
 				B2A6D0BC225253AA000FBB54 /* treefir.obj */,
@@ -271,7 +274,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2B696F222BA94A0002A78CE /* hw.usda in Resources */,
+				B2A10D8C22DBAAB200136D5B /* simpleMaterial.usdz in Resources */,
+				B2A10D8A22DBA82300136D5B /* hw.usda in Resources */,
 				B2B696E222B94586002A78CE /* toy_drummer.usdz in Resources */,
 				B2B696E422B94586002A78CE /* car3_car_MAT_Normal.png in Resources */,
 				B2A6D09D22525260000FBB54 /* LaunchScreen.storyboard in Resources */,

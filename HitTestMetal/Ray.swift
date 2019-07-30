@@ -1,6 +1,4 @@
 
-import simd
-
 struct Ray {
     var origin: float3
     var direction: float3

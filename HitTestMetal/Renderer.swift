@@ -191,7 +191,8 @@ class Renderer: NSObject {
         // add model to the scene
        //race_track
         //toy_drummer
-        let file = "hw"
+        //simpleMaterial
+        let file = "simpleMaterial"
         let tulip = Character(name: file)
         tulip.name = file
         tulip.position = [0, 1, 0]
