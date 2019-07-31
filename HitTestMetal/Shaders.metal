@@ -117,86 +117,86 @@ fragment float4 fragment_normals(VertexOut in [[stage_in]]) {
     
 }
 
-fragment float4 fragment_mainPBR(VertexOut in [[ stage_in ]],
-                                 constant Light *lights [[buffer(2)]],
-                                 constant Material &material [[ buffer(BufferIndexMaterials)]],
-                                 sampler textureSampler [[sampler(0)]],
-                                 constant FragmentUniforms &fragmentUniforms [[buffer(3)]],
-                                 texture2d<float> baseColorTexture [[ texture(0), function_constant(hasColorTexture)]],
-                                 texture2d<float> normalTexture [[ texture(1), function_constant(hasNormalTexture) ]],
-                                 texture2d<float> roughnessTexture [[texture(2), function_constant(hasRoughnessTexture)]],
-                                 texture2d<float> metallicTexture [[ texture(3), function_constant(hasMetallicTexture) ]],
-                                 texture2d<float> aoTexture [[ texture(4), function_constant(hasAOTexture)]]){
-    // extract color
-    float3 baseColor;
-    if (hasColorTexture) {
-        baseColor = baseColorTexture.sample(textureSampler,
-                                            in.uv * fragmentUniforms.tiling).rgb;
-    } else {
-        baseColor = material.baseColor;
-    }
-    // extract metallic
-    float metallic;
-    if (hasMetallicTexture) {
-        metallic = metallicTexture.sample(textureSampler, in.uv).r;
-    } else {
-        metallic = material.metallic;
-    }
-    // extract roughness
-    float roughness;
-    if (hasRoughnessTexture) {
-        roughness = roughnessTexture.sample(textureSampler, in.uv).r;
-    } else {
-        roughness = material.roughness;
-    }
-    // extract ambient occlusion
-    float ambientOcclusion;
-    if (hasAOTexture) {
-        ambientOcclusion = aoTexture.sample(textureSampler, in.uv).r;
-    } else {
-        ambientOcclusion = 1.0;
-    }
-    
-    // normal map
-    float3 normal;
-    if (hasNormalTexture) {
-        float3 normalValue = normalTexture.sample(textureSampler, in.uv * fragmentUniforms.tiling).xyz * 2.0 - 1.0;
-        normal = in.worldNormal * normalValue.z
-        + in.worldTangent * normalValue.x
-        + in.worldBitangent * normalValue.y;
-    } else {
-        normal = in.worldNormal;
-    }
-    normal = normalize(normal);
-    
-    float3 viewDirection = normalize(fragmentUniforms.cameraPosition - in.worldPosition);
-    
-    float3 diffuseColor = 0;
-    float3 specularOutput = 0;
-    
-    for (uint i = 0; i < fragmentUniforms.lightCount; i++) {
-        Light light = lights[i];
-        float3 lightDirection = normalize(light.position);
-        lightDirection = light.position;
-        
-        // all the necessary components are in place
-        Lighting lighting;
-        lighting.lightDirection = lightDirection;
-        lighting.viewDirection = viewDirection;
-        lighting.baseColor = baseColor;
-        lighting.normal = normal;
-        lighting.metallic = metallic;
-        lighting.roughness = roughness;
-        lighting.ambientOcclusion = ambientOcclusion;
-        lighting.lightColor = light.color;
-        
-        specularOutput += render(lighting);
-        
-        // compute Lambertian diffuse
-        float nDotl = max(0.001, saturate(dot(lighting.normal, lighting.lightDirection)));
-        diffuseColor += light.color * baseColor * nDotl * ambientOcclusion;
-        diffuseColor *= 1.0 - metallic;
-    }
-    float4 finalColor = float4(specularOutput + diffuseColor, 1.0);
-    return finalColor;
-}
+//fragment float4 fragment_mainPBR(VertexOut in [[ stage_in ]],
+//                                 constant Light *lights [[buffer(2)]],
+//                                 constant Material &material [[ buffer(BufferIndexMaterials)]],
+//                                 sampler textureSampler [[sampler(0)]],
+//                                 constant FragmentUniforms &fragmentUniforms [[buffer(3)]],
+//                                 texture2d<float> baseColorTexture [[ texture(0), function_constant(hasColorTexture)]],
+//                                 texture2d<float> normalTexture [[ texture(1), function_constant(hasNormalTexture) ]],
+//                                 texture2d<float> roughnessTexture [[texture(2), function_constant(hasRoughnessTexture)]],
+//                                 texture2d<float> metallicTexture [[ texture(3), function_constant(hasMetallicTexture) ]],
+//                                 texture2d<float> aoTexture [[ texture(4), function_constant(hasAOTexture)]]){
+//    // extract color
+//    float3 baseColor;
+//    if (hasColorTexture) {
+//        baseColor = baseColorTexture.sample(textureSampler,
+//                                            in.uv * fragmentUniforms.tiling).rgb;
+//    } else {
+//        baseColor = material.baseColor;
+//    }
+//    // extract metallic
+//    float metallic;
+//    if (hasMetallicTexture) {
+//        metallic = metallicTexture.sample(textureSampler, in.uv).r;
+//    } else {
+//        metallic = material.metallic;
+//    }
+//    // extract roughness
+//    float roughness;
+//    if (hasRoughnessTexture) {
+//        roughness = roughnessTexture.sample(textureSampler, in.uv).r;
+//    } else {
+//        roughness = material.roughness;
+//    }
+//    // extract ambient occlusion
+//    float ambientOcclusion;
+//    if (hasAOTexture) {
+//        ambientOcclusion = aoTexture.sample(textureSampler, in.uv).r;
+//    } else {
+//        ambientOcclusion = 1.0;
+//    }
+//    
+//    // normal map
+//    float3 normal;
+//    if (hasNormalTexture) {
+//        float3 normalValue = normalTexture.sample(textureSampler, in.uv * fragmentUniforms.tiling).xyz * 2.0 - 1.0;
+//        normal = in.worldNormal * normalValue.z
+//        + in.worldTangent * normalValue.x
+//        + in.worldBitangent * normalValue.y;
+//    } else {
+//        normal = in.worldNormal;
+//    }
+//    normal = normalize(normal);
+//    
+//    float3 viewDirection = normalize(fragmentUniforms.cameraPosition - in.worldPosition);
+//    
+//    float3 diffuseColor = 0;
+//    float3 specularOutput = 0;
+//    
+//    for (uint i = 0; i < fragmentUniforms.lightCount; i++) {
+//        Light light = lights[i];
+//        float3 lightDirection = normalize(light.position);
+//        lightDirection = light.position;
+//        
+//        // all the necessary components are in place
+//        Lighting lighting;
+//        lighting.lightDirection = lightDirection;
+//        lighting.viewDirection = viewDirection;
+//        lighting.baseColor = baseColor;
+//        lighting.normal = normal;
+//        lighting.metallic = metallic;
+//        lighting.roughness = roughness;
+//        lighting.ambientOcclusion = ambientOcclusion;
+//        lighting.lightColor = light.color;
+//        
+//        specularOutput += render(lighting);
+//        
+//        // compute Lambertian diffuse
+//        float nDotl = max(0.001, saturate(dot(lighting.normal, lighting.lightDirection)));
+//        diffuseColor += light.color * baseColor * nDotl * ambientOcclusion;
+//        diffuseColor *= 1.0 - metallic;
+//    }
+//    float4 finalColor = float4(specularOutput + diffuseColor, 1.0);
+//    return finalColor;
+//}

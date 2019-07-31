@@ -41,18 +41,19 @@ class Character: Node {
         let asset = MDLAsset(url: assetURL, vertexDescriptor: Model.defaultVertexDescriptor,
                              bufferAllocator: allocator,preserveTopology: false,
                             error: nil)
+        
+        
+        
+        
+        
+        
         let mdlMesh = asset.object(at: 0).children[0].children[0] as! MDLMesh
         
         let mesh = try! MTKMesh(mesh: mdlMesh, device: Renderer.device)
         self.mesh = mesh
         vertexBuffer = mesh.vertexBuffers[0].buffer
+
         
-//        submeshes = mdlMesh.submeshes?.enumerated().compactMap {index, submesh in
-//            (submesh as? MDLSubmesh).map {
-//                Submesh(submesh: mesh.submeshes[index],
-//                        mdlSubmesh: $0)
-//            }
-//            } ?? []
         
         pipelineState = Character.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor)
         super.init()
