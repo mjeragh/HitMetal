@@ -192,7 +192,7 @@ class Renderer: NSObject {
        //race_track
         //toy_drummer
         //simpleMaterial
-        let file = "simpleMaterial"
+        let file = "toy_drummer"
         let tulip = Character(name: file)
         tulip.name = file
         tulip.position = [0, 1, 0]

@@ -32,7 +32,10 @@ class Baker {
 
     var skeletonAnimations = [AnimatedSkeleton]()
     var cameraData = Camera()
-
+    
+    var debugCounter = 1
+    var mdlMeshes = [MDLMesh]()
+    
     init() {}
 
     init(asset: MDLAsset) {
@@ -113,7 +116,10 @@ class Baker {
         walkSceneGraph(in: asset) { object, currentIdx, _ in
             if let mesh = object as? MDLMesh {
                 meshNodeIndices.append(currentIdx)
-                store(mesh)
+//                store(mesh)
+                mdlMeshes.append(mesh)
+//                print("debugCtr= \(debugCounter)\n")
+//                debugCounter+=1
             }
         }
     }

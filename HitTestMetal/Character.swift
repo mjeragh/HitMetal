@@ -43,11 +43,12 @@ class Character: Node {
                             error: nil)
         
         
+       let sceneData = Baker(asset: asset)
         
         
+        //sceneData.nodeNames
         
-        
-        let mdlMesh = asset.object(at: 0).children[0].children[0] as! MDLMesh
+        let mdlMesh = sceneData.mdlMeshes[8]
         
         let mesh = try! MTKMesh(mesh: mdlMesh, device: Renderer.device)
         self.mesh = mesh
