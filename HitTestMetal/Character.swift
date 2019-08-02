@@ -23,10 +23,11 @@ class Character: Node {
         return vertexDescriptor
     }()
     
-    let vertexBuffer: MTLBuffer
-    let pipelineState: MTLRenderPipelineState
-    let mesh: MTKMesh
-    //let submeshes: [Submesh]
+    //var vertexBuffer: MTLBuffer!
+    //let pipelineState: MTLRenderPipelineState
+    //var mesh: MTKMesh
+    typealias meshState = (mesh: MTKMesh,pipelineState: MTLRenderPipelineState)
+    var meshes = [meshState]()
     
     init(name: String) {
         let assetURL : URL
@@ -47,18 +48,21 @@ class Character: Node {
         
         
         //sceneData.nodeNames
+//        sceneData.mdlMeshes.count
+//        let mdlMesh = sceneData.mdlMeshes[8]
+       
+        for mdlMesh in sceneData.mdlMeshes {
+            let mesh = try! MTKMesh(mesh: mdlMesh, device: Renderer.device)
+            
+            //vertexBuffer = mesh.vertexBuffers[0].buffer
+            
+            let pipelineState = Character.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor)
+            meshes.append((mesh,pipelineState))
+        }
         
-        let mdlMesh = sceneData.mdlMeshes[8]
         
-        let mesh = try! MTKMesh(mesh: mdlMesh, device: Renderer.device)
-        self.mesh = mesh
-        vertexBuffer = mesh.vertexBuffers[0].buffer
-
-        
-        
-        pipelineState = Character.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor)
         super.init()
-        self.boundingBox = mdlMesh.boundingBox
+        self.boundingBox = sceneData.mdlMeshes[0].boundingBox
     }
     
     private static func buildPipelineState(vertexDescriptor: MDLVertexDescriptor) -> MTLRenderPipelineState {

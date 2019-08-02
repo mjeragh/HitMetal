@@ -193,18 +193,20 @@ class Renderer: NSObject {
         //toy_drummer
         //simpleMaterial
         let file = "toy_drummer"
-        let tulip = Character(name: file)
-        tulip.name = file
+        let char = Character(name: file)
+        char.name = file
+        char.position = [0, 1, 0]
+        char.rotation = [0, radians(fromDegrees: 45), 0]
+        char.scale = [0.1,0.1,0.1]
+        characters.append(char)
+        
+        
+        let tulip = Character(name: "flower_tulip")
+        tulip.name = "tulip"
         tulip.position = [0, 1, 0]
         tulip.rotation = [0, radians(fromDegrees: 45), 0]
+        tulip.scale = [0.1,0.1,0.1]
         characters.append(tulip)
-        
-        
-//        let tulip = Character(name: "flower_tulip")
-//        tulip.name = "tulip"
-//        tulip.position = [0, 1, 0]
-//        tulip.rotation = [0, radians(fromDegrees: 45), 0]
-//        characters.append(tulip)
         
         //adding to sceene root node
         for character in characters {
@@ -300,15 +302,19 @@ extension Renderer: MTKViewDelegate {
             renderEncoder.setVertexBytes(&uniforms,
                                          length: MemoryLayout<Uniforms>.stride, index: 1)
             
-            renderEncoder.setRenderPipelineState(character.pipelineState)
-            renderEncoder.setVertexBuffer(character.vertexBuffer, offset: 0, index: 0)
-            for submesh in character.mesh.submeshes {
-                renderEncoder.drawIndexedPrimitives(type: .triangle,
-                                                    indexCount: submesh.indexCount,
-                                                    indexType: submesh.indexType,
-                                                    indexBuffer: submesh.indexBuffer.buffer,
-                                                    indexBufferOffset: submesh.indexBuffer.offset)
+            for meshState in character.meshes{
+                renderEncoder.setRenderPipelineState(meshState.1 as MTLRenderPipelineState)
+                renderEncoder.setVertexBuffer(meshState.0.vertexBuffers[0].buffer, offset: 0, index: 0)
+                for submesh in meshState.0.submeshes {
+                    renderEncoder.drawIndexedPrimitives(type: .triangle,
+                                                        indexCount: submesh.indexCount,
+                                                        indexType: submesh.indexType,
+                                                        indexBuffer: submesh.indexBuffer.buffer,
+                                                        indexBufferOffset: submesh.indexBuffer.offset)
+                }
             }
+
+            
             //            if debugRenderBoundingSphere {
             //                model.boundingSphere.debugBoundingSphere!.render(renderEncoder: renderEncoder, uniforms: uniforms)
             //            }
