@@ -23,11 +23,12 @@ class Character: Node {
         return vertexDescriptor
     }()
     
-    //var vertexBuffer: MTLBuffer!
-    //let pipelineState: MTLRenderPipelineState
-    //var mesh: MTKMesh
-    typealias meshState = (mesh: MTKMesh,pipelineState: MTLRenderPipelineState)
-    var meshes = [meshState]()
+   
+    typealias characterData = (mesh: MTKMesh,pipelineState: MTLRenderPipelineState, nodeName: String)
+    var nodes = [characterData]()
+    var localTransforms = [matrix_float4x4]()
+    var boundingMesh : MDLMesh? = nil
+    var flag = true
     
     init(name: String) {
         let assetURL : URL
@@ -44,31 +45,16 @@ class Character: Node {
                             error: nil)
         
         
-       let sceneData = Baker(asset: asset)
-        
-        
-        //sceneData.nodeNames
-//        sceneData.mdlMeshes.count
-//        let mdlMesh = sceneData.mdlMeshes[8]
-       
-        for mdlMesh in sceneData.mdlMeshes {
-            let mesh = try! MTKMesh(mesh: mdlMesh, device: Renderer.device)
-            
-            //vertexBuffer = mesh.vertexBuffers[0].buffer
-            
-            let pipelineState = Character.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor)
-            meshes.append((mesh,pipelineState))
-        }
-        
-        
+
         super.init()
-        self.boundingBox = sceneData.mdlMeshes[0].boundingBox
+        storeAllMeshesInSceneGraph(with: asset)
+        self.boundingBox = boundingMesh!.boundingBox
     }
     
     private static func buildPipelineState(vertexDescriptor: MDLVertexDescriptor) -> MTLRenderPipelineState {
         let library = Renderer.library
         let vertexFunction = library?.makeFunction(name: "vertex_main")
-        let fragmentFunction = library?.makeFunction(name: "fragment_normals")
+        let fragmentFunction = library?.makeFunction(name: "fragment_main")
         
         var pipelineState: MTLRenderPipelineState
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
@@ -83,5 +69,21 @@ class Character: Node {
             fatalError(error.localizedDescription)
         }
         return pipelineState
+    }
+    
+    /// Record all mesh data required to render a particular mesh
+    func storeAllMeshesInSceneGraph(with asset: MDLAsset) {
+        walkSceneGraph(in: asset) { object, currentIdx, _ in
+            if let mesh = object as? MDLMesh {
+                if flag {
+                    boundingMesh = mesh
+                    flag = !flag
+                }
+               let pipelineState = Character.buildPipelineState(vertexDescriptor: mesh.vertexDescriptor)
+                let mtkMesh = try! MTKMesh(mesh: mesh, device: Renderer.device)
+                nodes.append((mtkMesh,pipelineState,"test"))
+                
+            }
+        }
     }
 }

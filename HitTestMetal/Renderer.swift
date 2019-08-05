@@ -302,7 +302,7 @@ extension Renderer: MTKViewDelegate {
             renderEncoder.setVertexBytes(&uniforms,
                                          length: MemoryLayout<Uniforms>.stride, index: 1)
             
-            for meshState in character.meshes{
+            for meshState in character.nodes{
                 renderEncoder.setRenderPipelineState(meshState.1 as MTLRenderPipelineState)
                 renderEncoder.setVertexBuffer(meshState.0.vertexBuffers[0].buffer, offset: 0, index: 0)
                 for submesh in meshState.0.submeshes {

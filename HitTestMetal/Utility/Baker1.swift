@@ -115,7 +115,7 @@ class Baker {
     func storeAllMeshesInSceneGraph(with asset: MDLAsset) {
         walkSceneGraph(in: asset) { object, currentIdx, _ in
             if let mesh = object as? MDLMesh {
-                meshNodeIndices.append(currentIdx)
+                //meshNodeIndices.append(currentIdx)
 //                store(mesh)
                 mdlMeshes.append(mesh)
 //                print("debugCtr= \(debugCounter)\n")
