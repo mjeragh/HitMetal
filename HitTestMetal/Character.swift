@@ -24,9 +24,8 @@ class Character: Node {
     }()
     
    
-    typealias characterData = (mesh: MTKMesh,pipelineState: MTLRenderPipelineState, nodeName: String)
+    typealias characterData = (mesh: MTKMesh,pipelineState: MTLRenderPipelineState, nodeName: String, localTransform: matrix_float4x4)
     var nodes = [characterData]()
-    var localTransforms = [matrix_float4x4]()
     var boundingMesh : MDLMesh? = nil
     var flag = true
     
@@ -81,7 +80,15 @@ class Character: Node {
                 }
                let pipelineState = Character.buildPipelineState(vertexDescriptor: mesh.vertexDescriptor)
                 let mtkMesh = try! MTKMesh(mesh: mesh, device: Renderer.device)
-                nodes.append((mtkMesh,pipelineState,"test"))
+                
+                if let transform = object.transform {
+                    nodes.append((mtkMesh,pipelineState,object.path,transform.matrix))
+                } else {
+                    nodes.append((mtkMesh,pipelineState,object.path,matrix_identity_float4x4))
+                    
+                }
+                
+                
                 
             }
         }

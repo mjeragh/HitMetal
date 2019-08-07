@@ -126,6 +126,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B285298322FB2167004E2DE9 /* Metal */ = {
+			isa = PBXGroup;
+			children = (
+				B2A6D09422525260000FBB54 /* Shaders.metal */,
+				B2A6D08F22525260000FBB54 /* ShaderTypes.h */,
+			);
+			name = Metal;
+			sourceTree = "<group>";
+		};
 		B2A6D08122525260000FBB54 = {
 			isa = PBXGroup;
 			children = (
@@ -149,11 +158,9 @@
 				B2A6D0C72252581C000FBB54 /* Ray.swift */,
 				B2A6D0C922525827000FBB54 /* HitResult.swift */,
 				B2A6D08D22525260000FBB54 /* AppDelegate.swift */,
-				B2A6D08F22525260000FBB54 /* ShaderTypes.h */,
 				B2A6D09022525260000FBB54 /* Renderer.swift */,
 				B2A6D09222525260000FBB54 /* ViewController.swift */,
 				B2A6D0C222525486000FBB54 /* ViewControllerExtension.swift */,
-				B2A6D09422525260000FBB54 /* Shaders.metal */,
 				B2A6D0CB225321E0000FBB54 /* Scene.swift */,
 				B2A6D0CF2253C606000FBB54 /* ModelIOExtensions.swift */,
 				B2A6D0AE22525353000FBB54 /* Camera.swift */,
@@ -166,6 +173,7 @@
 				B2A6D09922525260000FBB54 /* Assets.xcassets */,
 				B2A6D09B22525260000FBB54 /* LaunchScreen.storyboard */,
 				B2A6D09E22525260000FBB54 /* Info.plist */,
+				B285298322FB2167004E2DE9 /* Metal */,
 				B2A6D0B9225253AA000FBB54 /* Models */,
 				B2A6D0A42252531C000FBB54 /* Utility */,
 			);
