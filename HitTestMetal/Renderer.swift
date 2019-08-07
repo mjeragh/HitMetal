@@ -206,7 +206,7 @@ class Renderer: NSObject {
         tulip.position = [0, 1, 0]
         tulip.rotation = [0, radians(fromDegrees: 45), 0]
         tulip.scale = [0.1,0.1,0.1]
-        characters.append(tulip)
+       // characters.append(tulip)
         
         //adding to sceene root node
         for character in characters {
@@ -296,15 +296,18 @@ extension Renderer: MTKViewDelegate {
         // render all the models in the array
         for character in characters {
             // model matrix now comes from the Model's superclass: Node
-            uniforms.modelMatrix = character.modelMatrix
-            uniforms.normalMatrix = float3x3(normalFrom4x4: character.modelMatrix)
             
-            renderEncoder.setVertexBytes(&uniforms,
-                                         length: MemoryLayout<Uniforms>.stride, index: 1)
             
             for meshState in character.nodes{
                 renderEncoder.setRenderPipelineState(meshState.1 as MTLRenderPipelineState)
                 renderEncoder.setVertexBuffer(meshState.0.vertexBuffers[0].buffer, offset: 0, index: 0)
+                
+                uniforms.modelMatrix = character.modelMatrix * meshState.localTransform
+                uniforms.normalMatrix = float3x3(normalFrom4x4: character.modelMatrix)
+                
+                renderEncoder.setVertexBytes(&uniforms,
+                                             length: MemoryLayout<Uniforms>.stride, index: 1)
+                
                 for submesh in meshState.0.submeshes {
                     renderEncoder.drawIndexedPrimitives(type: .triangle,
                                                         indexCount: submesh.indexCount,
