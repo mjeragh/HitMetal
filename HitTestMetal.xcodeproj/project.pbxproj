@@ -10,6 +10,7 @@
 		B274E86A225E3D3400F88A7E /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = B274E869225E3D3400F88A7E /* Plane.swift */; };
 		B284C10522F18FA7001A122B /* Baker1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B284C10422F18FA7001A122B /* Baker1.swift */; };
 		B284C10722F18FF6001A122B /* MeshData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B284C10622F18FF6001A122B /* MeshData.swift */; };
+		B285298522FF2EEC004E2DE9 /* train-color.png in Resources */ = {isa = PBXBuildFile; fileRef = B285298422FF2EEC004E2DE9 /* train-color.png */; };
 		B2A10D8A22DBA82300136D5B /* hw.usda in Resources */ = {isa = PBXBuildFile; fileRef = B2A10D8922DBA82300136D5B /* hw.usda */; };
 		B2A10D8C22DBAAB200136D5B /* simpleMaterial.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B2A10D8B22DBAAB200136D5B /* simpleMaterial.usdz */; };
 		B2A6D08E22525260000FBB54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D08D22525260000FBB54 /* AppDelegate.swift */; };
@@ -63,6 +64,7 @@
 		B274E869225E3D3400F88A7E /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		B284C10422F18FA7001A122B /* Baker1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Baker1.swift; sourceTree = "<group>"; };
 		B284C10622F18FF6001A122B /* MeshData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeshData.swift; sourceTree = "<group>"; };
+		B285298422FF2EEC004E2DE9 /* train-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "train-color.png"; sourceTree = "<group>"; };
 		B2A10D8922DBA82300136D5B /* hw.usda */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = hw.usda; sourceTree = "<group>"; };
 		B2A10D8B22DBAAB200136D5B /* simpleMaterial.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = simpleMaterial.usdz; sourceTree = "<group>"; };
 		B2A6D08A22525260000FBB54 /* HitTestMetal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitTestMetal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +137,19 @@
 			name = Metal;
 			sourceTree = "<group>";
 		};
+		B285298622FF3117004E2DE9 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				B2A6D0B222525353000FBB54 /* Node.swift */,
+				B2A6D0B122525353000FBB54 /* Model.swift */,
+				B2A6D0B022525353000FBB54 /* Submesh.swift */,
+				B2A6D09022525260000FBB54 /* Renderer.swift */,
+				B2B696D022B92717002A78CE /* Character.swift */,
+				B2A6D0AD22525352000FBB54 /* Primitive.swift */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
 		B2A6D08122525260000FBB54 = {
 			isa = PBXGroup;
 			children = (
@@ -158,17 +173,12 @@
 				B2A6D0C72252581C000FBB54 /* Ray.swift */,
 				B2A6D0C922525827000FBB54 /* HitResult.swift */,
 				B2A6D08D22525260000FBB54 /* AppDelegate.swift */,
-				B2A6D09022525260000FBB54 /* Renderer.swift */,
+				B285298622FF3117004E2DE9 /* Renderer */,
 				B2A6D09222525260000FBB54 /* ViewController.swift */,
 				B2A6D0C222525486000FBB54 /* ViewControllerExtension.swift */,
 				B2A6D0CB225321E0000FBB54 /* Scene.swift */,
 				B2A6D0CF2253C606000FBB54 /* ModelIOExtensions.swift */,
 				B2A6D0AE22525353000FBB54 /* Camera.swift */,
-				B2A6D0B122525353000FBB54 /* Model.swift */,
-				B2B696D022B92717002A78CE /* Character.swift */,
-				B2A6D0B222525353000FBB54 /* Node.swift */,
-				B2A6D0AD22525352000FBB54 /* Primitive.swift */,
-				B2A6D0B022525353000FBB54 /* Submesh.swift */,
 				B2A6D09622525260000FBB54 /* Main.storyboard */,
 				B2A6D09922525260000FBB54 /* Assets.xcassets */,
 				B2A6D09B22525260000FBB54 /* LaunchScreen.storyboard */,
@@ -207,6 +217,7 @@
 				B2A6D0BA225253AA000FBB54 /* treefir.mtl */,
 				B2A6D0BB225253AA000FBB54 /* train.obj */,
 				B2A6D0BC225253AA000FBB54 /* treefir.obj */,
+				B285298422FF2EEC004E2DE9 /* train-color.png */,
 				B2A6D0BD225253AA000FBB54 /* train.mtl */,
 			);
 			path = Models;
@@ -301,6 +312,7 @@
 				B2A6D0C1225253AA000FBB54 /* train.mtl in Resources */,
 				B2B696E122B94586002A78CE /* car3_car_MAT_Roughness.png in Resources */,
 				B2B696E322B94586002A78CE /* road.png in Resources */,
+				B285298522FF2EEC004E2DE9 /* train-color.png in Resources */,
 				B2B696E722B94586002A78CE /* Pit_bottomShape.png in Resources */,
 				B2B696EC22B94586002A78CE /* race_track.usda in Resources */,
 				B2B696E522B94586002A78CE /* car3_car_MAT_Metallic.png in Resources */,

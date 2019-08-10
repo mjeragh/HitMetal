@@ -195,9 +195,9 @@ class Renderer: NSObject {
         let file = "toy_drummer"
         let char = Character(name: file)
         char.name = file
-        char.position = [0, 1, 0]
-        char.rotation = [0, radians(fromDegrees: 45), 0]
-        char.scale = [0.1,0.1,0.1]
+        char.position = [0, 1, -2]
+        char.rotation = [0, radians(fromDegrees: 180), 0]
+        char.scale = [0.2,0.2,0.2]
         characters.append(char)
         
         
@@ -206,7 +206,7 @@ class Renderer: NSObject {
         tulip.position = [0, 1, 0]
         tulip.rotation = [0, radians(fromDegrees: 45), 0]
         tulip.scale = [0.1,0.1,0.1]
-       // characters.append(tulip)
+        characters.append(tulip)
         
         //adding to sceene root node
         for character in characters {
