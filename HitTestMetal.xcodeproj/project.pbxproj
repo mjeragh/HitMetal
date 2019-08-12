@@ -15,6 +15,7 @@
 		B2A0FEF623015FC600297118 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = B2A0FEF323015FC600297118 /* train.obj */; };
 		B2A0FEF723015FC600297118 /* train-color.png in Resources */ = {isa = PBXBuildFile; fileRef = B2A0FEF423015FC600297118 /* train-color.png */; };
 		B2A0FEF823015FC600297118 /* train.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B2A0FEF523015FC600297118 /* train.mtl */; };
+		B2A0FEFA2301651100297118 /* treefir.obj in Resources */ = {isa = PBXBuildFile; fileRef = B2A0FEF92301651100297118 /* treefir.obj */; };
 		B2A10D8A22DBA82300136D5B /* hw.usda in Resources */ = {isa = PBXBuildFile; fileRef = B2A10D8922DBA82300136D5B /* hw.usda */; };
 		B2A10D8C22DBAAB200136D5B /* simpleMaterial.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B2A10D8B22DBAAB200136D5B /* simpleMaterial.usdz */; };
 		B2A6D08E22525260000FBB54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D08D22525260000FBB54 /* AppDelegate.swift */; };
@@ -69,6 +70,7 @@
 		B2A0FEF323015FC600297118 /* train.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.obj; sourceTree = "<group>"; };
 		B2A0FEF423015FC600297118 /* train-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "train-color.png"; sourceTree = "<group>"; };
 		B2A0FEF523015FC600297118 /* train.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.mtl; sourceTree = "<group>"; };
+		B2A0FEF92301651100297118 /* treefir.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = treefir.obj; sourceTree = "<group>"; };
 		B2A10D8922DBA82300136D5B /* hw.usda */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = hw.usda; sourceTree = "<group>"; };
 		B2A10D8B22DBAAB200136D5B /* simpleMaterial.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = simpleMaterial.usdz; sourceTree = "<group>"; };
 		B2A6D08A22525260000FBB54 /* HitTestMetal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitTestMetal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,10 +213,14 @@
 		B2A6D0B9225253AA000FBB54 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B2A0FEF423015FC600297118 /* train-color.png */,
+				B2A0FEF523015FC600297118 /* train.mtl */,
+				B2A0FEF323015FC600297118 /* train.obj */,
 				B2B696D222B94586002A78CE /* race_track */,
 				B2B696CC22B6C5E4002A78CE /* flower_tulip.usdz */,
 				B2A10D8922DBA82300136D5B /* hw.usda */,
 				B2A10D8B22DBAAB200136D5B /* simpleMaterial.usdz */,
+				B2A0FEF92301651100297118 /* treefir.obj */,
 				B2A6D0BA225253AA000FBB54 /* treefir.mtl */,
 			);
 			path = Models;
@@ -223,9 +229,6 @@
 		B2B696D222B94586002A78CE /* race_track */ = {
 			isa = PBXGroup;
 			children = (
-				B2A0FEF423015FC600297118 /* train-color.png */,
-				B2A0FEF523015FC600297118 /* train.mtl */,
-				B2A0FEF323015FC600297118 /* train.obj */,
 				B2B696D322B94586002A78CE /* car3_car_MAT_Roughness.png */,
 				B2B696D422B94586002A78CE /* toy_drummer.usdz */,
 				B2B696D522B94586002A78CE /* road.png */,
@@ -312,6 +315,7 @@
 				B2B696CD22B6C5E4002A78CE /* flower_tulip.usdz in Resources */,
 				B2B696E622B94586002A78CE /* tireWall_redShape.png in Resources */,
 				B2B696E122B94586002A78CE /* car3_car_MAT_Roughness.png in Resources */,
+				B2A0FEFA2301651100297118 /* treefir.obj in Resources */,
 				B2B696E322B94586002A78CE /* road.png in Resources */,
 				B2B696E722B94586002A78CE /* Pit_bottomShape.png in Resources */,
 				B2B696EC22B94586002A78CE /* race_track.usda in Resources */,
