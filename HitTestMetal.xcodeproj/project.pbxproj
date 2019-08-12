@@ -10,7 +10,11 @@
 		B274E86A225E3D3400F88A7E /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = B274E869225E3D3400F88A7E /* Plane.swift */; };
 		B284C10522F18FA7001A122B /* Baker1.swift in Sources */ = {isa = PBXBuildFile; fileRef = B284C10422F18FA7001A122B /* Baker1.swift */; };
 		B284C10722F18FF6001A122B /* MeshData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B284C10622F18FF6001A122B /* MeshData.swift */; };
-		B285298522FF2EEC004E2DE9 /* train-color.png in Resources */ = {isa = PBXBuildFile; fileRef = B285298422FF2EEC004E2DE9 /* train-color.png */; };
+		B285298822FF4146004E2DE9 /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = B285298722FF4146004E2DE9 /* Mesh.swift */; };
+		B285298A230083A2004E2DE9 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2852989230083A2004E2DE9 /* Extentions.swift */; };
+		B2A0FEF623015FC600297118 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = B2A0FEF323015FC600297118 /* train.obj */; };
+		B2A0FEF723015FC600297118 /* train-color.png in Resources */ = {isa = PBXBuildFile; fileRef = B2A0FEF423015FC600297118 /* train-color.png */; };
+		B2A0FEF823015FC600297118 /* train.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B2A0FEF523015FC600297118 /* train.mtl */; };
 		B2A10D8A22DBA82300136D5B /* hw.usda in Resources */ = {isa = PBXBuildFile; fileRef = B2A10D8922DBA82300136D5B /* hw.usda */; };
 		B2A10D8C22DBAAB200136D5B /* simpleMaterial.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B2A10D8B22DBAAB200136D5B /* simpleMaterial.usdz */; };
 		B2A6D08E22525260000FBB54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D08D22525260000FBB54 /* AppDelegate.swift */; };
@@ -26,13 +30,9 @@
 		B2A6D0AC2252531C000FBB54 /* MathLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0A82252531C000FBB54 /* MathLibrary.swift */; };
 		B2A6D0B322525353000FBB54 /* Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0AD22525352000FBB54 /* Primitive.swift */; };
 		B2A6D0B422525353000FBB54 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0AE22525353000FBB54 /* Camera.swift */; };
-		B2A6D0B622525353000FBB54 /* Submesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0B022525353000FBB54 /* Submesh.swift */; };
 		B2A6D0B722525353000FBB54 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0B122525353000FBB54 /* Model.swift */; };
 		B2A6D0B822525353000FBB54 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0B222525353000FBB54 /* Node.swift */; };
 		B2A6D0BE225253AA000FBB54 /* treefir.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B2A6D0BA225253AA000FBB54 /* treefir.mtl */; };
-		B2A6D0BF225253AA000FBB54 /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = B2A6D0BB225253AA000FBB54 /* train.obj */; };
-		B2A6D0C0225253AA000FBB54 /* treefir.obj in Resources */ = {isa = PBXBuildFile; fileRef = B2A6D0BC225253AA000FBB54 /* treefir.obj */; };
-		B2A6D0C1225253AA000FBB54 /* train.mtl in Resources */ = {isa = PBXBuildFile; fileRef = B2A6D0BD225253AA000FBB54 /* train.mtl */; };
 		B2A6D0C322525486000FBB54 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0C222525486000FBB54 /* ViewControllerExtension.swift */; };
 		B2A6D0C82252581C000FBB54 /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0C72252581C000FBB54 /* Ray.swift */; };
 		B2A6D0CA22525827000FBB54 /* HitResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A6D0C922525827000FBB54 /* HitResult.swift */; };
@@ -64,7 +64,11 @@
 		B274E869225E3D3400F88A7E /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		B284C10422F18FA7001A122B /* Baker1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Baker1.swift; sourceTree = "<group>"; };
 		B284C10622F18FF6001A122B /* MeshData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeshData.swift; sourceTree = "<group>"; };
-		B285298422FF2EEC004E2DE9 /* train-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "train-color.png"; sourceTree = "<group>"; };
+		B285298722FF4146004E2DE9 /* Mesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
+		B2852989230083A2004E2DE9 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		B2A0FEF323015FC600297118 /* train.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.obj; sourceTree = "<group>"; };
+		B2A0FEF423015FC600297118 /* train-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "train-color.png"; sourceTree = "<group>"; };
+		B2A0FEF523015FC600297118 /* train.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.mtl; sourceTree = "<group>"; };
 		B2A10D8922DBA82300136D5B /* hw.usda */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = hw.usda; sourceTree = "<group>"; };
 		B2A10D8B22DBAAB200136D5B /* simpleMaterial.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = simpleMaterial.usdz; sourceTree = "<group>"; };
 		B2A6D08A22525260000FBB54 /* HitTestMetal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitTestMetal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,13 +87,9 @@
 		B2A6D0A82252531C000FBB54 /* MathLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathLibrary.swift; sourceTree = "<group>"; };
 		B2A6D0AD22525352000FBB54 /* Primitive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primitive.swift; sourceTree = "<group>"; };
 		B2A6D0AE22525353000FBB54 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
-		B2A6D0B022525353000FBB54 /* Submesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Submesh.swift; sourceTree = "<group>"; };
 		B2A6D0B122525353000FBB54 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B2A6D0B222525353000FBB54 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		B2A6D0BA225253AA000FBB54 /* treefir.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = treefir.mtl; sourceTree = "<group>"; };
-		B2A6D0BB225253AA000FBB54 /* train.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.obj; sourceTree = "<group>"; };
-		B2A6D0BC225253AA000FBB54 /* treefir.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = treefir.obj; sourceTree = "<group>"; };
-		B2A6D0BD225253AA000FBB54 /* train.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.mtl; sourceTree = "<group>"; };
 		B2A6D0C222525486000FBB54 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		B2A6D0C72252581C000FBB54 /* Ray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
 		B2A6D0C922525827000FBB54 /* HitResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitResult.swift; sourceTree = "<group>"; };
@@ -142,10 +142,11 @@
 			children = (
 				B2A6D0B222525353000FBB54 /* Node.swift */,
 				B2A6D0B122525353000FBB54 /* Model.swift */,
-				B2A6D0B022525353000FBB54 /* Submesh.swift */,
+				B285298722FF4146004E2DE9 /* Mesh.swift */,
 				B2A6D09022525260000FBB54 /* Renderer.swift */,
 				B2B696D022B92717002A78CE /* Character.swift */,
 				B2A6D0AD22525352000FBB54 /* Primitive.swift */,
+				B2852989230083A2004E2DE9 /* Extentions.swift */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -173,6 +174,7 @@
 				B2A6D0C72252581C000FBB54 /* Ray.swift */,
 				B2A6D0C922525827000FBB54 /* HitResult.swift */,
 				B2A6D08D22525260000FBB54 /* AppDelegate.swift */,
+				B285298322FB2167004E2DE9 /* Metal */,
 				B285298622FF3117004E2DE9 /* Renderer */,
 				B2A6D09222525260000FBB54 /* ViewController.swift */,
 				B2A6D0C222525486000FBB54 /* ViewControllerExtension.swift */,
@@ -183,7 +185,6 @@
 				B2A6D09922525260000FBB54 /* Assets.xcassets */,
 				B2A6D09B22525260000FBB54 /* LaunchScreen.storyboard */,
 				B2A6D09E22525260000FBB54 /* Info.plist */,
-				B285298322FB2167004E2DE9 /* Metal */,
 				B2A6D0B9225253AA000FBB54 /* Models */,
 				B2A6D0A42252531C000FBB54 /* Utility */,
 			);
@@ -215,10 +216,6 @@
 				B2A10D8922DBA82300136D5B /* hw.usda */,
 				B2A10D8B22DBAAB200136D5B /* simpleMaterial.usdz */,
 				B2A6D0BA225253AA000FBB54 /* treefir.mtl */,
-				B2A6D0BB225253AA000FBB54 /* train.obj */,
-				B2A6D0BC225253AA000FBB54 /* treefir.obj */,
-				B285298422FF2EEC004E2DE9 /* train-color.png */,
-				B2A6D0BD225253AA000FBB54 /* train.mtl */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -226,6 +223,9 @@
 		B2B696D222B94586002A78CE /* race_track */ = {
 			isa = PBXGroup;
 			children = (
+				B2A0FEF423015FC600297118 /* train-color.png */,
+				B2A0FEF523015FC600297118 /* train.mtl */,
+				B2A0FEF323015FC600297118 /* train.obj */,
 				B2B696D322B94586002A78CE /* car3_car_MAT_Roughness.png */,
 				B2B696D422B94586002A78CE /* toy_drummer.usdz */,
 				B2B696D522B94586002A78CE /* road.png */,
@@ -304,28 +304,27 @@
 			files = (
 				B2A10D8C22DBAAB200136D5B /* simpleMaterial.usdz in Resources */,
 				B2A10D8A22DBA82300136D5B /* hw.usda in Resources */,
+				B2A0FEF823015FC600297118 /* train.mtl in Resources */,
 				B2B696E222B94586002A78CE /* toy_drummer.usdz in Resources */,
 				B2B696E422B94586002A78CE /* car3_car_MAT_Normal.png in Resources */,
 				B2A6D09D22525260000FBB54 /* LaunchScreen.storyboard in Resources */,
+				B2A0FEF723015FC600297118 /* train-color.png in Resources */,
 				B2B696CD22B6C5E4002A78CE /* flower_tulip.usdz in Resources */,
 				B2B696E622B94586002A78CE /* tireWall_redShape.png in Resources */,
-				B2A6D0C1225253AA000FBB54 /* train.mtl in Resources */,
 				B2B696E122B94586002A78CE /* car3_car_MAT_Roughness.png in Resources */,
 				B2B696E322B94586002A78CE /* road.png in Resources */,
-				B285298522FF2EEC004E2DE9 /* train-color.png in Resources */,
 				B2B696E722B94586002A78CE /* Pit_bottomShape.png in Resources */,
 				B2B696EC22B94586002A78CE /* race_track.usda in Resources */,
 				B2B696E522B94586002A78CE /* car3_car_MAT_Metallic.png in Resources */,
-				B2A6D0BF225253AA000FBB54 /* train.obj in Resources */,
 				B2B696EA22B94586002A78CE /* Pit_top_frontShape.png in Resources */,
 				B2A6D09A22525260000FBB54 /* Assets.xcassets in Resources */,
 				B2B696EE22B94586002A78CE /* PitRoofShape.png in Resources */,
 				B2B696E822B94586002A78CE /* grass.png in Resources */,
 				B2B696EB22B94586002A78CE /* scene.dat in Resources */,
-				B2A6D0C0225253AA000FBB54 /* treefir.obj in Resources */,
 				B2B696E922B94586002A78CE /* sky.png in Resources */,
 				B2A6D09822525260000FBB54 /* Main.storyboard in Resources */,
 				B2A6D0BE225253AA000FBB54 /* treefir.mtl in Resources */,
+				B2A0FEF623015FC600297118 /* train.obj in Resources */,
 				B2B696ED22B94586002A78CE /* car3_car_MAT_BaseColor.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +342,7 @@
 				B2A6D09322525260000FBB54 /* ViewController.swift in Sources */,
 				B2A6D0D32254BC8A000FBB54 /* DebugBoundingSphere.swift in Sources */,
 				B2A6D0AC2252531C000FBB54 /* MathLibrary.swift in Sources */,
+				B285298822FF4146004E2DE9 /* Mesh.swift in Sources */,
 				B2A6D0B322525353000FBB54 /* Primitive.swift in Sources */,
 				B2A6D0A92252531C000FBB54 /* RendererExtension.swift in Sources */,
 				B2C7B31F22F0A45D005A7CC4 /* ModelIOTools.swift in Sources */,
@@ -353,9 +353,9 @@
 				B2B696D122B92717002A78CE /* Character.swift in Sources */,
 				B284C10522F18FA7001A122B /* Baker1.swift in Sources */,
 				B2A6D0C322525486000FBB54 /* ViewControllerExtension.swift in Sources */,
-				B2A6D0B622525353000FBB54 /* Submesh.swift in Sources */,
 				B2A6D0CC225321E0000FBB54 /* Scene.swift in Sources */,
 				B2A6D0AA2252531C000FBB54 /* DebugLights.swift in Sources */,
+				B285298A230083A2004E2DE9 /* Extentions.swift in Sources */,
 				B2A6D08E22525260000FBB54 /* AppDelegate.swift in Sources */,
 				B2A6D0D02253C606000FBB54 /* ModelIOExtensions.swift in Sources */,
 				B2A6D0AB2252531C000FBB54 /* DebugLights.metal in Sources */,

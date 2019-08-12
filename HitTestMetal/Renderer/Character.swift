@@ -39,7 +39,7 @@ class Character: Node {
             
         }
         let allocator = MTKMeshBufferAllocator(device: Renderer.device)
-        let asset = MDLAsset(url: assetURL, vertexDescriptor: Model.defaultVertexDescriptor,
+        let asset = MDLAsset(url: assetURL, vertexDescriptor: Character.defaultVertexDescriptor,
                              bufferAllocator: allocator,preserveTopology: false,
                             error: nil)
         

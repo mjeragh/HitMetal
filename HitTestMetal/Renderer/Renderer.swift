@@ -130,10 +130,10 @@ class Renderer: NSObject {
         train.position = [0, 0, 0]
         train.rotation = [0, radians(fromDegrees: 45), 0]
         models.append(train)
-        let fir = Model(name: "treefir")
-        fir.name = "tree"
-        fir.position = [1.4, 0, 0]
-        models.append(fir)
+//        let fir = Model(name: "treefir")
+//        fir.name = "tree"
+//        fir.position = [1.4, 0, 0]
+//        models.append(fir)
         
         buildDepthStencilState()
         
@@ -274,72 +274,81 @@ extension Renderer: MTKViewDelegate {
             // model matrix now comes from the Model's superclass: Node
             uniforms.modelMatrix = model.modelMatrix
             uniforms.normalMatrix = float3x3(normalFrom4x4: model.modelMatrix)
-            
+
             renderEncoder.setVertexBytes(&uniforms,
                                          length: MemoryLayout<Uniforms>.stride, index: 1)
-            
-            renderEncoder.setRenderPipelineState(model.pipelineState)
-            renderEncoder.setVertexBuffer(model.vertexBuffer, offset: 0, index: 0)
-            for submesh in model.mesh.submeshes {
-                renderEncoder.drawIndexedPrimitives(type: .triangle,
-                                                    indexCount: submesh.indexCount,
-                                                    indexType: submesh.indexType,
-                                                    indexBuffer: submesh.indexBuffer.buffer,
-                                                    indexBufferOffset: submesh.indexBuffer.offset)
+
+
+            for mesh in model.meshes {
+                for vertexBuffer in mesh.mtkMesh.vertexBuffers {
+
+                    renderEncoder.setVertexBuffer(vertexBuffer.buffer, offset: 0, index: 0)
+
+                    for submesh in mesh.submeshes {
+                        var material = submesh.material
+                        renderEncoder.setFragmentBytes(&material,
+                                                        length: MemoryLayout<Material>.stride,
+                                                        index: 11)
+                        renderEncoder.setFragmentTexture(submesh.textures.baseColor, index: 0)
+                        renderEncoder.setRenderPipelineState(submesh.pipelineState)
+                        let mtkSubmeh = submesh.mtkSubmesh
+                        renderEncoder.drawIndexedPrimitives(type: .triangle,
+                                                            indexCount: mtkSubmeh.indexCount,
+                                                            indexType: mtkSubmeh.indexType,
+                                                            indexBuffer: mtkSubmeh.indexBuffer.buffer,
+                                                            indexBufferOffset: mtkSubmeh.indexBuffer.offset)
+                    }
+
             }
-//            if debugRenderBoundingSphere {
-//                model.boundingSphere.debugBoundingSphere!.render(renderEncoder: renderEncoder, uniforms: uniforms)
-//            }
+
+
+        }
         }
         
         
         // render all the models in the array
-        for character in characters {
-            // model matrix now comes from the Model's superclass: Node
-            
-            
-            for meshState in character.nodes{
-                renderEncoder.setRenderPipelineState(meshState.1 as MTLRenderPipelineState)
-                renderEncoder.setVertexBuffer(meshState.0.vertexBuffers[0].buffer, offset: 0, index: 0)
-                
-                uniforms.modelMatrix = character.modelMatrix * meshState.localTransform
-                uniforms.normalMatrix = float3x3(normalFrom4x4: character.modelMatrix)
-                
-                renderEncoder.setVertexBytes(&uniforms,
-                                             length: MemoryLayout<Uniforms>.stride, index: 1)
-                
-                for submesh in meshState.0.submeshes {
-                    renderEncoder.drawIndexedPrimitives(type: .triangle,
-                                                        indexCount: submesh.indexCount,
-                                                        indexType: submesh.indexType,
-                                                        indexBuffer: submesh.indexBuffer.buffer,
-                                                        indexBufferOffset: submesh.indexBuffer.offset)
-                }
-            }
-
-            
-            //            if debugRenderBoundingSphere {
-            //                model.boundingSphere.debugBoundingSphere!.render(renderEncoder: renderEncoder, uniforms: uniforms)
-            //            }
-        }
-        
-        for primitive in primitives {
-            
-           uniforms.modelMatrix = primitive.modelMatrix
-            uniforms.normalMatrix = float3x3(normalFrom4x4: primitive.modelMatrix)
-            
-            renderEncoder.setVertexBuffer(primitive.vertexBuffer, offset: 0, index: 0)
-            renderEncoder.setVertexBytes(&uniforms,
-                                         length: MemoryLayout<Uniforms>.stride, index: 1)
-            
-            renderEncoder.setRenderPipelineState(primitive.pipelineState)
-            for submesh in primitive.mesh.submeshes{
-                renderEncoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
-            }
-//            if debugRenderBoundingSphere {
-//                primitive.boundingSphere.debugBoundingSphere!.render(renderEncoder: renderEncoder, uniforms: uniforms)
+//        for character in characters {
+//            // model matrix now comes from the Model's superclass: Node
+//            
+//            
+//            for meshState in character.nodes{
+//                renderEncoder.setRenderPipelineState(meshState.1 as MTLRenderPipelineState)
+//                renderEncoder.setVertexBuffer(meshState.0.vertexBuffers[0].buffer, offset: 0, index: 0)
+//                
+//                uniforms.modelMatrix = character.modelMatrix * meshState.localTransform
+//                uniforms.normalMatrix = float3x3(normalFrom4x4: character.modelMatrix)
+//                
+//                renderEncoder.setVertexBytes(&uniforms,
+//                                             length: MemoryLayout<Uniforms>.stride, index: 1)
+//                
+//                for submesh in meshState.0.submeshes {
+//                    renderEncoder.drawIndexedPrimitives(type: .triangle,
+//                                                        indexCount: submesh.indexCount,
+//                                                        indexType: submesh.indexType,
+//                                                        indexBuffer: submesh.indexBuffer.buffer,
+//                                                        indexBufferOffset: submesh.indexBuffer.offset)
+//                }
 //            }
-        }
+//
+//        }
+//        
+//        for primitive in primitives {
+//            
+//           uniforms.modelMatrix = primitive.modelMatrix
+//            uniforms.normalMatrix = float3x3(normalFrom4x4: primitive.modelMatrix)
+//            
+//            renderEncoder.setVertexBuffer(primitive.vertexBuffer, offset: 0, index: 0)
+//            renderEncoder.setVertexBytes(&uniforms,
+//                                         length: MemoryLayout<Uniforms>.stride, index: 1)
+//            
+//            renderEncoder.setRenderPipelineState(primitive.pipelineState)
+//            for submesh in primitive.mesh.submeshes{
+//                renderEncoder.drawIndexedPrimitives(type: .triangle, indexCount: submesh.indexCount, indexType: submesh.indexType, indexBuffer: submesh.indexBuffer.buffer, indexBufferOffset: submesh.indexBuffer.offset)
+//            }
+////            if debugRenderBoundingSphere {
+////                primitive.boundingSphere.debugBoundingSphere!.render(renderEncoder: renderEncoder, uniforms: uniforms)
+////            }
+//        }
         
         
        // debugLights(renderEncoder: renderEncoder, lightType: Spotlight)

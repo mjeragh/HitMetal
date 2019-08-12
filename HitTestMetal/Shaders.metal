@@ -15,15 +15,24 @@ using namespace metal;
 // Including header shared between this Metal shader code and Swift/C code executing Metal API commands
 #import "ShaderTypes.h"
 
+
+constant float3 lightPosition = float3(2.0, 1.0, 0);
+constant float3 ambientLightColor = float3(1.0, 1.0, 1.0);
+constant float ambientLightIntensity = 0.4;
+constant float3 lightSpecularColor = float3(1.0, 1.0, 1.0);
+
+
 struct VertexIn {
     float4 position [[ attribute(0) ]];
     float3 normal [[ attribute(1) ]];
+    float2 uv [[ attribute(2)]];
 };
 
 struct VertexOut {
     float4 position [[ position ]];
     float3 worldPosition;
     float3 worldNormal;
+    float2 uv;
 };
 
 vertex VertexOut vertex_main(const VertexIn vertexIn [[ stage_in ]],
@@ -34,14 +43,18 @@ vertex VertexOut vertex_main(const VertexIn vertexIn [[ stage_in ]],
     * uniforms.modelMatrix * vertexIn.position;
     out.worldPosition = (uniforms.modelMatrix * vertexIn.position).xyz;
     out.worldNormal = uniforms.normalMatrix * vertexIn.normal;
+    out.uv = vertexIn.uv;
     return out;
 }
 
 fragment float4 fragment_main(VertexOut in [[stage_in]],
                               // 1
                               constant Light *lights [[buffer(2)]],
-                              constant FragmentUniforms &fragmentUniforms [[ buffer(3)]]) {
-    float3 baseColor = float3(1, 1, 1);
+                              constant Material &material [[ buffer(11)]],
+                              constant FragmentUniforms &fragmentUniforms [[ buffer(3)]],
+                              texture2d<float> baseColorTexture [[texture(0)]]) {
+    constexpr sampler s(filter::linear);
+    float3 baseColor = baseColorTexture.sample(s, in.uv).rgb;
     float3 diffuseColor = 0;
     float3 ambientColor = 0;
     float3 specularColor = 0;
@@ -81,7 +94,7 @@ fragment float4 fragment_main(VertexOut in [[stage_in]],
             // 3
             float attenuation = 1.0 / (light.attenuation.x +
                                        light.attenuation.y * d + light.attenuation.z * d * d);
-            
+
             float diffuseIntensity = saturate(dot(lightDirection, normalDirection));
             float3 color = light.color * baseColor * diffuseIntensity;
             // 4
@@ -116,6 +129,40 @@ fragment float4 fragment_normals(VertexOut in [[stage_in]]) {
     return float4(in.worldNormal, 1);
     
 }
+
+//fragment float4 fragment_main(VertexOut in [[stage_in]],
+//                              constant Material &material [[ buffer(11)]],
+//                              texture2d<float> baseColorTexture [[texture(0)]],
+//                              constant FragmentUniforms &fragmentUniforms [[ buffer(3)]]) {
+//    
+//    constexpr sampler s(filter::linear);
+//    
+//    float materialShininess = material.shininess;
+//    float3 materialSpecularColor = material.specularColor;
+//
+//    float3 lightVector = normalize(lightPosition);
+//    float3 normalVector = normalize(in.worldNormal);
+//    float3 reflection = reflect(lightVector, normalVector);
+//    float3 cameraVector = normalize(in.worldPosition - fragmentUniforms.cameraPosition);
+//
+//    float3 baseColor;
+//    baseColor = baseColorTexture.sample(s, in.uv).rgb;
+//
+//
+//    float diffuseIntensity = saturate(dot(lightVector, normalVector));
+//
+//    float3 diffuseColor = baseColor * diffuseIntensity;
+//
+//    float3 ambientColor = baseColor * ambientLightColor * ambientLightIntensity;
+//
+//    float specularIntensity = pow(saturate(dot(reflection, cameraVector)), materialShininess);
+//    float3 specularColor = lightSpecularColor * materialSpecularColor * specularIntensity;
+//
+//    float3 color = diffuseColor + ambientColor + specularColor;
+//    return float4(color, 1);
+//
+//    return float4(normalize(in.worldNormal), 1);
+//}
 
 //fragment float4 fragment_mainPBR(VertexOut in [[ stage_in ]],
 //                                 constant Light *lights [[buffer(2)]],

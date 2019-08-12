@@ -32,66 +32,31 @@ import MetalKit
 
 class Model: Node {
   
-  static var defaultVertexDescriptor: MDLVertexDescriptor = {
-    let vertexDescriptor = MDLVertexDescriptor()
-    vertexDescriptor.attributes[0] = MDLVertexAttribute(name: MDLVertexAttributePosition,
-                                                        format: .float3,
-                                                        offset: 0, bufferIndex: 0)
-    // add the normal attribute here
-    vertexDescriptor.attributes[1] = MDLVertexAttribute(name: MDLVertexAttributeNormal,
-                                                        format: .float3,
-                                                        offset: 12, bufferIndex: 0)
-    vertexDescriptor.layouts[0] = MDLVertexBufferLayout(stride: 24)
-    return vertexDescriptor
-  }()
+
   
-  let vertexBuffer: MTLBuffer
-  let pipelineState: MTLRenderPipelineState
-  let mesh: MTKMesh
-  let submeshes: [Submesh]
+    let meshes : [Mesh]
 
   init(name: String) {
-    let assetURL = Bundle.main.url(forResource: name, withExtension: "obj")!
+    let assetUrl = Bundle.main.url(forResource: name, withExtension: "obj")
     let allocator = MTKMeshBufferAllocator(device: Renderer.device)
-    let asset = MDLAsset(url: assetURL, vertexDescriptor: Model.defaultVertexDescriptor,
-                         bufferAllocator: allocator)
-    let mdlMesh = asset.object(at: 0) as! MDLMesh
     
-    let mesh = try! MTKMesh(mesh: mdlMesh, device: Renderer.device)
-    self.mesh = mesh
-    vertexBuffer = mesh.vertexBuffers[0].buffer
-
-    submeshes = mdlMesh.submeshes?.enumerated().compactMap {index, submesh in
-      (submesh as? MDLSubmesh).map {
-        Submesh(submesh: mesh.submeshes[index],
-                mdlSubmesh: $0)
-      }
-      } ?? []
-
-    pipelineState = Model.buildPipelineState(vertexDescriptor: mdlMesh.vertexDescriptor)
+    let vertexDescriptor = MDLVertexDescriptor.defaultVertexDescriptor()
+    let asset = MDLAsset(url: assetUrl, vertexDescriptor: vertexDescriptor, bufferAllocator: allocator)
+    asset.loadTextures()
+    
+    let (mdlMeshes, mtkMeshes) = try! MTKMesh.newMeshes(asset: asset, device: Renderer.device)
+    meshes = zip(mdlMeshes, mtkMeshes).map {
+        Mesh(mdlMesh: $0.0, mtkMesh: $0.1)
+    }
+    
     super.init()
-    self.boundingBox = mdlMesh.boundingBox
+    self.name = name
+    self.boundingBox = mdlMeshes[0].boundingBox
+    
+    
   }
   
-  private static func buildPipelineState(vertexDescriptor: MDLVertexDescriptor) -> MTLRenderPipelineState {
-    let library = Renderer.library
-    let vertexFunction = library?.makeFunction(name: "vertex_main")
-    let fragmentFunction = library?.makeFunction(name: "fragment_main")
-
-    var pipelineState: MTLRenderPipelineState
-    let pipelineDescriptor = MTLRenderPipelineDescriptor()
-    pipelineDescriptor.vertexFunction = vertexFunction
-    pipelineDescriptor.fragmentFunction = fragmentFunction
-    pipelineDescriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(vertexDescriptor)
-    pipelineDescriptor.colorAttachments[0].pixelFormat = Renderer.colorPixelFormat
-    pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
-    do {
-      pipelineState = try Renderer.device.makeRenderPipelineState(descriptor: pipelineDescriptor)
-    } catch let error {
-      fatalError(error.localizedDescription)
-    }
-    return pipelineState
-  }
+ 
 }
 
 
