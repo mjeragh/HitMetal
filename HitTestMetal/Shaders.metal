@@ -20,6 +20,7 @@ constant float3 lightPosition = float3(2.0, 1.0, 0);
 constant float3 ambientLightColor = float3(1.0, 1.0, 1.0);
 constant float ambientLightIntensity = 0.4;
 constant float3 lightSpecularColor = float3(1.0, 1.0, 1.0);
+constant bool hasColorTexture [[function_constant(0)]];
 
 
 struct VertexIn {
@@ -52,9 +53,15 @@ fragment float4 fragment_main(VertexOut in [[stage_in]],
                               constant Light *lights [[buffer(2)]],
                               constant Material &material [[ buffer(11)]],
                               constant FragmentUniforms &fragmentUniforms [[ buffer(3)]],
-                              texture2d<float> baseColorTexture [[texture(0)]]) {
+                              texture2d<float> baseColorTexture [[texture(0), function_constant(hasColorTexture)]]
+                              ) {
     constexpr sampler s(filter::linear);
-    float3 baseColor = baseColorTexture.sample(s, in.uv).rgb;
+    float3 baseColor;
+    if (hasColorTexture) {
+        baseColor = baseColorTexture.sample(s, in.uv).rgb;
+    } else {
+        baseColor = material.baseColor;
+    }
     float3 diffuseColor = 0;
     float3 ambientColor = 0;
     float3 specularColor = 0;

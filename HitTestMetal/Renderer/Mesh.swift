@@ -83,16 +83,34 @@ struct Submesh {
                                   textures: Textures) -> MTLRenderPipelineState {
 
 
+    //create function constant
+    let functionConstants = makeFunctionConstants(textures: textures)
     let library = Renderer.library
     let pipelineDescriptor = MTLRenderPipelineDescriptor()
     pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
     pipelineDescriptor.vertexFunction = library?.makeFunction(name: vertexFunctionName)
-    pipelineDescriptor.fragmentFunction = library?.makeFunction(name: "fragment_main")
+    pipelineDescriptor.fragmentFunction = try! library?.makeFunction(name: "fragment_main", constantValues: functionConstants)
     pipelineDescriptor.vertexDescriptor = MTLVertexDescriptor.defaultVertexDescriptor()
     pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
     
     return try! Renderer.device.makeRenderPipelineState(descriptor: pipelineDescriptor)
   }
+    
+    static func makeFunctionConstants(textures: Textures) -> MTLFunctionConstantValues {
+        let functionConstants = MTLFunctionConstantValues()
+        var property = textures.baseColor != nil
+        functionConstants.setConstantValue(&property, type: .bool, index: 0)
+//        property = textures.normal != nil
+//        functionConstants.setConstantValue(&property, type: .bool, index: 1)
+//        property = textures.roughness != nil
+//        functionConstants.setConstantValue(&property, type: .bool, index: 2)
+//        property = false
+//        functionConstants.setConstantValue(&property, type: .bool, index: 3)
+//        functionConstants.setConstantValue(&property, type: .bool, index: 4)
+        return functionConstants
+    }
+    
+    
 }
 
 private extension Material {
