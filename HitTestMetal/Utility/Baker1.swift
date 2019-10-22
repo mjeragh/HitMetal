@@ -102,7 +102,7 @@ class Baker {
 
         // select the first camera, since we only support one and the last one is default usually
         let camera = cameras.first!
-        let cameraXFormIdx = nodeNames.index(of: camera.path)
+        let cameraXFormIdx = nodeNames.firstIndex(of: camera.path)
 
         self.cameraData = Camera()
         self.cameraData.near = camera.nearVisibilityDistance

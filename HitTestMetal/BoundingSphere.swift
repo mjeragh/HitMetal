@@ -2,7 +2,7 @@
 import simd
 
 struct BoundingSphere {
-    var center: float3
+    var center: SIMD3<Float>
     var radius: Float{
         didSet {
             DebugBoundingSphere.radius = radius
@@ -13,7 +13,7 @@ struct BoundingSphere {
     
     
     // https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection
-    func intersect(_ ray: Ray) -> float4? {
+    func intersect(_ ray: Ray) -> SIMD4<Float>? {
         var t0, t1: Float
         let radius2 = radius * radius
         if (radius2 == 0) { return nil }
@@ -33,6 +33,6 @@ struct BoundingSphere {
             if t0 < 0 { return nil }
         }
         
-        return float4(ray.origin + ray.direction * t0, 1)
+        return SIMD4<Float>(ray.origin + ray.direction * t0, 1)
     }
 }

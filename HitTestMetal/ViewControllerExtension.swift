@@ -95,7 +95,7 @@ extension ViewController {
     }
     
     
-    func unproject(at point: CGPoint) -> float3? {
+    func unproject(at point: CGPoint) -> SIMD3<Float>? {
         guard let camera = renderer?.camera else { return nil}
         
         let viewport = view.bounds
@@ -110,7 +110,7 @@ extension ViewController {
         
         let clipX = (2 * Float(point.x)) / width - 1
         let clipY = 1 - (2 * Float(point.y)) / height
-        let clipCoords = float4(clipX, clipY, 0, 1) // Assume clip space is hemicube, -Z is into the screen
+        let clipCoords = SIMD4<Float>(clipX, clipY, 0, 1) // Assume clip space is hemicube, -Z is into the screen
         
         var eyeRayDir = inverseProjectionMatrix * clipCoords
         eyeRayDir.z = 1
@@ -122,7 +122,7 @@ extension ViewController {
         
 
         
-        let eyeRayOrigin = float4(x: 0, y: 0, z: 0, w: 1)
+        let eyeRayOrigin = SIMD4<Float>(x: 0, y: 0, z: 0, w: 1)
         let worldRayOrigin = (inverseViewMatrix * eyeRayOrigin).xyz
         
         let ray = Ray(origin: worldRayOrigin, direction: worldRayDir)
@@ -142,8 +142,8 @@ extension ViewController {
     }
     
     func intersectionPlane(_ ray: Ray) -> Float {
-        let n = normalize(float3(0,1,0) )
-        let pZero = float3(0,0,0)
+        let n = normalize(SIMD3<Float>(0,1,0) )
+        let pZero = SIMD3<Float>(0,0,0)
         let denom = -simd_dot(n, ray.direction)
         os_log("p0: %f, %f, %f, denom: %f", pZero.x,pZero.y,pZero.z,denom)
         if (denom > Float(1e-6)){
@@ -172,7 +172,7 @@ extension ViewController {
         
         let clipX = (2 * Float(point.x)) / width - 1
         let clipY = 1 - (2 * Float(point.y)) / height
-        let clipCoords = float4(clipX, clipY, 0, 1) // Assume clip space is hemicube, -Z is into the screen
+        let clipCoords = SIMD4<Float>(clipX, clipY, 0, 1) // Assume clip space is hemicube, -Z is into the screen
         
         var eyeRayDir = inverseProjectionMatrix * clipCoords
         eyeRayDir.z = 1
@@ -181,7 +181,7 @@ extension ViewController {
         var worldRayDir = (inverseViewMatrix * eyeRayDir).xyz
         worldRayDir = normalize(worldRayDir)
         
-        let eyeRayOrigin = float4(x: 0, y: 0, z: 0, w: 1)
+        let eyeRayOrigin = SIMD4<Float>(x: 0, y: 0, z: 0, w: 1)
         let worldRayOrigin = (inverseViewMatrix * eyeRayOrigin).xyz
         
         let ray = Ray(origin: worldRayOrigin, direction: worldRayDir)

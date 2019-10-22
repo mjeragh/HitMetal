@@ -69,7 +69,7 @@ extension Renderer {
                       direction: light.coneDirection, color: light.color)
       case Sunlight:
         drawDirectionalLight(renderEncoder: renderEncoder, direction: light.position,
-                             color: float3(1, 0, 0), count: 5)
+                             color: SIMD3<Float>(1, 0, 0), count: 5)
       default:
         break
       }
@@ -77,16 +77,16 @@ extension Renderer {
   }
  
   
-  func drawPointLight(renderEncoder: MTLRenderCommandEncoder, position: float3, color: float3) {
+  func drawPointLight(renderEncoder: MTLRenderCommandEncoder, position: SIMD3<Float>, color: SIMD3<Float>) {
     var vertices = [position]
     let buffer = Renderer.device.makeBuffer(bytes: &vertices,
-                                            length: MemoryLayout<float3>.stride * vertices.count,
+                                            length: MemoryLayout<SIMD3<Float>>.stride * vertices.count,
                                             options: [])
     uniforms.modelMatrix = float4x4.identity()
     renderEncoder.setVertexBytes(&uniforms,
                                  length: MemoryLayout<Uniforms>.stride, index: 1)
     var lightColor = color
-    renderEncoder.setFragmentBytes(&lightColor, length: MemoryLayout<float3>.stride, index: 1)
+    renderEncoder.setFragmentBytes(&lightColor, length: MemoryLayout<SIMD3<Float>>.stride, index: 1)
     renderEncoder.setVertexBuffer(buffer, offset: 0, index: 0)
     renderEncoder.setRenderPipelineState(lightPipelineState)
     renderEncoder.drawPrimitives(type: .point, vertexStart: 0,
@@ -95,23 +95,23 @@ extension Renderer {
   }
   
   func drawDirectionalLight (renderEncoder: MTLRenderCommandEncoder,
-                             direction: float3,
-                             color: float3, count: Int) {
-    var vertices: [float3] = []
+                             direction: SIMD3<Float>,
+                             color: SIMD3<Float>, count: Int) {
+    var vertices: [SIMD3<Float>] = []
     for i in -count..<count {
       let value = Float(i) * 0.4
-      vertices.append(float3(value, 0, value))
-      vertices.append(float3(direction.x+value, direction.y, direction.z+value))
+      vertices.append(SIMD3<Float>(value, 0, value))
+      vertices.append(SIMD3<Float>(direction.x+value, direction.y, direction.z+value))
     }
 
     let buffer = Renderer.device.makeBuffer(bytes: &vertices,
-                                            length: MemoryLayout<float3>.stride * vertices.count,
+                                            length: MemoryLayout<SIMD3<Float>>.stride * vertices.count,
                                             options: [])
     uniforms.modelMatrix = float4x4.identity()
     renderEncoder.setVertexBytes(&uniforms,
                                  length: MemoryLayout<Uniforms>.stride, index: 1)
     var lightColor = color
-    renderEncoder.setFragmentBytes(&lightColor, length: MemoryLayout<float3>.stride, index: 1)
+    renderEncoder.setFragmentBytes(&lightColor, length: MemoryLayout<SIMD3<Float>>.stride, index: 1)
     renderEncoder.setVertexBuffer(buffer, offset: 0, index: 0)
     renderEncoder.setRenderPipelineState(lightPipelineState)
     renderEncoder.drawPrimitives(type: .line, vertexStart: 0,
@@ -119,18 +119,18 @@ extension Renderer {
     
   }
   
-  func drawSpotLight(renderEncoder: MTLRenderCommandEncoder, position: float3, direction: float3, color: float3) {
-    var vertices: [float3] = []
+  func drawSpotLight(renderEncoder: MTLRenderCommandEncoder, position: SIMD3<Float>, direction: SIMD3<Float>, color: SIMD3<Float>) {
+    var vertices: [SIMD3<Float>] = []
     vertices.append(position)
-    vertices.append(float3(position.x + direction.x, position.y + direction.y, position.z + direction.z))
+    vertices.append(SIMD3<Float>(position.x + direction.x, position.y + direction.y, position.z + direction.z))
     let buffer = Renderer.device.makeBuffer(bytes: &vertices,
-                                            length: MemoryLayout<float3>.stride * vertices.count,
+                                            length: MemoryLayout<SIMD3<Float>>.stride * vertices.count,
                                             options: [])
     uniforms.modelMatrix = float4x4.identity()
     renderEncoder.setVertexBytes(&uniforms,
                                  length: MemoryLayout<Uniforms>.stride, index: 1)
     var lightColor = color
-    renderEncoder.setFragmentBytes(&lightColor, length: MemoryLayout<float3>.stride, index: 1)
+    renderEncoder.setFragmentBytes(&lightColor, length: MemoryLayout<SIMD3<Float>>.stride, index: 1)
     renderEncoder.setVertexBuffer(buffer, offset: 0, index: 0)
     renderEncoder.setRenderPipelineState(lightPipelineState)
     renderEncoder.drawPrimitives(type: .line, vertexStart: 0,

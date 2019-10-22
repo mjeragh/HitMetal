@@ -33,8 +33,8 @@ protocol JointPathRemappable {
 
 // returns a sparse mapping from src jointPath to dst, no mapping is represented by nil
 func mapSparseJoints(from srcJointPaths: [String], to dstJointPaths: [String]) -> [Int?] {
-    return srcJointPaths.flatMap { srcJointPath in
-        if let index = dstJointPaths.index(of: srcJointPath) {
+    return srcJointPaths.compactMap { srcJointPath in
+        if let index = dstJointPaths.firstIndex(of: srcJointPath) {
             return index
         }
 
@@ -44,8 +44,8 @@ func mapSparseJoints(from srcJointPaths: [String], to dstJointPaths: [String]) -
 
 /// Compute an index map from all elements of A.jointPaths to the corresponding paths in B.jointPaths
 func mapJoints<A: JointPathRemappable>(from src: A, to dstJointPaths: [String]) -> [Int] {
-    return src.jointPaths.flatMap { srcJointPath in
-        if let index = dstJointPaths.index(of: srcJointPath) {
+    return src.jointPaths.compactMap { srcJointPath in
+        if let index = dstJointPaths.firstIndex(of: srcJointPath) {
             return index
         }
         print("Warning! animated joint \(srcJointPath) does not exist in skeleton")
@@ -179,7 +179,7 @@ func findMasterIndex(_ masterMeshes: [MDLMesh], _ instance: MDLObject) -> Int? {
     }
 
     if let mesh = findFirstMesh(instance) {
-        return masterMeshes.index(of: mesh)
+        return masterMeshes.firstIndex(of: mesh)
     }
 
     return nil
@@ -201,7 +201,7 @@ func sortedMeshIndexPermutation(_ instanceMeshIndices: [Int]) -> ([Int], [Int]) 
 /// Returns the index of a texture path
 func findTextureIndex(_ path: String?, _ texturePaths: inout [String]) -> Int? {
     guard path != nil else { return nil }
-    if let idx = texturePaths.index(of: path!) {
+    if let idx = texturePaths.firstIndex(of: path!) {
         return idx
     } else {
         texturePaths.append(path!)
@@ -232,7 +232,7 @@ func findShortestPath(in path: String, containing rootIdentifier: String) -> Str
 }
 
 /// Get a float3 property from an MDLMaterialProperty
-func getMaterialFloat3Value(_ materialProperty: MDLMaterialProperty) -> float3 {
+func getMaterialFloat3Value(_ materialProperty: MDLMaterialProperty) -> SIMD3<Float> {
     return materialProperty.float3Value
 }
 

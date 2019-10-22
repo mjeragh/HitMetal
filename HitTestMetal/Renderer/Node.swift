@@ -35,19 +35,19 @@ import os.log
 class Node {
     let identifier = UUID()
   var name: String = "untitled"
-  var position: float3 = [0, 0, 0]
-  var rotation: float3 = [0, 0, 0]
-  var scale: float3 = [1, 1, 1]
-    var test: float4 = [1,1,1,1]
+  var position: SIMD3<Float> = [0, 0, 0]
+  var rotation: SIMD3<Float> = [0, 0, 0]
+  var scale: SIMD3<Float> = [1, 1, 1]
+    var test: SIMD4<Float> = [1,1,1,1]
     weak var parent: Node?
     var material = Material()
     
     var boundingBox = MDLAxisAlignedBoundingBox()
-    var size: float3 {
+    var size: SIMD3<Float> {
         return boundingBox.maxBounds - boundingBox.minBounds
     }
     
-   // var boundingSphere = BoundingSphere(center: float3(0,0,0), radius: 0, debugBoundingSphere: nil)
+   // var boundingSphere = BoundingSphere(center: SIMD3<Float>(0,0,0), radius: 0, debugBoundingSphere: nil)
     
   
   var modelMatrix: float4x4 {
@@ -150,17 +150,17 @@ extension Node: Equatable, CustomDebugStringConvertible {
 
 extension MDLAxisAlignedBoundingBox {
     
-    func intersect(_ ray: Ray) -> float4? {
+    func intersect(_ ray: Ray) -> SIMD4<Float>? {
         
         var tmin = minBounds
         var tmax = maxBounds 
         
         let inverseDirection = 1 / ray.direction
         
-        var sign : [Int] = [(inverseDirection.x < 0) ? 1 : 0,(inverseDirection.y < 0) ? 1 : 0,(inverseDirection.z < 0) ? 1 : 0]
+        let sign : [Int] = [(inverseDirection.x < 0) ? 1 : 0,(inverseDirection.y < 0) ? 1 : 0,(inverseDirection.z < 0) ? 1 : 0]
         
         
-        var bounds : [float3] = [tmin,tmax]
+        let bounds : [SIMD3<Float>] = [tmin,tmax]
         
         tmin.x = (bounds[sign[0]].x - ray.origin.x) * inverseDirection.x
         tmax.x = (bounds[1 - sign[0]].x - ray.origin.x) * inverseDirection.x
@@ -207,6 +207,6 @@ extension MDLAxisAlignedBoundingBox {
         }
         
         print("t0 \(t0)")
-        return float4(ray.origin + ray.direction * t0, 1)
+        return SIMD4<Float>(ray.origin + ray.direction * t0, 1)
     }
 }

@@ -36,7 +36,7 @@ extension Renderer {
     camera.position += Float(delta) * sensitivity * cameraVector
   }
   
-  func rotateUsing(translation: float2) {
+  func rotateUsing(translation: SIMD2<Float>) {
     let sensitivity: Float = 0.01
     camera.position = float4x4(rotationY: -translation.x * sensitivity).upperLeft() * camera.position
     camera.rotation.y = atan2f(-camera.position.x, -camera.position.z)

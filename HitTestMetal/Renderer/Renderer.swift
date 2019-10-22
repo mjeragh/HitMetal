@@ -83,7 +83,7 @@ class Renderer: NSObject {
 //        var light = buildDefaultLight()
 //        light.position = [-0, 0.5, -0.5]
 //        light.color = [1, 0, 0]
-//        light.attenuation = float3(1, 3, 4)
+//        light.attenuation = SIMD3<Float>(1, 3, 4)
 //        light.type = Pointlight
 //        return light
 //    }()
@@ -92,7 +92,7 @@ class Renderer: NSObject {
 //        var light = buildDefaultLight()
 //        light.position = [0.4, 0.8, 1]
 //        light.color = [1, 0, 1]
-//        light.attenuation = float3(1, 0.5, 0)
+//        light.attenuation = SIMD3<Float>(1, 0.5, 0)
 //        light.type = Spotlight
 //        light.coneAngle = radians(fromDegrees: 40)
 //        light.coneDirection = [-2, 0, -1.5]
@@ -233,7 +233,7 @@ class Renderer: NSObject {
         light.color = [1, 1, 1]
         light.specularColor = [0.6, 0.6, 0.6]
         light.intensity = 1
-        light.attenuation = float3(1, 0, 0)
+        light.attenuation = SIMD3<Float>(1, 0, 0)
         light.type = Sunlight
         return light
     }

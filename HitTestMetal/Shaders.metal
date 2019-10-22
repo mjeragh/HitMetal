@@ -182,7 +182,7 @@ fragment float4 fragment_normals(VertexOut in [[stage_in]]) {
 //                                 texture2d<float> metallicTexture [[ texture(3), function_constant(hasMetallicTexture) ]],
 //                                 texture2d<float> aoTexture [[ texture(4), function_constant(hasAOTexture)]]){
 //    // extract color
-//    float3 baseColor;
+//    SIMD3<Float> baseColor;
 //    if (hasColorTexture) {
 //        baseColor = baseColorTexture.sample(textureSampler,
 //                                            in.uv * fragmentUniforms.tiling).rgb;
@@ -212,9 +212,9 @@ fragment float4 fragment_normals(VertexOut in [[stage_in]]) {
 //    }
 //    
 //    // normal map
-//    float3 normal;
+//    SIMD3<Float> normal;
 //    if (hasNormalTexture) {
-//        float3 normalValue = normalTexture.sample(textureSampler, in.uv * fragmentUniforms.tiling).xyz * 2.0 - 1.0;
+//        SIMD3<Float> normalValue = normalTexture.sample(textureSampler, in.uv * fragmentUniforms.tiling).xyz * 2.0 - 1.0;
 //        normal = in.worldNormal * normalValue.z
 //        + in.worldTangent * normalValue.x
 //        + in.worldBitangent * normalValue.y;
@@ -223,14 +223,14 @@ fragment float4 fragment_normals(VertexOut in [[stage_in]]) {
 //    }
 //    normal = normalize(normal);
 //    
-//    float3 viewDirection = normalize(fragmentUniforms.cameraPosition - in.worldPosition);
+//    SIMD3<Float> viewDirection = normalize(fragmentUniforms.cameraPosition - in.worldPosition);
 //    
-//    float3 diffuseColor = 0;
-//    float3 specularOutput = 0;
+//    SIMD3<Float> diffuseColor = 0;
+//    SIMD3<Float> specularOutput = 0;
 //    
 //    for (uint i = 0; i < fragmentUniforms.lightCount; i++) {
 //        Light light = lights[i];
-//        float3 lightDirection = normalize(light.position);
+//        SIMD3<Float> lightDirection = normalize(light.position);
 //        lightDirection = light.position;
 //        
 //        // all the necessary components are in place

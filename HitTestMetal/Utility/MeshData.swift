@@ -10,7 +10,7 @@ import ModelIO
 
 //// Per-submesh material uniforms
 //struct Material {
-//    var baseColor: (float3?, Int?) = (float3(1, 1, 1), nil)
+//    var baseColor: (SIMD3<Float>?, Int?) = (SIMD3<Float>(1, 1, 1), nil)
 //    var metallic: (Float?, Int?) = (0, nil)
 //    var roughness: (Float?, Int?) = (0, nil)
 //    var normalMap: Int?

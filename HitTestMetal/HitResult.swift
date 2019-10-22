@@ -6,8 +6,8 @@ struct HitResult {
     var ray: Ray
     var parameter: Float
     
-    var intersectionPoint: float4 {
-        return float4(ray.origin + parameter * ray.direction, 1)
+    var intersectionPoint: SIMD4<Float> {
+        return SIMD4<Float>(ray.origin + parameter * ray.direction, 1)
     }
     
     static func < (_ lhs: HitResult, _ rhs: HitResult) -> Bool {

@@ -12,7 +12,7 @@ import os.log
 import MetalKit
 
 struct Plane {
-    let n: float4
+    let n: SIMD4<Float>
     var a : Float {
       return n.x
     }
@@ -31,7 +31,7 @@ struct Plane {
     
     init(a: Float, b: Float, c: Float, d: Float, debug: Bool = false )
     {
-        self.n = float4(a, b, c, d)
+        self.n = SIMD4<Float>(a, b, c, d)
         if debug {
             self.debugPlane = Primitive(shape: .plane, size: 10)
             debugPlane?.rotation = [c * radians(fromDegrees: -90), a * radians(fromDegrees: -90), b * radians(fromDegrees: -90)]
@@ -47,8 +47,8 @@ struct Plane {
     }
     
     func intersectionPlane(_ ray: Ray) -> Float {
-        let n = normalize(float3(self.n.xyz))
-        let pZero = float3(0 + d,0 + d,0 + d)
+        let n = normalize(SIMD3<Float>(self.n.xyz))
+        let pZero = SIMD3<Float>(0 + d,0 + d,0 + d)
         let denom = -simd_dot(n, ray.direction)
         os_log("p0: %f, %f, %f, denom: %f", pZero.x,pZero.y,pZero.z,denom)
         if (denom > Float(1e-6)){
