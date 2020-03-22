@@ -131,11 +131,11 @@ class Renderer: NSObject {
         train.rotation = [0, radians(fromDegrees: 45), 0]
         models.append(train)
         
-        let jesse = Model(name: "jesse")
-        jesse.position = [-1,-1,0]
-        jesse.scale = [0.01,0.01,0.01]
-        jesse.rotation = [radians(fromDegrees: 90), radians(fromDegrees: 180), 0]
-        models.append(jesse)
+//        let jesse = Model(name: "jesse")
+//        jesse.position = [-1,-1,0]
+//        jesse.scale = [0.01,0.01,0.01]
+//        jesse.rotation = [radians(fromDegrees: 90), radians(fromDegrees: 180), 0]
+//        models.append(jesse)
         
         let fir = Model(name: "treefir")
         fir.name = "tree"
@@ -208,13 +208,13 @@ class Renderer: NSObject {
         characters.append(char)
         
         
-        let tulip = Character(name: "flower_tulip")
-        tulip.name = "tulip"
-        tulip.position = [0, 1, 0]
-        tulip.rotation = [0, radians(fromDegrees: 45), 0]
-        tulip.scale = [0.1,0.1,0.1]
-        characters.append(tulip)
-        
+//        let tulip = Character(name: "flower_tulip")
+//        tulip.name = "tulip"
+//        tulip.position = [0, 1, 0]
+//        tulip.rotation = [0, radians(fromDegrees: 45), 0]
+//        tulip.scale = [0.1,0.1,0.1]
+//        characters.append(tulip)
+//
         //adding to sceene root node
         for character in characters {
             scene.rootNode.addChildNode(character)
@@ -319,7 +319,7 @@ extension Renderer: MTKViewDelegate {
         for character in characters {
             // model matrix now comes from the Model's superclass: Node
             
-            
+            renderEncoder.pushDebugGroup(character.name)
             for meshState in character.nodes{
                 renderEncoder.setRenderPipelineState(meshState.1 as MTLRenderPipelineState)
                 renderEncoder.setVertexBuffer(meshState.0.vertexBuffers[0].buffer, offset: 0, index: 0)
@@ -338,7 +338,7 @@ extension Renderer: MTKViewDelegate {
                                                         indexBufferOffset: submesh.indexBuffer.offset)
                 }
             }
-
+            renderEncoder.popDebugGroup()
         }
         
         for primitive in primitives {

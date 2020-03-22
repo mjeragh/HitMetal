@@ -79,7 +79,7 @@
 		B2A0FEF523015FC600297118 /* train.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.mtl; sourceTree = "<group>"; };
 		B2A0FEF92301651100297118 /* treefir.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = treefir.obj; sourceTree = "<group>"; };
 		B2A10D8922DBA82300136D5B /* hw.usda */ = {isa = PBXFileReference; lastKnownFileType = asset.file.usd; path = hw.usda; sourceTree = "<group>"; };
-		B2A10D8B22DBAAB200136D5B /* simpleMaterial.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = simpleMaterial.usdz; sourceTree = "<group>"; };
+		B2A10D8B22DBAAB200136D5B /* simpleMaterial.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = simpleMaterial.usdz; sourceTree = "<group>"; };
 		B2A6D08A22525260000FBB54 /* HitTestMetal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitTestMetal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2A6D08D22525260000FBB54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2A6D08F22525260000FBB54 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
@@ -107,10 +107,10 @@
 		B2A6D0CF2253C606000FBB54 /* ModelIOExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelIOExtensions.swift; sourceTree = "<group>"; };
 		B2A6D0D12254BC8A000FBB54 /* DebugBoundingSphere.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugBoundingSphere.swift; sourceTree = "<group>"; };
 		B2A6D0D22254BC8A000FBB54 /* DebugBoundingBox.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = DebugBoundingBox.metal; sourceTree = "<group>"; };
-		B2B696CC22B6C5E4002A78CE /* flower_tulip.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = flower_tulip.usdz; sourceTree = "<group>"; };
+		B2B696CC22B6C5E4002A78CE /* flower_tulip.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = flower_tulip.usdz; sourceTree = "<group>"; };
 		B2B696D022B92717002A78CE /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		B2B696D322B94586002A78CE /* car3_car_MAT_Roughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car3_car_MAT_Roughness.png; sourceTree = "<group>"; };
-		B2B696D422B94586002A78CE /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = toy_drummer.usdz; sourceTree = "<group>"; };
+		B2B696D422B94586002A78CE /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_drummer.usdz; sourceTree = "<group>"; };
 		B2B696D522B94586002A78CE /* road.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road.png; sourceTree = "<group>"; };
 		B2B696D622B94586002A78CE /* car3_car_MAT_Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car3_car_MAT_Normal.png; sourceTree = "<group>"; };
 		B2B696D722B94586002A78CE /* car3_car_MAT_Metallic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car3_car_MAT_Metallic.png; sourceTree = "<group>"; };
@@ -551,6 +551,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 74MFHC6MWM;
 				INFOPLIST_FILE = HitTestMetal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -570,6 +571,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 74MFHC6MWM;
 				INFOPLIST_FILE = HitTestMetal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

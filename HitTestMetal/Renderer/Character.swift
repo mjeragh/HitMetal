@@ -15,11 +15,9 @@ class Character: Node {
         vertexDescriptor.attributes = [
             MDLVertexAttribute(name: MDLVertexAttributePosition, format: .float3, offset: 0, bufferIndex: 0),
             MDLVertexAttribute(name: MDLVertexAttributeNormal, format: .float3, offset: 12, bufferIndex: 0),
-            MDLVertexAttribute(name: MDLVertexAttributeTextureCoordinate, format: .float2, offset: 24, bufferIndex: 0),
-            MDLVertexAttribute(name: MDLVertexAttributeJointIndices, format: .uShort4, offset: 32, bufferIndex: 0),
-            MDLVertexAttribute(name: MDLVertexAttributeJointWeights, format: .float4, offset: 40, bufferIndex: 0)
+            MDLVertexAttribute(name: MDLVertexAttributeTextureCoordinate, format: .float2, offset: 24, bufferIndex: 0)
         ]
-        vertexDescriptor.layouts[0] = MDLVertexBufferLayout(stride: 56)
+        vertexDescriptor.layouts[0] = MDLVertexBufferLayout(stride: 32)
         return vertexDescriptor
     }()
     
@@ -44,10 +42,10 @@ class Character: Node {
                             error: nil)
         
         
-
+        asset.loadTextures()
         super.init()
         storeAllMeshesInSceneGraph(with: asset)
-        self.boundingBox = boundingMesh!.boundingBox
+        self.boundingBox = asset.boundingBox//boundingMesh!.boundingBox
     }
     
     private static func buildPipelineState(vertexDescriptor: MDLVertexDescriptor) -> MTLRenderPipelineState {
@@ -74,10 +72,10 @@ class Character: Node {
     func storeAllMeshesInSceneGraph(with asset: MDLAsset) {
         walkSceneGraph(in: asset) { object, currentIdx, _ in
             if let mesh = object as? MDLMesh {
-                if flag {
-                    boundingMesh = mesh
-                    flag = !flag
-                }
+//                if flag {
+//                    boundingMesh = mesh
+//                    flag = !flag
+//                }
                let pipelineState = Character.buildPipelineState(vertexDescriptor: mesh.vertexDescriptor)
                 let mtkMesh = try! MTKMesh(mesh: mesh, device: Renderer.device)
                 

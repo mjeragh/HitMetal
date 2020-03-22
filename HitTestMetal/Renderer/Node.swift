@@ -34,10 +34,10 @@ import os.log
 
 class Node {
     let identifier = UUID()
-  var name: String = "untitled"
-  var position: SIMD3<Float> = [0, 0, 0]
-  var rotation: SIMD3<Float> = [0, 0, 0]
-  var scale: SIMD3<Float> = [1, 1, 1]
+    var name: String = "untitled"
+    var position: SIMD3<Float> = [0, 0, 0]
+    var rotation: SIMD3<Float> = [0, 0, 0]
+    var scale: SIMD3<Float> = [1, 1, 1]
     var test: SIMD4<Float> = [1,1,1,1]
     weak var parent: Node?
     var material = Material()

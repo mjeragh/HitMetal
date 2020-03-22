@@ -51,7 +51,7 @@ class Model: Node {
     
     super.init()
     self.name = name
-    self.boundingBox = mdlMeshes[0].boundingBox
+    self.boundingBox = asset.boundingBox//mdlMeshes[0].boundingBox
     
     
   }
