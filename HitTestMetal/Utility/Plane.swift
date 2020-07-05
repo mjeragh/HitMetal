@@ -61,7 +61,7 @@ struct Plane {
         let pZero = SIMD3<Float>(0 + d,0 + d,0 + d)
         let denom = -simd_dot(n, ray.direction)
         os_log("p0: %f, %f, %f, denom: %f", pZero.x,pZero.y,pZero.z,denom)
-        if (abs(denom) > Float(1e-6)){//abs was added on July 2020
+        if (denom > Float(1e-6)){//abs was added on July 2020
             let p0l0 = ray.origin - pZero
             let t = simd_dot(p0l0, n) / denom
             os_log("t: %f",t)
