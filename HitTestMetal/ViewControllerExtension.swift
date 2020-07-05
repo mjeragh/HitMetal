@@ -136,7 +136,7 @@ extension ViewController {
             
             position = ray.origin + ray.direction * parameter
             os_log("(unproject) intersectionPoint %f, %f, %f", ray.direction.x * parameter, ray.direction.y * parameter, ray.direction.z * parameter)
-            position.y += 0
+           // position.y += 0
         }
         return position
     }
