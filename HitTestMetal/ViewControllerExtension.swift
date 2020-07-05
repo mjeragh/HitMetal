@@ -141,6 +141,10 @@ extension ViewController {
         return position
     }
     
+    
+    /// the equations are from this site
+   /// https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-plane-and-ray-disk-intersection
+   
     func intersectionPlane(_ ray: Ray) -> Float {
         let n = normalize(SIMD3<Float>(0,1,0) )
         let pZero = SIMD3<Float>(0,0,0)

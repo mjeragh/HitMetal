@@ -116,7 +116,7 @@ extension Node: Equatable, CustomDebugStringConvertible {
         
         var nearestChildHit: HitResult?
         for child in children {
-            if (child.name == "plane") {continue}
+            if (child.name == "debugPlane") {continue}
             if let childHit = child.hitTest(ray) {
                 if let nearestActualChildHit = nearestChildHit {
                     if childHit < nearestActualChildHit {

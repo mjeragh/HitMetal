@@ -184,6 +184,8 @@ class Renderer: NSObject {
         
         
         primitives.append(box)
+
+        
         if let tp = touchPlane.debugPlane {
             
             primitives.append(tp)
