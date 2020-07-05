@@ -147,7 +147,7 @@ extension ViewController {
         let denom = -simd_dot(n, ray.direction)
         os_log("p0: %f, %f, %f, denom: %f", pZero.x,pZero.y,pZero.z,denom)
         if (denom > Float(1e-6)){
-            let p0l0 = ray.origin - pZero 
+            let p0l0 = ray.origin - pZero
             let t = simd_dot(p0l0, n) / denom
             return t
         }
