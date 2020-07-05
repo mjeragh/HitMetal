@@ -198,14 +198,14 @@ class Renderer: NSObject {
         // add model to the scene
        //race_track
         //toy_drummer
-        //simpleMaterial
-        let file = "toy_drummer"
-        let char = Character(name: file)
-        char.name = file
-        char.position = [0, 1, -2]
-        char.rotation = [0, radians(fromDegrees: 180), 0]
-        char.scale = [0.2,0.2,0.2]
-        characters.append(char)
+//        //simpleMaterial
+//        let file = "toy_drummer"
+//        let char = Character(name: file)
+//        char.name = file
+//        char.position = [0, 1, -2]
+//        char.rotation = [0, radians(fromDegrees: 180), 0]
+//        char.scale = [0.2,0.2,0.2]
+//        characters.append(char)
         
         
 //        let tulip = Character(name: "flower_tulip")
