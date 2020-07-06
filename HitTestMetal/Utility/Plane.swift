@@ -33,7 +33,7 @@ struct Plane {
     {
         self.n = SIMD4<Float>(a, b, c, d)
         if debug {
-            self.debugPlane = Primitive(shape: .plane, size: 50)
+            self.debugPlane = Primitive(shape: .plane, size: 20)
             //debugPlane?.rotation = [c * radians(fromDegrees: -90), a * radians(fromDegrees: -90), b * radians(fromDegrees: -90)]
             debugPlane?.rotation = [a,c,b]
             debugPlane?.position = [a,c + d,b]

@@ -67,6 +67,14 @@ class Node {
     
    
     
+    var forwardVector: SIMD3<Float> {
+      return normalize([sin(rotation.y), 0, cos(rotation.y)])
+    }
+    
+    var rightVector: SIMD3<Float> {
+      return [forwardVector.z, forwardVector.y, -forwardVector.x]
+    }
+    
     var children: [Node] = []
     
     func addChildNode(_ node: Node) {
