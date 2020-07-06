@@ -34,6 +34,7 @@ import os.signpost
 
 extension ViewController {
   static var previousScale: CGFloat = 1
+    static var translation = CGPoint(x: 0,y: 0)
     
 //  func addGestureRecognizer(to view: UIView) {
 //    let pan = UIPanGestureRecognizer(target: self,
@@ -69,12 +70,18 @@ extension ViewController {
             os_log("selectedNode %s",node.name)
         }
         else {
+            ViewController.translation = touches.first!.location(in: view)
             os_log("No Seleted Node")
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard (selectedNode != nil)  else {
+            let newTranslation = touches.first?.location(in: view)
+            let delta = float2(Float(newTranslation!.x - ViewController.translation.x),
+                               Float(newTranslation!.y - ViewController.translation.y))
+            
+            renderer?.camera.rotate(delta: delta)
             return
         }
         if let location = touches.first?.location(in: view)  {

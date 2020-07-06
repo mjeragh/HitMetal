@@ -54,10 +54,9 @@ class Renderer: NSObject {
     
     // Camera holds view and projection matrices
     lazy var camera: Camera = {
-        let camera = Camera()
-        camera.position = [18, 2, -15]
-        camera.rotation = [0, -0.707, 0]
-        
+        let camera = ArcballCamera()
+        camera.distance = 15
+        camera.rotation = [0, 0, 0]
         return camera
     }()
     
