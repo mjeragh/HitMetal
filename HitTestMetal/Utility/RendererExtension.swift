@@ -32,13 +32,13 @@ import MetalKit
 
 extension Renderer {
   func zoomUsing(delta: CGFloat, sensitivity: Float) {
-    let cameraVector = camera.modelMatrix.upperLeft().columns.2
+    let cameraVector = camera.modelMatrix.upperLeft.columns.2
     camera.position += Float(delta) * sensitivity * cameraVector
   }
   
   func rotateUsing(translation: SIMD2<Float>) {
     let sensitivity: Float = 0.01
-    camera.position = float4x4(rotationY: -translation.x * sensitivity).upperLeft() * camera.position
+    camera.position = float4x4(rotationY: -translation.x * sensitivity).upperLeft * camera.position
     camera.rotation.y = atan2f(-camera.position.x, -camera.position.z)
   }
 }

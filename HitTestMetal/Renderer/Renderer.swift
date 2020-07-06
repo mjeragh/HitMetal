@@ -128,7 +128,7 @@ class Renderer: NSObject {
         let train = Model(name: "train")
         train.name = "train"
         train.position = [0, 0, 0]
-        train.rotation = [0, radians(fromDegrees: 45), 0]
+        train.rotation = [0, Float(45).degreesToRadians, 0]
         models.append(train)
         
 //        let jesse = Model(name: "jesse")
@@ -171,7 +171,7 @@ class Renderer: NSObject {
         
         let box = Primitive(shape: .cube, size: 1.0)
         box.position = [-1.5,0.5,0]
-        box.rotation = [0, radians(fromDegrees: 45), 0]
+        box.rotation = [0, Float(45).degreesToRadians, 0]
         box.material.baseColor = [0, 0.5, 0]
         box.material.secondColor = [1.0,1.0,0.0]
         box.material.metallic = 1.0
