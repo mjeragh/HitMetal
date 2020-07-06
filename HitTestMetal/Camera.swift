@@ -91,6 +91,11 @@ class ArcballCamera: Camera {
   override var viewMatrix: float4x4 {
     return _viewMatrix
   }
+    
+    override var inverseViewMatrix: float4x4 {
+        _viewMatrix.inverse
+    }
+    
   private var _viewMatrix = float4x4.identity()
   
   override init() {
