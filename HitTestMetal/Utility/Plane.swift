@@ -36,7 +36,7 @@ struct Plane {
             self.debugPlane = Primitive(shape: .plane, size: 50)
             //debugPlane?.rotation = [c * radians(fromDegrees: -90), a * radians(fromDegrees: -90), b * radians(fromDegrees: -90)]
             debugPlane?.rotation = [a,c,b]
-            debugPlane?.position = [a,c,b] * d
+            debugPlane?.position = [a,c + d,b]
             debugPlane?.material.baseColor = [0, 0.5, 0]//[0, 0.0, 0]
             debugPlane?.material.metallic = 1.0 //0.0
             debugPlane?.material.roughness = 0.0 //0.1
@@ -57,7 +57,7 @@ struct Plane {
     func intersectionPlane(_ ray: Ray) -> Float {
         let n = normalize(SIMD3<Float>(self.n.xyz))
         os_log("n: %f %f %f",n.x,n.y,n.z)
-        let pZero = SIMD3<Float>(0,0 ,0)
+        let pZero = SIMD3<Float>(0,0 + d,0)
         let denom = -simd_dot(n, ray.direction)
         os_log("p0: %f, %f, %f, denom: %f", pZero.x,pZero.y,pZero.z,denom)
         if (denom > Float(1e-6)){
