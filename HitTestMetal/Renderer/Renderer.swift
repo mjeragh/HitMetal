@@ -55,8 +55,9 @@ class Renderer: NSObject {
     // Camera holds view and projection matrices
     lazy var camera: Camera = {
         let camera = Camera()
-        camera.position = [0, 2, -15]
-        camera.rotation = [0, 0, 0]
+        camera.position = [18, 2, -15]
+        camera.rotation = [0, -0.707, 0]
+        
         return camera
     }()
     
