@@ -149,23 +149,23 @@ extension ViewController {
     }
     
     
-    /// the equations are from this site
-   /// https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-plane-and-ray-disk-intersection
-   
-    func intersectionPlane(_ ray: Ray) -> Float {
-        let n = normalize(SIMD3<Float>(0,1,0) )
-        let pZero = SIMD3<Float>(0,0,0)
-        let denom = -simd_dot(n, ray.direction)
-        os_log("p0: %f, %f, %f, denom: %f", pZero.x,pZero.y,pZero.z,denom)
-        if (denom > Float(1e-6)){
-            let p0l0 = ray.origin - pZero
-            let t = simd_dot(p0l0, n) / denom
-            return t
-        }
-        
-        
-        return Float(0.0)
-    }
+//    /// the equations are from this site
+//   /// https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-plane-and-ray-disk-intersection
+//   
+//    func intersectionPlane(_ ray: Ray) -> Float {
+//        let n = normalize(SIMD3<Float>(0,1,0) )
+//        let pZero = SIMD3<Float>(0,0,0)
+//        let denom = -simd_dot(n, ray.direction)
+//        os_log("p0: %f, %f, %f, denom: %f", pZero.x,pZero.y,pZero.z,denom)
+//        if (denom > Float(1e-6)){
+//            let p0l0 = ray.origin - pZero
+//            let t = simd_dot(p0l0, n) / denom
+//            return t
+//        }
+//        
+//        
+//        return Float(0.0)
+//    }
     
     func handleInteraction(at point: CGPoint) {
         guard let camera = renderer?.camera else { return }

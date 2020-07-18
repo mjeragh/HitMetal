@@ -96,20 +96,7 @@ class Node {
 
 extension Node: Equatable, CustomDebugStringConvertible {
     
-    func unproject(_ ray: Ray) -> HitResult?{
-        let modelToWorld = worldTransform//float4x4.identity()
-        let localRay = modelToWorld.inverse * ray
-        
-        var nearest: HitResult?
-        if let modelPoint = boundingBox.intersect(localRay) {
-            let worldPoint = modelToWorld * modelPoint
-            let worldParameter = ray.interpolate(worldPoint)
-            nearest = HitResult(node: self, ray: ray, parameter: worldParameter)
-        }
-
-       
-        return nearest
-    }
+   
     
     func hitTest(_ ray: Ray) -> HitResult? {
         let modelToWorld = worldTransform
