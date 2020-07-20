@@ -117,11 +117,12 @@ extension Node: Equatable, CustomDebugStringConvertible {
                     if childHit < nearestActualChildHit {
                         nearestChildHit = childHit
                     }
-                } else {
+                }
+                else {
                     nearestChildHit = childHit
                 }
             }
-        }
+        }//for loop
         
         if let nearestActualChildHit = nearestChildHit {
             if let nearestActual = nearest {
