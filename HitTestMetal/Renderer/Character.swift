@@ -44,7 +44,7 @@ class Character: Node {
         
         asset.loadTextures()
         super.init()
-        storeAllMeshesInSceneGraph(with: asset)
+       // storeAllMeshesInSceneGraph(with: asset)
         self.boundingBox = asset.boundingBox//boundingMesh!.boundingBox
     }
     
